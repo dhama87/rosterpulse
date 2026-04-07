@@ -103,6 +103,24 @@ interface GuidedNode {
 }
 ```
 
+### Supporting Types
+
+```typescript
+type CodeSystem = "ICD-10" | "CPT";
+
+interface SearchFilters {
+  system?: CodeSystem;
+  category?: string;
+}
+
+interface Category {
+  id: string;
+  name: string;
+  system: CodeSystem;
+  codeCount: number;
+}
+```
+
 ### Service Interface
 
 ```typescript
