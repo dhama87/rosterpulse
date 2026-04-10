@@ -6,6 +6,7 @@ import { MedicalCode, CodeSystem } from "@/types";
 import { SearchBar } from "@/components/SearchBar";
 import { CodeCard } from "@/components/CodeCard";
 import { FilterSidebar } from "@/components/FilterSidebar";
+import { addRecentSearch } from "@/components/RecentSearches";
 
 function ResultsContent() {
   const searchParams = useSearchParams();
@@ -30,6 +31,9 @@ function ResultsContent() {
     fetch(`/api/search?${params.toString()}`)
       .then((r) => r.json())
       .then(setResults);
+    if (query) {
+      addRecentSearch(query);
+    }
   }, [query, selectedSystem, selectedSpecialty]);
 
   const systems = [

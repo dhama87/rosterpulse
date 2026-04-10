@@ -1,6 +1,8 @@
 import { SearchBar } from "@/components/SearchBar";
 import { FeatureCards } from "@/components/FeatureCards";
 import { SpecialtyGrid } from "@/components/SpecialtyGrid";
+import { RecentSearches } from "@/components/RecentSearches";
+import { FavoritesManager } from "@/components/FavoritesManager";
 import Link from "next/link";
 
 export default function Home() {
@@ -52,6 +54,8 @@ export default function Home() {
               🧭 Guided Code Finder
             </Link>
           </div>
+          <RecentSearches />
+          <FavoritesManager />
         </div>
       </section>
 
