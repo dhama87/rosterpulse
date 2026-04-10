@@ -1,0 +1,6502 @@
+[
+  {
+    "code": "A4206",
+    "system": "HCPCS",
+    "description": "Syringe with needle, sterile, 1 cc or less, each",
+    "category": "Medical and Surgical Supplies",
+    "specialty": "General",
+    "status": "active",
+    "keywords": [
+      "syringe",
+      "needle",
+      "injection",
+      "sterile",
+      "1cc"
+    ],
+    "details": {
+      "includes": [
+        "Syringe with attached needle",
+        "Sterile packaging"
+      ],
+      "excludes1": [],
+      "excludes2": [],
+      "relatedCodes": [
+        "A4207",
+        "A4208",
+        "A4209"
+      ],
+      "codeFirst": null,
+      "useAdditionalCode": null,
+      "codeAlso": null
+    },
+    "billing": {
+      "modifiers": [],
+      "cciEdits": [],
+      "feeSchedule": {
+        "year": 2026,
+        "nonFacilityRate": 0.18,
+        "facilityRate": 0.18,
+        "workRVU": 0,
+        "practiceExpenseRVU": 0,
+        "malpracticeRVU": 0,
+        "totalRVU": 0,
+        "conversionFactor": 33.29
+      },
+      "placeOfService": [
+        {
+          "code": "11",
+          "description": "Office"
+        },
+        {
+          "code": "12",
+          "description": "Home"
+        }
+      ],
+      "commonDenials": [],
+      "medicalNecessity": {
+        "covered": true,
+        "notes": "Covered when used with covered injectable drugs."
+      },
+      "documentationReqs": [
+        "Document the drug being administered",
+        "Quantity of syringes used"
+      ],
+      "payerRules": []
+    },
+    "source": {
+      "system": "CMS",
+      "url": "https://www.cms.gov/medicare/coding-billing/healthcare-common-procedure-system",
+      "lastUpdated": "2025-10-01"
+    }
+  },
+  {
+    "code": "A4253",
+    "system": "HCPCS",
+    "description": "Blood glucose test or reagent strips for home blood glucose monitor, per 50 strips",
+    "category": "Medical and Surgical Supplies",
+    "specialty": "Endocrinology",
+    "status": "active",
+    "keywords": [
+      "glucose",
+      "test strips",
+      "diabetes",
+      "blood sugar",
+      "monitor",
+      "reagent"
+    ],
+    "details": {
+      "includes": [
+        "Test strips compatible with home blood glucose monitors"
+      ],
+      "excludes1": [],
+      "excludes2": [],
+      "relatedCodes": [
+        "A4256",
+        "A4258",
+        "A4259",
+        "E0607"
+      ],
+      "codeFirst": null,
+      "useAdditionalCode": null,
+      "codeAlso": null
+    },
+    "billing": {
+      "modifiers": [
+        {
+          "code": "KS",
+          "description": "Glucose Monitor Supply for Diabetic Beneficiary Not Treated with Insulin",
+          "usageGuidance": "Use for non-insulin-treated diabetics",
+          "system": "HCPCS"
+        }
+      ],
+      "cciEdits": [],
+      "feeSchedule": {
+        "year": 2026,
+        "nonFacilityRate": 11.38,
+        "facilityRate": 11.38,
+        "workRVU": 0,
+        "practiceExpenseRVU": 0,
+        "malpracticeRVU": 0,
+        "totalRVU": 0,
+        "conversionFactor": 33.29
+      },
+      "placeOfService": [
+        {
+          "code": "12",
+          "description": "Home"
+        }
+      ],
+      "commonDenials": [
+        {
+          "code": "CO-96",
+          "type": "CARC",
+          "description": "Non-covered charge(s)",
+          "resolution": "Verify frequency limits and medical necessity",
+          "frequency": "medium"
+        }
+      ],
+      "medicalNecessity": {
+        "covered": true,
+        "lcdId": "L33822",
+        "notes": "Covered for insulin-treated diabetics up to 300 strips/quarter. Non-insulin-treated limited to 100 strips/quarter."
+      },
+      "documentationReqs": [
+        "Diabetes diagnosis",
+        "Documentation of insulin use or oral medication management",
+        "Frequency of testing ordered by physician"
+      ],
+      "payerRules": [
+        {
+          "payer": "Medicare",
+          "timelyFiling": "365 days",
+          "priorAuth": "Not required",
+          "frequencyLimit": "300 strips/quarter for insulin-treated; 100 strips/quarter for non-insulin-treated"
+        }
+      ]
+    },
+    "source": {
+      "system": "CMS",
+      "url": "https://www.cms.gov/medicare/coding-billing/healthcare-common-procedure-system",
+      "lastUpdated": "2025-10-01"
+    }
+  },
+  {
+    "code": "A4550",
+    "system": "HCPCS",
+    "description": "Surgical trays",
+    "category": "Medical and Surgical Supplies",
+    "specialty": "General",
+    "status": "active",
+    "keywords": [
+      "surgical",
+      "tray",
+      "supplies",
+      "procedure"
+    ],
+    "details": {
+      "includes": [
+        "Disposable surgical trays"
+      ],
+      "excludes1": [],
+      "excludes2": [],
+      "relatedCodes": [],
+      "codeFirst": null,
+      "useAdditionalCode": null,
+      "codeAlso": null
+    },
+    "billing": {
+      "modifiers": [],
+      "cciEdits": [],
+      "feeSchedule": {
+        "year": 2026,
+        "nonFacilityRate": 0.91,
+        "facilityRate": 0.91,
+        "workRVU": 0,
+        "practiceExpenseRVU": 0,
+        "malpracticeRVU": 0,
+        "totalRVU": 0,
+        "conversionFactor": 33.29
+      },
+      "placeOfService": [
+        {
+          "code": "11",
+          "description": "Office"
+        }
+      ],
+      "commonDenials": [
+        {
+          "code": "CO-97",
+          "type": "CARC",
+          "description": "Bundled into the procedure",
+          "resolution": "Surgical trays are typically bundled and not separately payable by Medicare",
+          "frequency": "high"
+        }
+      ],
+      "medicalNecessity": {
+        "covered": false,
+        "notes": "Medicare does not separately reimburse surgical trays. They are considered bundled with the surgical procedure."
+      },
+      "documentationReqs": [
+        "Document the procedure performed"
+      ],
+      "payerRules": [
+        {
+          "payer": "Medicare",
+          "timelyFiling": "365 days",
+          "priorAuth": "Not required",
+          "notes": "Not separately payable by Medicare"
+        }
+      ]
+    },
+    "source": {
+      "system": "CMS",
+      "url": "https://www.cms.gov/medicare/coding-billing/healthcare-common-procedure-system",
+      "lastUpdated": "2025-10-01"
+    }
+  },
+  {
+    "code": "A6216",
+    "system": "HCPCS",
+    "description": "Gauze, non-impregnated, non-sterile, pad size 16 sq. in. or less, without adhesive border, each dressing",
+    "category": "Medical and Surgical Supplies",
+    "specialty": "General",
+    "status": "active",
+    "keywords": [
+      "gauze",
+      "dressing",
+      "wound",
+      "bandage",
+      "non-sterile"
+    ],
+    "details": {
+      "includes": [
+        "Non-impregnated gauze pads"
+      ],
+      "excludes1": [],
+      "excludes2": [],
+      "relatedCodes": [
+        "A6217",
+        "A6218",
+        "A6219",
+        "A6220"
+      ],
+      "codeFirst": null,
+      "useAdditionalCode": null,
+      "codeAlso": null
+    },
+    "billing": {
+      "modifiers": [],
+      "cciEdits": [],
+      "feeSchedule": {
+        "year": 2026,
+        "nonFacilityRate": 0.68,
+        "facilityRate": 0.68,
+        "workRVU": 0,
+        "practiceExpenseRVU": 0,
+        "malpracticeRVU": 0,
+        "totalRVU": 0,
+        "conversionFactor": 33.29
+      },
+      "placeOfService": [
+        {
+          "code": "12",
+          "description": "Home"
+        }
+      ],
+      "commonDenials": [],
+      "medicalNecessity": {
+        "covered": true,
+        "notes": "Covered for wound care when medically necessary."
+      },
+      "documentationReqs": [
+        "Wound type and location",
+        "Size of wound",
+        "Frequency of dressing changes"
+      ],
+      "payerRules": []
+    },
+    "source": {
+      "system": "CMS",
+      "url": "https://www.cms.gov/medicare/coding-billing/healthcare-common-procedure-system",
+      "lastUpdated": "2025-10-01"
+    }
+  },
+  {
+    "code": "A6250",
+    "system": "HCPCS",
+    "description": "Skin sealants, protectants, moisturizers, ointments, any type, any size",
+    "category": "Medical and Surgical Supplies",
+    "specialty": "Dermatology",
+    "status": "active",
+    "keywords": [
+      "skin",
+      "sealant",
+      "protectant",
+      "moisturizer",
+      "ointment",
+      "wound"
+    ],
+    "details": {
+      "includes": [
+        "Skin barrier products",
+        "Wound protectant products"
+      ],
+      "excludes1": [],
+      "excludes2": [],
+      "relatedCodes": [
+        "A6251",
+        "A6252"
+      ],
+      "codeFirst": null,
+      "useAdditionalCode": null,
+      "codeAlso": null
+    },
+    "billing": {
+      "modifiers": [],
+      "cciEdits": [],
+      "feeSchedule": {
+        "year": 2026,
+        "nonFacilityRate": 4.82,
+        "facilityRate": 4.82,
+        "workRVU": 0,
+        "practiceExpenseRVU": 0,
+        "malpracticeRVU": 0,
+        "totalRVU": 0,
+        "conversionFactor": 33.29
+      },
+      "placeOfService": [
+        {
+          "code": "12",
+          "description": "Home"
+        }
+      ],
+      "commonDenials": [],
+      "medicalNecessity": {
+        "covered": true,
+        "notes": "Covered for wound care management."
+      },
+      "documentationReqs": [
+        "Wound description",
+        "Medical necessity for product"
+      ],
+      "payerRules": []
+    },
+    "source": {
+      "system": "CMS",
+      "url": "https://www.cms.gov/medicare/coding-billing/healthcare-common-procedure-system",
+      "lastUpdated": "2025-10-01"
+    }
+  },
+  {
+    "code": "A4649",
+    "system": "HCPCS",
+    "description": "Surgical supply; miscellaneous",
+    "category": "Medical and Surgical Supplies",
+    "specialty": "General",
+    "status": "active",
+    "keywords": [
+      "surgical",
+      "supply",
+      "miscellaneous",
+      "not otherwise classified"
+    ],
+    "details": {
+      "includes": [
+        "Surgical supplies not covered by more specific codes"
+      ],
+      "excludes1": [],
+      "excludes2": [],
+      "relatedCodes": [
+        "A4550"
+      ],
+      "codeFirst": null,
+      "useAdditionalCode": null,
+      "codeAlso": null
+    },
+    "billing": {
+      "modifiers": [],
+      "cciEdits": [],
+      "feeSchedule": null,
+      "placeOfService": [
+        {
+          "code": "11",
+          "description": "Office"
+        }
+      ],
+      "commonDenials": [
+        {
+          "code": "CO-4",
+          "type": "CARC",
+          "description": "Procedure code inconsistent with modifier",
+          "resolution": "Provide documentation and invoice for the specific supply",
+          "frequency": "high"
+        }
+      ],
+      "medicalNecessity": {
+        "covered": true,
+        "notes": "Priced by individual consideration. Must submit documentation and invoice."
+      },
+      "documentationReqs": [
+        "Description of supply",
+        "Invoice or purchase documentation",
+        "Medical necessity statement"
+      ],
+      "payerRules": []
+    },
+    "source": {
+      "system": "CMS",
+      "url": "https://www.cms.gov/medicare/coding-billing/healthcare-common-procedure-system",
+      "lastUpdated": "2025-10-01"
+    }
+  },
+  {
+    "code": "E0100",
+    "system": "HCPCS",
+    "description": "Cane, includes canes of all materials, adjustable or fixed, with tip",
+    "category": "Durable Medical Equipment",
+    "specialty": "Orthopedics",
+    "status": "active",
+    "keywords": [
+      "cane",
+      "walking",
+      "mobility",
+      "ambulation",
+      "assistive device"
+    ],
+    "details": {
+      "includes": [
+        "Adjustable canes",
+        "Fixed-length canes",
+        "Standard cane tip"
+      ],
+      "excludes1": [],
+      "excludes2": [],
+      "relatedCodes": [
+        "E0105",
+        "E0110",
+        "E0111",
+        "E0112"
+      ],
+      "codeFirst": null,
+      "useAdditionalCode": null,
+      "codeAlso": null
+    },
+    "billing": {
+      "modifiers": [
+        {
+          "code": "KX",
+          "description": "Requirements Specified in the Medical Policy Have Been Met",
+          "usageGuidance": "Use when LCD coverage criteria are met",
+          "system": "HCPCS"
+        }
+      ],
+      "cciEdits": [],
+      "feeSchedule": {
+        "year": 2026,
+        "nonFacilityRate": 15.75,
+        "facilityRate": 15.75,
+        "workRVU": 0,
+        "practiceExpenseRVU": 0,
+        "malpracticeRVU": 0,
+        "totalRVU": 0,
+        "conversionFactor": 33.29
+      },
+      "placeOfService": [
+        {
+          "code": "12",
+          "description": "Home"
+        }
+      ],
+      "commonDenials": [],
+      "medicalNecessity": {
+        "covered": true,
+        "notes": "Covered when patient has a mobility limitation that can be improved with a cane."
+      },
+      "documentationReqs": [
+        "Physician order",
+        "Documentation of mobility limitation",
+        "Face-to-face encounter notes"
+      ],
+      "payerRules": [
+        {
+          "payer": "Medicare",
+          "timelyFiling": "365 days",
+          "priorAuth": "Not required",
+          "notes": "Subject to DME competitive bidding in applicable areas"
+        }
+      ]
+    },
+    "source": {
+      "system": "CMS",
+      "url": "https://www.cms.gov/medicare/coding-billing/healthcare-common-procedure-system",
+      "lastUpdated": "2025-10-01"
+    }
+  },
+  {
+    "code": "E0260",
+    "system": "HCPCS",
+    "description": "Hospital bed, semi-electric (head and foot adjustment), with any type side rails, with mattress",
+    "category": "Durable Medical Equipment",
+    "specialty": "General",
+    "status": "active",
+    "keywords": [
+      "hospital bed",
+      "semi-electric",
+      "bed",
+      "mattress",
+      "side rails",
+      "DME"
+    ],
+    "details": {
+      "includes": [
+        "Semi-electric hospital bed",
+        "Side rails",
+        "Mattress"
+      ],
+      "excludes1": [],
+      "excludes2": [],
+      "relatedCodes": [
+        "E0250",
+        "E0255",
+        "E0265",
+        "E0270",
+        "E0290",
+        "E0295",
+        "E0300",
+        "E0301"
+      ],
+      "codeFirst": null,
+      "useAdditionalCode": null,
+      "codeAlso": null
+    },
+    "billing": {
+      "modifiers": [
+        {
+          "code": "KX",
+          "description": "Requirements Specified in the Medical Policy Have Been Met",
+          "usageGuidance": "Use when LCD criteria are met",
+          "system": "HCPCS"
+        }
+      ],
+      "cciEdits": [],
+      "feeSchedule": {
+        "year": 2026,
+        "nonFacilityRate": 93.94,
+        "facilityRate": 93.94,
+        "workRVU": 0,
+        "practiceExpenseRVU": 0,
+        "malpracticeRVU": 0,
+        "totalRVU": 0,
+        "conversionFactor": 33.29
+      },
+      "placeOfService": [
+        {
+          "code": "12",
+          "description": "Home"
+        }
+      ],
+      "commonDenials": [
+        {
+          "code": "CO-50",
+          "type": "CARC",
+          "description": "Not deemed medically necessary",
+          "resolution": "Provide documentation showing patient meets LCD criteria",
+          "frequency": "medium"
+        }
+      ],
+      "medicalNecessity": {
+        "covered": true,
+        "lcdId": "L33738",
+        "notes": "Covered when patient requires positioning of body not feasible with an ordinary bed."
+      },
+      "documentationReqs": [
+        "Physician order with specific medical necessity",
+        "Face-to-face encounter within 6 months",
+        "Documentation of why an ordinary bed is insufficient"
+      ],
+      "payerRules": [
+        {
+          "payer": "Medicare",
+          "timelyFiling": "365 days",
+          "priorAuth": "Not required but subject to review",
+          "frequencyLimit": "One per beneficiary"
+        }
+      ]
+    },
+    "source": {
+      "system": "CMS",
+      "url": "https://www.cms.gov/medicare/coding-billing/healthcare-common-procedure-system",
+      "lastUpdated": "2025-10-01"
+    }
+  },
+  {
+    "code": "E0431",
+    "system": "HCPCS",
+    "description": "Portable gaseous oxygen system, purchase; includes regulator, flowmeter, humidifier, cannula or mask, and tubing",
+    "category": "Durable Medical Equipment",
+    "specialty": "Pulmonology",
+    "status": "active",
+    "keywords": [
+      "oxygen",
+      "portable",
+      "gaseous",
+      "O2",
+      "respiratory",
+      "tank"
+    ],
+    "details": {
+      "includes": [
+        "Portable oxygen system",
+        "Regulator",
+        "Flowmeter",
+        "Humidifier",
+        "Cannula or mask",
+        "Tubing"
+      ],
+      "excludes1": [],
+      "excludes2": [],
+      "relatedCodes": [
+        "E0434",
+        "E0439",
+        "E0441",
+        "E0443",
+        "E1390",
+        "E1392"
+      ],
+      "codeFirst": null,
+      "useAdditionalCode": null,
+      "codeAlso": null
+    },
+    "billing": {
+      "modifiers": [],
+      "cciEdits": [],
+      "feeSchedule": {
+        "year": 2026,
+        "nonFacilityRate": 148.3,
+        "facilityRate": 148.3,
+        "workRVU": 0,
+        "practiceExpenseRVU": 0,
+        "malpracticeRVU": 0,
+        "totalRVU": 0,
+        "conversionFactor": 33.29
+      },
+      "placeOfService": [
+        {
+          "code": "12",
+          "description": "Home"
+        }
+      ],
+      "commonDenials": [],
+      "medicalNecessity": {
+        "covered": true,
+        "lcdId": "L33797",
+        "notes": "Covered when qualifying oxygen saturation criteria are met."
+      },
+      "documentationReqs": [
+        "Qualifying blood gas or oximetry study",
+        "Certificate of Medical Necessity (CMN)",
+        "Face-to-face encounter",
+        "Documentation of condition requiring supplemental oxygen"
+      ],
+      "payerRules": [
+        {
+          "payer": "Medicare",
+          "timelyFiling": "365 days",
+          "priorAuth": "CMN required",
+          "notes": "Subject to 36-month rental cap"
+        }
+      ]
+    },
+    "source": {
+      "system": "CMS",
+      "url": "https://www.cms.gov/medicare/coding-billing/healthcare-common-procedure-system",
+      "lastUpdated": "2025-10-01"
+    }
+  },
+  {
+    "code": "E0601",
+    "system": "HCPCS",
+    "description": "Continuous positive airway pressure (CPAP) device",
+    "category": "Durable Medical Equipment",
+    "specialty": "Pulmonology",
+    "status": "active",
+    "keywords": [
+      "CPAP",
+      "sleep apnea",
+      "continuous positive airway pressure",
+      "respiratory",
+      "DME"
+    ],
+    "details": {
+      "includes": [
+        "CPAP device",
+        "Standard tubing"
+      ],
+      "excludes1": [],
+      "excludes2": [],
+      "relatedCodes": [
+        "E0470",
+        "E0471",
+        "A7030",
+        "A7031",
+        "A7034",
+        "A7035",
+        "A7036"
+      ],
+      "codeFirst": null,
+      "useAdditionalCode": null,
+      "codeAlso": null
+    },
+    "billing": {
+      "modifiers": [
+        {
+          "code": "KX",
+          "description": "Requirements Specified in the Medical Policy Have Been Met",
+          "usageGuidance": "Use when LCD criteria including compliance requirements are met",
+          "system": "HCPCS"
+        }
+      ],
+      "cciEdits": [],
+      "feeSchedule": {
+        "year": 2026,
+        "nonFacilityRate": 38.67,
+        "facilityRate": 38.67,
+        "workRVU": 0,
+        "practiceExpenseRVU": 0,
+        "malpracticeRVU": 0,
+        "totalRVU": 0,
+        "conversionFactor": 33.29
+      },
+      "placeOfService": [
+        {
+          "code": "12",
+          "description": "Home"
+        }
+      ],
+      "commonDenials": [
+        {
+          "code": "CO-50",
+          "type": "CARC",
+          "description": "Not deemed medically necessary",
+          "resolution": "Provide qualifying sleep study results and compliance data",
+          "frequency": "high"
+        }
+      ],
+      "medicalNecessity": {
+        "covered": true,
+        "lcdId": "L33718",
+        "notes": "Covered for obstructive sleep apnea with AHI >= 15, or AHI >= 5 with documented symptoms. Compliance review at 91 days."
+      },
+      "documentationReqs": [
+        "Qualifying sleep study (PSG or HSAT)",
+        "Physician face-to-face encounter",
+        "AHI/RDI results",
+        "Compliance data at 31-90 days (minimum 4 hours/night on 70% of nights)"
+      ],
+      "payerRules": [
+        {
+          "payer": "Medicare",
+          "timelyFiling": "365 days",
+          "priorAuth": "Not required but subject to compliance review",
+          "frequencyLimit": "13-month rental period",
+          "notes": "Compliance must be demonstrated between days 31-90 for continued coverage"
+        }
+      ]
+    },
+    "source": {
+      "system": "CMS",
+      "url": "https://www.cms.gov/medicare/coding-billing/healthcare-common-procedure-system",
+      "lastUpdated": "2025-10-01"
+    }
+  },
+  {
+    "code": "E1390",
+    "system": "HCPCS",
+    "description": "Oxygen concentrator, single delivery port, capable of delivering 85 percent or greater oxygen concentration at the prescribed flow rate",
+    "category": "Durable Medical Equipment",
+    "specialty": "Pulmonology",
+    "status": "active",
+    "keywords": [
+      "oxygen",
+      "concentrator",
+      "O2",
+      "respiratory",
+      "home oxygen"
+    ],
+    "details": {
+      "includes": [
+        "Oxygen concentrator",
+        "Single delivery port"
+      ],
+      "excludes1": [],
+      "excludes2": [],
+      "relatedCodes": [
+        "E1391",
+        "E0431",
+        "E0434"
+      ],
+      "codeFirst": null,
+      "useAdditionalCode": null,
+      "codeAlso": null
+    },
+    "billing": {
+      "modifiers": [],
+      "cciEdits": [],
+      "feeSchedule": {
+        "year": 2026,
+        "nonFacilityRate": 46.95,
+        "facilityRate": 46.95,
+        "workRVU": 0,
+        "practiceExpenseRVU": 0,
+        "malpracticeRVU": 0,
+        "totalRVU": 0,
+        "conversionFactor": 33.29
+      },
+      "placeOfService": [
+        {
+          "code": "12",
+          "description": "Home"
+        }
+      ],
+      "commonDenials": [],
+      "medicalNecessity": {
+        "covered": true,
+        "lcdId": "L33797",
+        "notes": "Covered when qualifying oxygen saturation criteria are met."
+      },
+      "documentationReqs": [
+        "Certificate of Medical Necessity (CMN)",
+        "Qualifying blood gas or oximetry study",
+        "Physician face-to-face encounter"
+      ],
+      "payerRules": [
+        {
+          "payer": "Medicare",
+          "timelyFiling": "365 days",
+          "priorAuth": "CMN required",
+          "frequencyLimit": "36-month rental cap",
+          "notes": "After 36 months, supplier must provide equipment and supplies for an additional 5 years"
+        }
+      ]
+    },
+    "source": {
+      "system": "CMS",
+      "url": "https://www.cms.gov/medicare/coding-billing/healthcare-common-procedure-system",
+      "lastUpdated": "2025-10-01"
+    }
+  },
+  {
+    "code": "E0784",
+    "system": "HCPCS",
+    "description": "External ambulatory infusion pump, insulin",
+    "category": "Durable Medical Equipment",
+    "specialty": "Endocrinology",
+    "status": "active",
+    "keywords": [
+      "insulin pump",
+      "infusion",
+      "diabetes",
+      "ambulatory",
+      "external pump"
+    ],
+    "details": {
+      "includes": [
+        "External insulin infusion pump"
+      ],
+      "excludes1": [],
+      "excludes2": [],
+      "relatedCodes": [
+        "A4221",
+        "A4222",
+        "A4225",
+        "A4230",
+        "A4231",
+        "A4232"
+      ],
+      "codeFirst": null,
+      "useAdditionalCode": null,
+      "codeAlso": null
+    },
+    "billing": {
+      "modifiers": [
+        {
+          "code": "KX",
+          "description": "Requirements Specified in the Medical Policy Have Been Met",
+          "usageGuidance": "Use when LCD coverage criteria are met",
+          "system": "HCPCS"
+        }
+      ],
+      "cciEdits": [],
+      "feeSchedule": {
+        "year": 2026,
+        "nonFacilityRate": 307.32,
+        "facilityRate": 307.32,
+        "workRVU": 0,
+        "practiceExpenseRVU": 0,
+        "malpracticeRVU": 0,
+        "totalRVU": 0,
+        "conversionFactor": 33.29
+      },
+      "placeOfService": [
+        {
+          "code": "12",
+          "description": "Home"
+        }
+      ],
+      "commonDenials": [
+        {
+          "code": "CO-50",
+          "type": "CARC",
+          "description": "Not deemed medically necessary",
+          "resolution": "Provide documentation of diabetes management history and insulin requirements",
+          "frequency": "medium"
+        }
+      ],
+      "medicalNecessity": {
+        "covered": true,
+        "lcdId": "L33794",
+        "notes": "Covered for patients with Type 1 or Type 2 diabetes who meet specific insulin management criteria."
+      },
+      "documentationReqs": [
+        "Documentation of insulin dependency",
+        "C-peptide level for Type 2 diabetes",
+        "Physician order",
+        "Face-to-face encounter"
+      ],
+      "payerRules": [
+        {
+          "payer": "Medicare",
+          "timelyFiling": "365 days",
+          "priorAuth": "Not required but documentation must support coverage",
+          "notes": "Processed through DME MAC"
+        }
+      ]
+    },
+    "source": {
+      "system": "CMS",
+      "url": "https://www.cms.gov/medicare/coding-billing/healthcare-common-procedure-system",
+      "lastUpdated": "2025-10-01"
+    }
+  },
+  {
+    "code": "J0171",
+    "system": "HCPCS",
+    "description": "Injection, adrenalin, epinephrine, 0.1 mg",
+    "category": "Drugs Administered Other Than Oral Method",
+    "specialty": "General",
+    "status": "active",
+    "keywords": [
+      "epinephrine",
+      "adrenaline",
+      "injection",
+      "anaphylaxis",
+      "allergic reaction"
+    ],
+    "details": {
+      "includes": [
+        "Epinephrine injection, 0.1 mg"
+      ],
+      "excludes1": [],
+      "excludes2": [],
+      "relatedCodes": [
+        "J0170",
+        "J7316"
+      ],
+      "codeFirst": null,
+      "useAdditionalCode": null,
+      "codeAlso": null
+    },
+    "billing": {
+      "modifiers": [],
+      "cciEdits": [],
+      "feeSchedule": {
+        "year": 2026,
+        "nonFacilityRate": 2.09,
+        "facilityRate": 2.09,
+        "workRVU": 0,
+        "practiceExpenseRVU": 0,
+        "malpracticeRVU": 0,
+        "totalRVU": 0,
+        "conversionFactor": 33.29
+      },
+      "placeOfService": [
+        {
+          "code": "11",
+          "description": "Office"
+        },
+        {
+          "code": "23",
+          "description": "Emergency Room - Hospital"
+        }
+      ],
+      "commonDenials": [],
+      "medicalNecessity": {
+        "covered": true,
+        "notes": "Covered for treatment of anaphylaxis and other emergency conditions."
+      },
+      "documentationReqs": [
+        "Document indication for use",
+        "Dosage and route of administration",
+        "NDC number"
+      ],
+      "payerRules": []
+    },
+    "source": {
+      "system": "CMS",
+      "url": "https://www.cms.gov/medicare/coding-billing/healthcare-common-procedure-system",
+      "lastUpdated": "2025-10-01"
+    }
+  },
+  {
+    "code": "J1100",
+    "system": "HCPCS",
+    "description": "Injection, dexamethasone sodium phosphate, 1 mg",
+    "category": "Drugs Administered Other Than Oral Method",
+    "specialty": "General",
+    "status": "active",
+    "keywords": [
+      "dexamethasone",
+      "steroid",
+      "injection",
+      "anti-inflammatory",
+      "corticosteroid"
+    ],
+    "details": {
+      "includes": [
+        "Dexamethasone sodium phosphate injection, 1 mg"
+      ],
+      "excludes1": [],
+      "excludes2": [],
+      "relatedCodes": [
+        "J1094",
+        "J3301"
+      ],
+      "codeFirst": null,
+      "useAdditionalCode": null,
+      "codeAlso": null
+    },
+    "billing": {
+      "modifiers": [],
+      "cciEdits": [],
+      "feeSchedule": {
+        "year": 2026,
+        "nonFacilityRate": 0.38,
+        "facilityRate": 0.38,
+        "workRVU": 0,
+        "practiceExpenseRVU": 0,
+        "malpracticeRVU": 0,
+        "totalRVU": 0,
+        "conversionFactor": 33.29
+      },
+      "placeOfService": [
+        {
+          "code": "11",
+          "description": "Office"
+        },
+        {
+          "code": "21",
+          "description": "Inpatient Hospital"
+        },
+        {
+          "code": "23",
+          "description": "Emergency Room - Hospital"
+        }
+      ],
+      "commonDenials": [],
+      "medicalNecessity": {
+        "covered": true,
+        "notes": "Covered for inflammatory conditions, allergic reactions, and other approved indications."
+      },
+      "documentationReqs": [
+        "Indication for injection",
+        "Dosage and route",
+        "NDC number"
+      ],
+      "payerRules": []
+    },
+    "source": {
+      "system": "CMS",
+      "url": "https://www.cms.gov/medicare/coding-billing/healthcare-common-procedure-system",
+      "lastUpdated": "2025-10-01"
+    }
+  },
+  {
+    "code": "J1745",
+    "system": "HCPCS",
+    "description": "Injection, infliximab, excludes biosimilar, 10 mg",
+    "category": "Drugs Administered Other Than Oral Method",
+    "specialty": "Gastroenterology",
+    "status": "active",
+    "keywords": [
+      "infliximab",
+      "Remicade",
+      "biologic",
+      "TNF inhibitor",
+      "injection",
+      "infusion"
+    ],
+    "details": {
+      "includes": [
+        "Infliximab (Remicade) injection, 10 mg"
+      ],
+      "excludes1": [],
+      "excludes2": [],
+      "relatedCodes": [
+        "J3490",
+        "Q5103",
+        "Q5104",
+        "Q5121"
+      ],
+      "codeFirst": null,
+      "useAdditionalCode": null,
+      "codeAlso": null
+    },
+    "billing": {
+      "modifiers": [],
+      "cciEdits": [],
+      "feeSchedule": {
+        "year": 2026,
+        "nonFacilityRate": 1158.23,
+        "facilityRate": 1158.23,
+        "workRVU": 0,
+        "practiceExpenseRVU": 0,
+        "malpracticeRVU": 0,
+        "totalRVU": 0,
+        "conversionFactor": 33.29
+      },
+      "placeOfService": [
+        {
+          "code": "11",
+          "description": "Office"
+        },
+        {
+          "code": "22",
+          "description": "On Campus-Outpatient Hospital"
+        }
+      ],
+      "commonDenials": [
+        {
+          "code": "CO-50",
+          "type": "CARC",
+          "description": "Not deemed medically necessary",
+          "resolution": "Provide documentation of diagnosis and failed prior therapies",
+          "frequency": "medium"
+        },
+        {
+          "code": "CO-197",
+          "type": "CARC",
+          "description": "Prior authorization absent",
+          "resolution": "Obtain prior authorization before administration",
+          "frequency": "high"
+        }
+      ],
+      "medicalNecessity": {
+        "covered": true,
+        "notes": "Covered for Crohn's disease, ulcerative colitis, rheumatoid arthritis, and other approved indications. Step therapy may apply."
+      },
+      "documentationReqs": [
+        "Diagnosis supporting medical necessity",
+        "Documentation of prior therapy failures",
+        "Weight-based dosing calculation",
+        "NDC number",
+        "Prior authorization number"
+      ],
+      "payerRules": [
+        {
+          "payer": "Medicare",
+          "timelyFiling": "365 days",
+          "priorAuth": "Required by most plans",
+          "notes": "Buy-and-bill drug; biosimilar alternatives may be required by some payers"
+        }
+      ]
+    },
+    "source": {
+      "system": "CMS",
+      "url": "https://www.cms.gov/medicare/coding-billing/healthcare-common-procedure-system",
+      "lastUpdated": "2025-10-01"
+    }
+  },
+  {
+    "code": "J2001",
+    "system": "HCPCS",
+    "description": "Injection, lidocaine HCl for intravenous infusion, 10 mg",
+    "category": "Drugs Administered Other Than Oral Method",
+    "specialty": "General",
+    "status": "active",
+    "keywords": [
+      "lidocaine",
+      "anesthetic",
+      "injection",
+      "local anesthetic",
+      "IV"
+    ],
+    "details": {
+      "includes": [
+        "Lidocaine HCl injection for IV use, 10 mg"
+      ],
+      "excludes1": [],
+      "excludes2": [],
+      "relatedCodes": [],
+      "codeFirst": null,
+      "useAdditionalCode": null,
+      "codeAlso": null
+    },
+    "billing": {
+      "modifiers": [],
+      "cciEdits": [],
+      "feeSchedule": {
+        "year": 2026,
+        "nonFacilityRate": 1.55,
+        "facilityRate": 1.55,
+        "workRVU": 0,
+        "practiceExpenseRVU": 0,
+        "malpracticeRVU": 0,
+        "totalRVU": 0,
+        "conversionFactor": 33.29
+      },
+      "placeOfService": [
+        {
+          "code": "11",
+          "description": "Office"
+        },
+        {
+          "code": "21",
+          "description": "Inpatient Hospital"
+        }
+      ],
+      "commonDenials": [],
+      "medicalNecessity": {
+        "covered": true,
+        "notes": "Covered for approved indications including cardiac arrhythmias and procedural anesthesia."
+      },
+      "documentationReqs": [
+        "Indication for use",
+        "Dosage and route",
+        "NDC number"
+      ],
+      "payerRules": []
+    },
+    "source": {
+      "system": "CMS",
+      "url": "https://www.cms.gov/medicare/coding-billing/healthcare-common-procedure-system",
+      "lastUpdated": "2025-10-01"
+    }
+  },
+  {
+    "code": "J3301",
+    "system": "HCPCS",
+    "description": "Injection, triamcinolone acetonide, not otherwise specified, 10 mg",
+    "category": "Drugs Administered Other Than Oral Method",
+    "specialty": "Orthopedics",
+    "status": "active",
+    "keywords": [
+      "triamcinolone",
+      "Kenalog",
+      "steroid injection",
+      "corticosteroid",
+      "joint injection"
+    ],
+    "details": {
+      "includes": [
+        "Triamcinolone acetonide injection, 10 mg"
+      ],
+      "excludes1": [],
+      "excludes2": [],
+      "relatedCodes": [
+        "J3300",
+        "J3302",
+        "J3303"
+      ],
+      "codeFirst": null,
+      "useAdditionalCode": null,
+      "codeAlso": null
+    },
+    "billing": {
+      "modifiers": [],
+      "cciEdits": [],
+      "feeSchedule": {
+        "year": 2026,
+        "nonFacilityRate": 3.47,
+        "facilityRate": 3.47,
+        "workRVU": 0,
+        "practiceExpenseRVU": 0,
+        "malpracticeRVU": 0,
+        "totalRVU": 0,
+        "conversionFactor": 33.29
+      },
+      "placeOfService": [
+        {
+          "code": "11",
+          "description": "Office"
+        }
+      ],
+      "commonDenials": [
+        {
+          "code": "CO-96",
+          "type": "CARC",
+          "description": "Non-covered charge",
+          "resolution": "Ensure diagnosis supports corticosteroid injection and document the specific joint or area injected",
+          "frequency": "low"
+        }
+      ],
+      "medicalNecessity": {
+        "covered": true,
+        "notes": "Covered for joint injections, soft tissue injections, and other approved indications."
+      },
+      "documentationReqs": [
+        "Injection site",
+        "Dosage administered",
+        "Indication",
+        "NDC number"
+      ],
+      "payerRules": []
+    },
+    "source": {
+      "system": "CMS",
+      "url": "https://www.cms.gov/medicare/coding-billing/healthcare-common-procedure-system",
+      "lastUpdated": "2025-10-01"
+    }
+  },
+  {
+    "code": "J9035",
+    "system": "HCPCS",
+    "description": "Injection, bevacizumab, 10 mg",
+    "category": "Drugs Administered Other Than Oral Method",
+    "specialty": "Oncology",
+    "status": "active",
+    "keywords": [
+      "bevacizumab",
+      "Avastin",
+      "chemotherapy",
+      "anti-VEGF",
+      "cancer",
+      "infusion"
+    ],
+    "details": {
+      "includes": [
+        "Bevacizumab (Avastin) injection, 10 mg"
+      ],
+      "excludes1": [],
+      "excludes2": [],
+      "relatedCodes": [
+        "Q5107",
+        "Q5118"
+      ],
+      "codeFirst": null,
+      "useAdditionalCode": null,
+      "codeAlso": null
+    },
+    "billing": {
+      "modifiers": [],
+      "cciEdits": [],
+      "feeSchedule": {
+        "year": 2026,
+        "nonFacilityRate": 72.55,
+        "facilityRate": 72.55,
+        "workRVU": 0,
+        "practiceExpenseRVU": 0,
+        "malpracticeRVU": 0,
+        "totalRVU": 0,
+        "conversionFactor": 33.29
+      },
+      "placeOfService": [
+        {
+          "code": "11",
+          "description": "Office"
+        },
+        {
+          "code": "22",
+          "description": "On Campus-Outpatient Hospital"
+        }
+      ],
+      "commonDenials": [
+        {
+          "code": "CO-50",
+          "type": "CARC",
+          "description": "Not deemed medically necessary",
+          "resolution": "Provide documentation of cancer diagnosis and treatment plan supporting bevacizumab use",
+          "frequency": "medium"
+        }
+      ],
+      "medicalNecessity": {
+        "covered": true,
+        "notes": "Covered for FDA-approved indications including colorectal, lung, kidney, and cervical cancers."
+      },
+      "documentationReqs": [
+        "Cancer diagnosis and staging",
+        "Treatment plan/protocol",
+        "Weight-based dosing calculation",
+        "NDC number",
+        "Prior authorization if required"
+      ],
+      "payerRules": [
+        {
+          "payer": "Medicare",
+          "timelyFiling": "365 days",
+          "priorAuth": "May be required by some plans",
+          "notes": "Coverage may be limited to FDA-approved or compendia-supported indications"
+        }
+      ]
+    },
+    "source": {
+      "system": "CMS",
+      "url": "https://www.cms.gov/medicare/coding-billing/healthcare-common-procedure-system",
+      "lastUpdated": "2025-10-01"
+    }
+  },
+  {
+    "code": "A0425",
+    "system": "HCPCS",
+    "description": "Ground mileage, per statute mile",
+    "category": "Ambulance Services",
+    "specialty": "General",
+    "status": "active",
+    "keywords": [
+      "ambulance",
+      "mileage",
+      "ground transport",
+      "emergency transport"
+    ],
+    "details": {
+      "includes": [
+        "Ground ambulance mileage"
+      ],
+      "excludes1": [],
+      "excludes2": [],
+      "relatedCodes": [
+        "A0426",
+        "A0427",
+        "A0428"
+      ],
+      "codeFirst": null,
+      "useAdditionalCode": null,
+      "codeAlso": null
+    },
+    "billing": {
+      "modifiers": [],
+      "cciEdits": [],
+      "feeSchedule": {
+        "year": 2026,
+        "nonFacilityRate": 7.64,
+        "facilityRate": 7.64,
+        "workRVU": 0,
+        "practiceExpenseRVU": 0,
+        "malpracticeRVU": 0,
+        "totalRVU": 0,
+        "conversionFactor": 33.29
+      },
+      "placeOfService": [
+        {
+          "code": "41",
+          "description": "Ambulance - Land"
+        }
+      ],
+      "commonDenials": [],
+      "medicalNecessity": {
+        "covered": true,
+        "notes": "Covered when transport is medically necessary and the destination is the nearest appropriate facility."
+      },
+      "documentationReqs": [
+        "Point of pickup",
+        "Destination",
+        "Total mileage",
+        "Medical necessity for transport"
+      ],
+      "payerRules": []
+    },
+    "source": {
+      "system": "CMS",
+      "url": "https://www.cms.gov/medicare/coding-billing/healthcare-common-procedure-system",
+      "lastUpdated": "2025-10-01"
+    }
+  },
+  {
+    "code": "A0426",
+    "system": "HCPCS",
+    "description": "Ambulance service, advanced life support, non-emergency transport, level 1 (ALS 1)",
+    "category": "Ambulance Services",
+    "specialty": "General",
+    "status": "active",
+    "keywords": [
+      "ambulance",
+      "ALS",
+      "advanced life support",
+      "non-emergency",
+      "transport"
+    ],
+    "details": {
+      "includes": [
+        "ALS level 1 non-emergency transport",
+        "ALS assessment and interventions"
+      ],
+      "excludes1": [],
+      "excludes2": [],
+      "relatedCodes": [
+        "A0425",
+        "A0427",
+        "A0428"
+      ],
+      "codeFirst": null,
+      "useAdditionalCode": null,
+      "codeAlso": null
+    },
+    "billing": {
+      "modifiers": [],
+      "cciEdits": [],
+      "feeSchedule": {
+        "year": 2026,
+        "nonFacilityRate": 352.18,
+        "facilityRate": 352.18,
+        "workRVU": 0,
+        "practiceExpenseRVU": 0,
+        "malpracticeRVU": 0,
+        "totalRVU": 0,
+        "conversionFactor": 33.29
+      },
+      "placeOfService": [
+        {
+          "code": "41",
+          "description": "Ambulance - Land"
+        }
+      ],
+      "commonDenials": [
+        {
+          "code": "CO-50",
+          "type": "CARC",
+          "description": "Not deemed medically necessary",
+          "resolution": "Provide physician certification statement (PCS) documenting medical necessity",
+          "frequency": "high"
+        }
+      ],
+      "medicalNecessity": {
+        "covered": true,
+        "notes": "Covered when patient's condition requires ALS-level monitoring or interventions during transport."
+      },
+      "documentationReqs": [
+        "Physician Certification Statement (PCS)",
+        "Documentation of ALS-level need",
+        "Origin and destination",
+        "Patient condition requiring ALS"
+      ],
+      "payerRules": [
+        {
+          "payer": "Medicare",
+          "timelyFiling": "365 days",
+          "priorAuth": "PCS required for non-emergency",
+          "notes": "Non-emergency repetitive transports require prior authorization"
+        }
+      ]
+    },
+    "source": {
+      "system": "CMS",
+      "url": "https://www.cms.gov/medicare/coding-billing/healthcare-common-procedure-system",
+      "lastUpdated": "2025-10-01"
+    }
+  },
+  {
+    "code": "A0427",
+    "system": "HCPCS",
+    "description": "Ambulance service, advanced life support, emergency transport, level 1 (ALS 1 - Emergency)",
+    "category": "Ambulance Services",
+    "specialty": "General",
+    "status": "active",
+    "keywords": [
+      "ambulance",
+      "ALS",
+      "advanced life support",
+      "emergency",
+      "911",
+      "transport"
+    ],
+    "details": {
+      "includes": [
+        "ALS level 1 emergency transport",
+        "Emergency response"
+      ],
+      "excludes1": [],
+      "excludes2": [],
+      "relatedCodes": [
+        "A0425",
+        "A0426",
+        "A0433"
+      ],
+      "codeFirst": null,
+      "useAdditionalCode": null,
+      "codeAlso": null
+    },
+    "billing": {
+      "modifiers": [],
+      "cciEdits": [],
+      "feeSchedule": {
+        "year": 2026,
+        "nonFacilityRate": 452.69,
+        "facilityRate": 452.69,
+        "workRVU": 0,
+        "practiceExpenseRVU": 0,
+        "malpracticeRVU": 0,
+        "totalRVU": 0,
+        "conversionFactor": 33.29
+      },
+      "placeOfService": [
+        {
+          "code": "41",
+          "description": "Ambulance - Land"
+        }
+      ],
+      "commonDenials": [],
+      "medicalNecessity": {
+        "covered": true,
+        "notes": "Covered for emergency responses where ALS-level assessment and intervention are provided."
+      },
+      "documentationReqs": [
+        "Run report documenting emergency nature",
+        "ALS assessments and interventions provided",
+        "Origin and destination"
+      ],
+      "payerRules": []
+    },
+    "source": {
+      "system": "CMS",
+      "url": "https://www.cms.gov/medicare/coding-billing/healthcare-common-procedure-system",
+      "lastUpdated": "2025-10-01"
+    }
+  },
+  {
+    "code": "A0428",
+    "system": "HCPCS",
+    "description": "Ambulance service, basic life support, non-emergency transport (BLS)",
+    "category": "Ambulance Services",
+    "specialty": "General",
+    "status": "active",
+    "keywords": [
+      "ambulance",
+      "BLS",
+      "basic life support",
+      "non-emergency",
+      "transport"
+    ],
+    "details": {
+      "includes": [
+        "BLS non-emergency transport"
+      ],
+      "excludes1": [],
+      "excludes2": [],
+      "relatedCodes": [
+        "A0425",
+        "A0429"
+      ],
+      "codeFirst": null,
+      "useAdditionalCode": null,
+      "codeAlso": null
+    },
+    "billing": {
+      "modifiers": [],
+      "cciEdits": [],
+      "feeSchedule": {
+        "year": 2026,
+        "nonFacilityRate": 282.41,
+        "facilityRate": 282.41,
+        "workRVU": 0,
+        "practiceExpenseRVU": 0,
+        "malpracticeRVU": 0,
+        "totalRVU": 0,
+        "conversionFactor": 33.29
+      },
+      "placeOfService": [
+        {
+          "code": "41",
+          "description": "Ambulance - Land"
+        }
+      ],
+      "commonDenials": [
+        {
+          "code": "CO-50",
+          "type": "CARC",
+          "description": "Not deemed medically necessary",
+          "resolution": "Submit PCS documenting why patient cannot be transported by other means",
+          "frequency": "high"
+        }
+      ],
+      "medicalNecessity": {
+        "covered": true,
+        "notes": "Covered when patient is bed-confined or has a condition requiring medical monitoring during transport."
+      },
+      "documentationReqs": [
+        "Physician Certification Statement (PCS)",
+        "Documentation of bed-confined status or medical necessity",
+        "Origin and destination"
+      ],
+      "payerRules": [
+        {
+          "payer": "Medicare",
+          "timelyFiling": "365 days",
+          "priorAuth": "PCS required",
+          "notes": "Repetitive non-emergency transports require prior authorization"
+        }
+      ]
+    },
+    "source": {
+      "system": "CMS",
+      "url": "https://www.cms.gov/medicare/coding-billing/healthcare-common-procedure-system",
+      "lastUpdated": "2025-10-01"
+    }
+  },
+  {
+    "code": "A0429",
+    "system": "HCPCS",
+    "description": "Ambulance service, basic life support, emergency transport (BLS - Emergency)",
+    "category": "Ambulance Services",
+    "specialty": "General",
+    "status": "active",
+    "keywords": [
+      "ambulance",
+      "BLS",
+      "basic life support",
+      "emergency",
+      "911",
+      "transport"
+    ],
+    "details": {
+      "includes": [
+        "BLS emergency transport",
+        "Emergency response"
+      ],
+      "excludes1": [],
+      "excludes2": [],
+      "relatedCodes": [
+        "A0425",
+        "A0428"
+      ],
+      "codeFirst": null,
+      "useAdditionalCode": null,
+      "codeAlso": null
+    },
+    "billing": {
+      "modifiers": [],
+      "cciEdits": [],
+      "feeSchedule": {
+        "year": 2026,
+        "nonFacilityRate": 352.18,
+        "facilityRate": 352.18,
+        "workRVU": 0,
+        "practiceExpenseRVU": 0,
+        "malpracticeRVU": 0,
+        "totalRVU": 0,
+        "conversionFactor": 33.29
+      },
+      "placeOfService": [
+        {
+          "code": "41",
+          "description": "Ambulance - Land"
+        }
+      ],
+      "commonDenials": [],
+      "medicalNecessity": {
+        "covered": true,
+        "notes": "Covered for emergency responses where BLS-level assessment and transport are provided."
+      },
+      "documentationReqs": [
+        "Run report documenting emergency nature",
+        "BLS assessments provided",
+        "Origin and destination"
+      ],
+      "payerRules": []
+    },
+    "source": {
+      "system": "CMS",
+      "url": "https://www.cms.gov/medicare/coding-billing/healthcare-common-procedure-system",
+      "lastUpdated": "2025-10-01"
+    }
+  },
+  {
+    "code": "A0431",
+    "system": "HCPCS",
+    "description": "Ambulance service, conventional air services, transport, one way (fixed wing)",
+    "category": "Ambulance Services",
+    "specialty": "General",
+    "status": "active",
+    "keywords": [
+      "ambulance",
+      "air",
+      "fixed wing",
+      "airplane",
+      "air transport"
+    ],
+    "details": {
+      "includes": [
+        "Fixed wing air ambulance transport"
+      ],
+      "excludes1": [],
+      "excludes2": [],
+      "relatedCodes": [
+        "A0430",
+        "A0435",
+        "A0436"
+      ],
+      "codeFirst": null,
+      "useAdditionalCode": null,
+      "codeAlso": null
+    },
+    "billing": {
+      "modifiers": [],
+      "cciEdits": [],
+      "feeSchedule": {
+        "year": 2026,
+        "nonFacilityRate": 3868.22,
+        "facilityRate": 3868.22,
+        "workRVU": 0,
+        "practiceExpenseRVU": 0,
+        "malpracticeRVU": 0,
+        "totalRVU": 0,
+        "conversionFactor": 33.29
+      },
+      "placeOfService": [
+        {
+          "code": "42",
+          "description": "Ambulance - Air or Water"
+        }
+      ],
+      "commonDenials": [],
+      "medicalNecessity": {
+        "covered": true,
+        "notes": "Covered when ground transport is not feasible due to distance or patient condition, and the patient requires rapid transport to a higher level of care."
+      },
+      "documentationReqs": [
+        "Medical necessity for air transport",
+        "Documentation that ground transport is not appropriate",
+        "Origin and destination",
+        "Patient condition requiring air transport"
+      ],
+      "payerRules": []
+    },
+    "source": {
+      "system": "CMS",
+      "url": "https://www.cms.gov/medicare/coding-billing/healthcare-common-procedure-system",
+      "lastUpdated": "2025-10-01"
+    }
+  },
+  {
+    "code": "G0008",
+    "system": "HCPCS",
+    "description": "Administration of influenza virus vaccine",
+    "category": "Temporary National Codes",
+    "specialty": "General",
+    "status": "active",
+    "keywords": [
+      "influenza",
+      "flu",
+      "vaccine",
+      "administration",
+      "immunization"
+    ],
+    "details": {
+      "includes": [
+        "Administration of influenza vaccine"
+      ],
+      "excludes1": [],
+      "excludes2": [],
+      "relatedCodes": [
+        "G0009",
+        "G0010",
+        "90630",
+        "90662",
+        "90672",
+        "90673",
+        "90674",
+        "90682"
+      ],
+      "codeFirst": null,
+      "useAdditionalCode": null,
+      "codeAlso": null
+    },
+    "billing": {
+      "modifiers": [],
+      "cciEdits": [],
+      "feeSchedule": {
+        "year": 2026,
+        "nonFacilityRate": 28.74,
+        "facilityRate": 28.74,
+        "workRVU": 0,
+        "practiceExpenseRVU": 0,
+        "malpracticeRVU": 0,
+        "totalRVU": 0,
+        "conversionFactor": 33.29
+      },
+      "placeOfService": [
+        {
+          "code": "11",
+          "description": "Office"
+        },
+        {
+          "code": "49",
+          "description": "Independent Clinic"
+        },
+        {
+          "code": "81",
+          "description": "Independent Laboratory"
+        }
+      ],
+      "commonDenials": [],
+      "medicalNecessity": {
+        "covered": true,
+        "notes": "No cost-sharing for influenza vaccine under Medicare Part B."
+      },
+      "documentationReqs": [
+        "Vaccine administered",
+        "Lot number",
+        "Administration site",
+        "VIS provided"
+      ],
+      "payerRules": [
+        {
+          "payer": "Medicare",
+          "timelyFiling": "365 days",
+          "priorAuth": "Not required",
+          "notes": "No deductible or coinsurance applies"
+        }
+      ]
+    },
+    "source": {
+      "system": "CMS",
+      "url": "https://www.cms.gov/medicare/coding-billing/healthcare-common-procedure-system",
+      "lastUpdated": "2025-10-01"
+    }
+  },
+  {
+    "code": "G0009",
+    "system": "HCPCS",
+    "description": "Administration of pneumococcal vaccine",
+    "category": "Temporary National Codes",
+    "specialty": "General",
+    "status": "active",
+    "keywords": [
+      "pneumococcal",
+      "pneumonia",
+      "vaccine",
+      "administration",
+      "immunization"
+    ],
+    "details": {
+      "includes": [
+        "Administration of pneumococcal vaccine"
+      ],
+      "excludes1": [],
+      "excludes2": [],
+      "relatedCodes": [
+        "G0008",
+        "G0010"
+      ],
+      "codeFirst": null,
+      "useAdditionalCode": null,
+      "codeAlso": null
+    },
+    "billing": {
+      "modifiers": [],
+      "cciEdits": [],
+      "feeSchedule": {
+        "year": 2026,
+        "nonFacilityRate": 28.74,
+        "facilityRate": 28.74,
+        "workRVU": 0,
+        "practiceExpenseRVU": 0,
+        "malpracticeRVU": 0,
+        "totalRVU": 0,
+        "conversionFactor": 33.29
+      },
+      "placeOfService": [
+        {
+          "code": "11",
+          "description": "Office"
+        }
+      ],
+      "commonDenials": [],
+      "medicalNecessity": {
+        "covered": true,
+        "notes": "No cost-sharing for pneumococcal vaccine under Medicare Part B."
+      },
+      "documentationReqs": [
+        "Vaccine administered",
+        "Lot number",
+        "Administration site",
+        "VIS provided"
+      ],
+      "payerRules": [
+        {
+          "payer": "Medicare",
+          "timelyFiling": "365 days",
+          "priorAuth": "Not required",
+          "notes": "No deductible or coinsurance applies"
+        }
+      ]
+    },
+    "source": {
+      "system": "CMS",
+      "url": "https://www.cms.gov/medicare/coding-billing/healthcare-common-procedure-system",
+      "lastUpdated": "2025-10-01"
+    }
+  },
+  {
+    "code": "G0010",
+    "system": "HCPCS",
+    "description": "Administration of hepatitis B vaccine",
+    "category": "Temporary National Codes",
+    "specialty": "General",
+    "status": "active",
+    "keywords": [
+      "hepatitis B",
+      "HBV",
+      "vaccine",
+      "administration",
+      "immunization"
+    ],
+    "details": {
+      "includes": [
+        "Administration of hepatitis B vaccine"
+      ],
+      "excludes1": [],
+      "excludes2": [],
+      "relatedCodes": [
+        "G0008",
+        "G0009"
+      ],
+      "codeFirst": null,
+      "useAdditionalCode": null,
+      "codeAlso": null
+    },
+    "billing": {
+      "modifiers": [],
+      "cciEdits": [],
+      "feeSchedule": {
+        "year": 2026,
+        "nonFacilityRate": 28.74,
+        "facilityRate": 28.74,
+        "workRVU": 0,
+        "practiceExpenseRVU": 0,
+        "malpracticeRVU": 0,
+        "totalRVU": 0,
+        "conversionFactor": 33.29
+      },
+      "placeOfService": [
+        {
+          "code": "11",
+          "description": "Office"
+        }
+      ],
+      "commonDenials": [],
+      "medicalNecessity": {
+        "covered": true,
+        "notes": "Covered for high-risk individuals under Medicare Part B."
+      },
+      "documentationReqs": [
+        "Vaccine administered",
+        "Lot number",
+        "Administration site",
+        "High-risk status documentation"
+      ],
+      "payerRules": []
+    },
+    "source": {
+      "system": "CMS",
+      "url": "https://www.cms.gov/medicare/coding-billing/healthcare-common-procedure-system",
+      "lastUpdated": "2025-10-01"
+    }
+  },
+  {
+    "code": "G0101",
+    "system": "HCPCS",
+    "description": "Cervical or vaginal cancer screening; pelvic and clinical breast examination",
+    "category": "Temporary National Codes",
+    "specialty": "General",
+    "status": "active",
+    "keywords": [
+      "screening",
+      "cervical",
+      "vaginal",
+      "cancer",
+      "pelvic exam",
+      "breast exam"
+    ],
+    "details": {
+      "includes": [
+        "Pelvic examination",
+        "Clinical breast examination"
+      ],
+      "excludes1": [],
+      "excludes2": [],
+      "relatedCodes": [
+        "Q0091"
+      ],
+      "codeFirst": null,
+      "useAdditionalCode": null,
+      "codeAlso": null
+    },
+    "billing": {
+      "modifiers": [],
+      "cciEdits": [],
+      "feeSchedule": {
+        "year": 2026,
+        "nonFacilityRate": 56.59,
+        "facilityRate": 36.62,
+        "workRVU": 0.55,
+        "practiceExpenseRVU": 0.92,
+        "malpracticeRVU": 0.06,
+        "totalRVU": 1.53,
+        "conversionFactor": 33.29
+      },
+      "placeOfService": [
+        {
+          "code": "11",
+          "description": "Office"
+        }
+      ],
+      "commonDenials": [],
+      "medicalNecessity": {
+        "covered": true,
+        "notes": "Covered every 24 months for all women. Covered every 12 months for high-risk women."
+      },
+      "documentationReqs": [
+        "Document examination findings",
+        "Risk factor assessment"
+      ],
+      "payerRules": [
+        {
+          "payer": "Medicare",
+          "timelyFiling": "365 days",
+          "priorAuth": "Not required",
+          "frequencyLimit": "Once every 24 months; 12 months for high-risk"
+        }
+      ]
+    },
+    "source": {
+      "system": "CMS",
+      "url": "https://www.cms.gov/medicare/coding-billing/healthcare-common-procedure-system",
+      "lastUpdated": "2025-10-01"
+    }
+  },
+  {
+    "code": "G0108",
+    "system": "HCPCS",
+    "description": "Diabetes outpatient self-management training services, individual, per 30 minutes",
+    "category": "Temporary National Codes",
+    "specialty": "Endocrinology",
+    "status": "active",
+    "keywords": [
+      "diabetes",
+      "DSMT",
+      "self-management",
+      "training",
+      "education"
+    ],
+    "details": {
+      "includes": [
+        "Individual diabetes self-management training"
+      ],
+      "excludes1": [],
+      "excludes2": [],
+      "relatedCodes": [
+        "G0109"
+      ],
+      "codeFirst": null,
+      "useAdditionalCode": null,
+      "codeAlso": null
+    },
+    "billing": {
+      "modifiers": [],
+      "cciEdits": [],
+      "feeSchedule": {
+        "year": 2026,
+        "nonFacilityRate": 49.94,
+        "facilityRate": 29.97,
+        "workRVU": 0,
+        "practiceExpenseRVU": 0,
+        "malpracticeRVU": 0,
+        "totalRVU": 0,
+        "conversionFactor": 33.29
+      },
+      "placeOfService": [
+        {
+          "code": "11",
+          "description": "Office"
+        }
+      ],
+      "commonDenials": [],
+      "medicalNecessity": {
+        "covered": true,
+        "notes": "Covered for patients with diabetes. Initial training: 10 hours. Follow-up: 2 hours per year."
+      },
+      "documentationReqs": [
+        "Physician order for DSMT",
+        "Diabetes diagnosis",
+        "ADA-recognized or AADE-accredited program"
+      ],
+      "payerRules": [
+        {
+          "payer": "Medicare",
+          "timelyFiling": "365 days",
+          "priorAuth": "Physician order required",
+          "frequencyLimit": "10 hours initial; 2 hours follow-up annually"
+        }
+      ]
+    },
+    "source": {
+      "system": "CMS",
+      "url": "https://www.cms.gov/medicare/coding-billing/healthcare-common-procedure-system",
+      "lastUpdated": "2025-10-01"
+    }
+  },
+  {
+    "code": "G0402",
+    "system": "HCPCS",
+    "description": "Initial preventive physical examination; face-to-face visit, services limited to new beneficiary during the first 12 months of Medicare enrollment",
+    "category": "Temporary National Codes",
+    "specialty": "General",
+    "status": "active",
+    "keywords": [
+      "welcome to Medicare",
+      "IPPE",
+      "preventive",
+      "physical",
+      "new beneficiary"
+    ],
+    "details": {
+      "includes": [
+        "Initial preventive physical examination",
+        "Review of medical and social history",
+        "Education and counseling"
+      ],
+      "excludes1": [],
+      "excludes2": [],
+      "relatedCodes": [
+        "G0438",
+        "G0439"
+      ],
+      "codeFirst": null,
+      "useAdditionalCode": null,
+      "codeAlso": null
+    },
+    "billing": {
+      "modifiers": [],
+      "cciEdits": [],
+      "feeSchedule": {
+        "year": 2026,
+        "nonFacilityRate": 183.09,
+        "facilityRate": 129.98,
+        "workRVU": 2.43,
+        "practiceExpenseRVU": 2.17,
+        "malpracticeRVU": 0.25,
+        "totalRVU": 4.85,
+        "conversionFactor": 33.29
+      },
+      "placeOfService": [
+        {
+          "code": "11",
+          "description": "Office"
+        }
+      ],
+      "commonDenials": [
+        {
+          "code": "CO-119",
+          "type": "CARC",
+          "description": "Benefit maximum reached",
+          "resolution": "Verify that the patient is within first 12 months of Medicare Part B enrollment",
+          "frequency": "medium"
+        }
+      ],
+      "medicalNecessity": {
+        "covered": true,
+        "notes": "One-time benefit within the first 12 months of Part B enrollment."
+      },
+      "documentationReqs": [
+        "Review of medical/social/family history",
+        "Review of potential risk factors for depression",
+        "Education, counseling, and referral as appropriate",
+        "Review of functional ability and safety"
+      ],
+      "payerRules": [
+        {
+          "payer": "Medicare",
+          "timelyFiling": "365 days",
+          "priorAuth": "Not required",
+          "frequencyLimit": "Once per lifetime within first 12 months of Part B enrollment"
+        }
+      ]
+    },
+    "source": {
+      "system": "CMS",
+      "url": "https://www.cms.gov/medicare/coding-billing/healthcare-common-procedure-system",
+      "lastUpdated": "2025-10-01"
+    }
+  },
+  {
+    "code": "G2211",
+    "system": "HCPCS",
+    "description": "Visit complexity inherent to evaluation and management associated with medical care services that serve as the continuing focal point for all needed health care services and/or with medical care services that are part of an ongoing care plan",
+    "category": "Temporary National Codes",
+    "specialty": "General",
+    "status": "active",
+    "keywords": [
+      "visit complexity",
+      "add-on",
+      "E/M",
+      "primary care",
+      "longitudinal care",
+      "continuity"
+    ],
+    "details": {
+      "includes": [
+        "Add-on for visit complexity with E/M codes 99202-99215"
+      ],
+      "excludes1": [],
+      "excludes2": [],
+      "relatedCodes": [
+        "G2212"
+      ],
+      "codeFirst": null,
+      "useAdditionalCode": null,
+      "codeAlso": null
+    },
+    "billing": {
+      "modifiers": [],
+      "cciEdits": [],
+      "feeSchedule": {
+        "year": 2026,
+        "nonFacilityRate": 16.64,
+        "facilityRate": 16.64,
+        "workRVU": 0.33,
+        "practiceExpenseRVU": 0.16,
+        "malpracticeRVU": 0.02,
+        "totalRVU": 0.51,
+        "conversionFactor": 33.29
+      },
+      "placeOfService": [
+        {
+          "code": "11",
+          "description": "Office"
+        }
+      ],
+      "commonDenials": [
+        {
+          "code": "CO-97",
+          "type": "CARC",
+          "description": "Bundled with another service",
+          "resolution": "Ensure G2211 is reported with a qualifying E/M code and meets visit complexity criteria",
+          "frequency": "medium"
+        }
+      ],
+      "medicalNecessity": {
+        "covered": true,
+        "notes": "Add-on code for visit complexity. Cannot be reported with certain other add-on codes. Effective January 1, 2024."
+      },
+      "documentationReqs": [
+        "Documentation supporting ongoing/longitudinal relationship or complex care coordination"
+      ],
+      "payerRules": [
+        {
+          "payer": "Medicare",
+          "timelyFiling": "365 days",
+          "priorAuth": "Not required",
+          "notes": "Can be reported with office/outpatient E/M codes 99202-99215 only"
+        }
+      ]
+    },
+    "source": {
+      "system": "CMS",
+      "url": "https://www.cms.gov/medicare/coding-billing/healthcare-common-procedure-system",
+      "lastUpdated": "2025-10-01"
+    }
+  },
+  {
+    "code": "G2212",
+    "system": "HCPCS",
+    "description": "Prolonged office or other outpatient evaluation and management service(s) beyond the total time for the primary service; each additional 15 minutes of total time",
+    "category": "Temporary National Codes",
+    "specialty": "General",
+    "status": "active",
+    "keywords": [
+      "prolonged",
+      "extended",
+      "E/M",
+      "additional time",
+      "add-on"
+    ],
+    "details": {
+      "includes": [
+        "Each additional 15 minutes beyond primary E/M total time"
+      ],
+      "excludes1": [],
+      "excludes2": [],
+      "relatedCodes": [
+        "G2211"
+      ],
+      "codeFirst": null,
+      "useAdditionalCode": null,
+      "codeAlso": null
+    },
+    "billing": {
+      "modifiers": [],
+      "cciEdits": [],
+      "feeSchedule": {
+        "year": 2026,
+        "nonFacilityRate": 39.95,
+        "facilityRate": 39.95,
+        "workRVU": 1,
+        "practiceExpenseRVU": 0.16,
+        "malpracticeRVU": 0.02,
+        "totalRVU": 1.18,
+        "conversionFactor": 33.29
+      },
+      "placeOfService": [
+        {
+          "code": "11",
+          "description": "Office"
+        }
+      ],
+      "commonDenials": [],
+      "medicalNecessity": {
+        "covered": true,
+        "notes": "Report with 99205 or 99215 only. First 15-minute increment at 15 minutes beyond the primary service time."
+      },
+      "documentationReqs": [
+        "Total time documented in medical record",
+        "Activities performed during prolonged service"
+      ],
+      "payerRules": [
+        {
+          "payer": "Medicare",
+          "timelyFiling": "365 days",
+          "priorAuth": "Not required",
+          "notes": "Only report with 99205 or 99215. Minimum threshold times apply."
+        }
+      ]
+    },
+    "source": {
+      "system": "CMS",
+      "url": "https://www.cms.gov/medicare/coding-billing/healthcare-common-procedure-system",
+      "lastUpdated": "2025-10-01"
+    }
+  },
+  {
+    "code": "A0422",
+    "system": "HCPCS",
+    "description": "Ambulance (ALS or BLS) oxygen and oxygen supplies, life sustaining situation",
+    "category": "Ambulance Services",
+    "specialty": "General",
+    "status": "discontinued",
+    "keywords": [
+      "ambulance",
+      "oxygen",
+      "life sustaining",
+      "supplies"
+    ],
+    "details": {
+      "includes": [
+        "Oxygen and oxygen supplies during ambulance transport"
+      ],
+      "excludes1": [],
+      "excludes2": [],
+      "relatedCodes": [
+        "A0425",
+        "A0426",
+        "A0427"
+      ],
+      "codeFirst": null,
+      "useAdditionalCode": null,
+      "codeAlso": null
+    },
+    "billing": {
+      "modifiers": [],
+      "cciEdits": [],
+      "feeSchedule": null,
+      "placeOfService": [],
+      "commonDenials": [],
+      "medicalNecessity": {
+        "covered": false,
+        "notes": "DISCONTINUED: This code has been discontinued. Ambulance oxygen is now bundled into the base rate for ambulance services (A0426-A0433)."
+      },
+      "documentationReqs": [],
+      "payerRules": []
+    },
+    "source": {
+      "system": "CMS",
+      "url": "https://www.cms.gov/medicare/coding-billing/healthcare-common-procedure-system",
+      "lastUpdated": "2025-10-01"
+    }
+  },
+  {
+    "code": "G0282",
+    "system": "HCPCS",
+    "description": "Electrical stimulation, (unattended), to one or more areas, for chronic Stage III and Stage IV pressure ulcers, arterial ulcers, diabetic ulcers, and venous stasis ulcers not demonstrating measurable signs of healing after 30 days of conventional care",
+    "category": "Temporary National Codes",
+    "specialty": "General",
+    "status": "discontinued",
+    "keywords": [
+      "electrical stimulation",
+      "wound healing",
+      "pressure ulcer",
+      "unattended"
+    ],
+    "details": {
+      "includes": [
+        "Unattended electrical stimulation for chronic wounds"
+      ],
+      "excludes1": [],
+      "excludes2": [],
+      "relatedCodes": [
+        "G0281",
+        "E0769"
+      ],
+      "codeFirst": null,
+      "useAdditionalCode": null,
+      "codeAlso": null
+    },
+    "billing": {
+      "modifiers": [],
+      "cciEdits": [],
+      "feeSchedule": null,
+      "placeOfService": [],
+      "commonDenials": [],
+      "medicalNecessity": {
+        "covered": false,
+        "notes": "DISCONTINUED: Effective January 1, 2025. Use G0281 for attended electrical stimulation or appropriate wound care codes."
+      },
+      "documentationReqs": [],
+      "payerRules": []
+    },
+    "source": {
+      "system": "CMS",
+      "url": "https://www.cms.gov/medicare/coding-billing/healthcare-common-procedure-system",
+      "lastUpdated": "2025-10-01"
+    }
+  },
+  {
+    "code": "E0747",
+    "system": "HCPCS",
+    "description": "Osteogenesis stimulator, electrical, noninvasive, other than spinal applications",
+    "category": "Durable Medical Equipment",
+    "specialty": "Orthopedics",
+    "status": "discontinued",
+    "keywords": [
+      "osteogenesis",
+      "bone stimulator",
+      "electrical",
+      "noninvasive",
+      "fracture healing"
+    ],
+    "details": {
+      "includes": [
+        "Noninvasive electrical bone growth stimulator for non-spinal applications"
+      ],
+      "excludes1": [],
+      "excludes2": [],
+      "relatedCodes": [
+        "E0748",
+        "E0749"
+      ],
+      "codeFirst": null,
+      "useAdditionalCode": null,
+      "codeAlso": null
+    },
+    "billing": {
+      "modifiers": [],
+      "cciEdits": [],
+      "feeSchedule": null,
+      "placeOfService": [],
+      "commonDenials": [],
+      "medicalNecessity": {
+        "covered": false,
+        "notes": "DISCONTINUED: Consolidated into E0748. Use E0748 for all noninvasive bone growth stimulators effective January 1, 2025."
+      },
+      "documentationReqs": [],
+      "payerRules": []
+    },
+    "source": {
+      "system": "CMS",
+      "url": "https://www.cms.gov/medicare/coding-billing/healthcare-common-procedure-system",
+      "lastUpdated": "2025-10-01"
+    }
+  },
+  {
+    "code": "J0170",
+    "system": "HCPCS",
+    "description": "Injection, adrenalin, epinephrine, up to 1 ml ampule",
+    "category": "Drugs Administered Other Than Oral Method",
+    "specialty": "General",
+    "status": "active",
+    "keywords": [
+      "epinephrine",
+      "adrenaline",
+      "injection",
+      "1ml",
+      "ampule"
+    ],
+    "details": {
+      "includes": [
+        "Epinephrine injection up to 1 ml"
+      ],
+      "excludes1": [],
+      "excludes2": [],
+      "relatedCodes": [
+        "J0171"
+      ],
+      "codeFirst": null,
+      "useAdditionalCode": null,
+      "codeAlso": null
+    },
+    "billing": {
+      "modifiers": [],
+      "cciEdits": [],
+      "feeSchedule": {
+        "year": 2026,
+        "nonFacilityRate": 17.84,
+        "facilityRate": 17.84,
+        "workRVU": 0,
+        "practiceExpenseRVU": 0,
+        "malpracticeRVU": 0,
+        "totalRVU": 0,
+        "conversionFactor": 33.29
+      },
+      "placeOfService": [
+        {
+          "code": "11",
+          "description": "Office"
+        },
+        {
+          "code": "23",
+          "description": "Emergency Room - Hospital"
+        }
+      ],
+      "commonDenials": [],
+      "medicalNecessity": {
+        "covered": true,
+        "notes": "Covered for treatment of anaphylaxis, severe allergic reactions, and cardiac arrest."
+      },
+      "documentationReqs": [
+        "Indication for use",
+        "Dosage administered",
+        "Route of administration",
+        "NDC number"
+      ],
+      "payerRules": []
+    },
+    "source": {
+      "system": "CMS",
+      "url": "https://www.cms.gov/medicare/coding-billing/healthcare-common-procedure-system",
+      "lastUpdated": "2025-10-01"
+    }
+  },
+  {
+    "code": "J2270",
+    "system": "HCPCS",
+    "description": "Injection, morphine sulfate, up to 10 mg",
+    "category": "Drugs Administered Other Than Oral Method",
+    "specialty": "General",
+    "status": "active",
+    "keywords": [
+      "morphine",
+      "opioid",
+      "pain",
+      "injection",
+      "narcotic"
+    ],
+    "details": {
+      "includes": [
+        "Morphine sulfate injection up to 10 mg"
+      ],
+      "excludes1": [],
+      "excludes2": [],
+      "relatedCodes": [
+        "J2271",
+        "J2275"
+      ],
+      "codeFirst": null,
+      "useAdditionalCode": null,
+      "codeAlso": null
+    },
+    "billing": {
+      "modifiers": [],
+      "cciEdits": [],
+      "feeSchedule": {
+        "year": 2026,
+        "nonFacilityRate": 1.38,
+        "facilityRate": 1.38,
+        "workRVU": 0,
+        "practiceExpenseRVU": 0,
+        "malpracticeRVU": 0,
+        "totalRVU": 0,
+        "conversionFactor": 33.29
+      },
+      "placeOfService": [
+        {
+          "code": "21",
+          "description": "Inpatient Hospital"
+        },
+        {
+          "code": "23",
+          "description": "Emergency Room - Hospital"
+        }
+      ],
+      "commonDenials": [],
+      "medicalNecessity": {
+        "covered": true,
+        "notes": "Covered for acute and chronic pain management."
+      },
+      "documentationReqs": [
+        "Pain assessment",
+        "Dosage and route",
+        "NDC number",
+        "Response to treatment"
+      ],
+      "payerRules": []
+    },
+    "source": {
+      "system": "CMS",
+      "url": "https://www.cms.gov/medicare/coding-billing/healthcare-common-procedure-system",
+      "lastUpdated": "2025-10-01"
+    }
+  },
+  {
+    "code": "J0585",
+    "system": "HCPCS",
+    "description": "Injection, onabotulinumtoxinA, 1 unit",
+    "category": "Drugs Administered Other Than Oral Method",
+    "specialty": "Neurology",
+    "status": "active",
+    "keywords": [
+      "botox",
+      "onabotulinumtoxin",
+      "botulinum",
+      "injection",
+      "migraine",
+      "spasticity"
+    ],
+    "details": {
+      "includes": [
+        "OnabotulinumtoxinA (Botox) injection, 1 unit"
+      ],
+      "excludes1": [],
+      "excludes2": [],
+      "relatedCodes": [
+        "J0586",
+        "J0587",
+        "J0588"
+      ],
+      "codeFirst": null,
+      "useAdditionalCode": null,
+      "codeAlso": null
+    },
+    "billing": {
+      "modifiers": [],
+      "cciEdits": [],
+      "feeSchedule": {
+        "year": 2026,
+        "nonFacilityRate": 7.35,
+        "facilityRate": 7.35,
+        "workRVU": 0,
+        "practiceExpenseRVU": 0,
+        "malpracticeRVU": 0,
+        "totalRVU": 0,
+        "conversionFactor": 33.29
+      },
+      "placeOfService": [
+        {
+          "code": "11",
+          "description": "Office"
+        },
+        {
+          "code": "22",
+          "description": "On Campus-Outpatient Hospital"
+        }
+      ],
+      "commonDenials": [
+        {
+          "code": "CO-197",
+          "type": "CARC",
+          "description": "Prior authorization absent",
+          "resolution": "Obtain prior authorization before treatment",
+          "frequency": "high"
+        }
+      ],
+      "medicalNecessity": {
+        "covered": true,
+        "notes": "Covered for chronic migraine (155+ units per treatment), cervical dystonia, spasticity, and other FDA-approved indications."
+      },
+      "documentationReqs": [
+        "Diagnosis supporting medical necessity",
+        "Number of units administered",
+        "Injection sites",
+        "NDC number",
+        "Prior authorization number"
+      ],
+      "payerRules": [
+        {
+          "payer": "Medicare",
+          "timelyFiling": "365 days",
+          "priorAuth": "Required by most plans",
+          "frequencyLimit": "Varies by indication; typically every 12 weeks for chronic migraine"
+        }
+      ]
+    },
+    "source": {
+      "system": "CMS",
+      "url": "https://www.cms.gov/medicare/coding-billing/healthcare-common-procedure-system",
+      "lastUpdated": "2025-10-01"
+    }
+  },
+  {
+    "code": "A4217",
+    "system": "HCPCS",
+    "description": "Sterile water/saline, 500 ml",
+    "category": "Medical and Surgical Supplies",
+    "specialty": "General",
+    "status": "active",
+    "keywords": [
+      "sterile water",
+      "saline",
+      "irrigation",
+      "500ml"
+    ],
+    "details": {
+      "includes": [
+        "Sterile water or saline, 500 ml container"
+      ],
+      "excludes1": [],
+      "excludes2": [],
+      "relatedCodes": [
+        "A4216",
+        "A4218"
+      ],
+      "codeFirst": null,
+      "useAdditionalCode": null,
+      "codeAlso": null
+    },
+    "billing": {
+      "modifiers": [],
+      "cciEdits": [],
+      "feeSchedule": {
+        "year": 2026,
+        "nonFacilityRate": 4.23,
+        "facilityRate": 4.23,
+        "workRVU": 0,
+        "practiceExpenseRVU": 0,
+        "malpracticeRVU": 0,
+        "totalRVU": 0,
+        "conversionFactor": 33.29
+      },
+      "placeOfService": [
+        {
+          "code": "12",
+          "description": "Home"
+        }
+      ],
+      "commonDenials": [],
+      "medicalNecessity": {
+        "covered": true,
+        "notes": "Covered for home use with nebulizers and other medical devices."
+      },
+      "documentationReqs": [
+        "Medical necessity for home use",
+        "Associated device or treatment"
+      ],
+      "payerRules": []
+    },
+    "source": {
+      "system": "CMS",
+      "url": "https://www.cms.gov/medicare/coding-billing/healthcare-common-procedure-system",
+      "lastUpdated": "2025-10-01"
+    }
+  },
+  {
+    "code": "A4207",
+    "system": "HCPCS",
+    "description": "Syringe with needle, sterile 2 cc, each",
+    "category": "Medical and Surgical Supplies",
+    "specialty": "General",
+    "status": "active",
+    "keywords": [
+      "syringe",
+      "needle",
+      "sterile",
+      "2cc",
+      "injection"
+    ],
+    "details": {
+      "includes": [
+        "Syringe with attached needle, 2 cc"
+      ],
+      "excludes1": [],
+      "excludes2": [],
+      "relatedCodes": [
+        "A4206",
+        "A4208",
+        "A4209"
+      ],
+      "codeFirst": null,
+      "useAdditionalCode": null,
+      "codeAlso": null
+    },
+    "billing": {
+      "modifiers": [],
+      "cciEdits": [],
+      "feeSchedule": {
+        "year": 2026,
+        "nonFacilityRate": 0.19,
+        "facilityRate": 0.19,
+        "workRVU": 0,
+        "practiceExpenseRVU": 0,
+        "malpracticeRVU": 0,
+        "totalRVU": 0,
+        "conversionFactor": 33.29
+      },
+      "placeOfService": [
+        {
+          "code": "11",
+          "description": "Office"
+        },
+        {
+          "code": "12",
+          "description": "Home"
+        }
+      ],
+      "commonDenials": [],
+      "medicalNecessity": {
+        "covered": true,
+        "notes": "Covered when used with covered injectable drugs."
+      },
+      "documentationReqs": [
+        "Document associated drug",
+        "Quantity used"
+      ],
+      "payerRules": []
+    },
+    "source": {
+      "system": "CMS",
+      "url": "https://www.cms.gov/medicare/coding-billing/healthcare-common-procedure-system",
+      "lastUpdated": "2025-10-01"
+    }
+  },
+  {
+    "code": "A4208",
+    "system": "HCPCS",
+    "description": "Syringe with needle, sterile 3 cc, each",
+    "category": "Medical and Surgical Supplies",
+    "specialty": "General",
+    "status": "active",
+    "keywords": [
+      "syringe",
+      "needle",
+      "sterile",
+      "3cc",
+      "injection"
+    ],
+    "details": {
+      "includes": [
+        "Syringe with attached needle, 3 cc"
+      ],
+      "excludes1": [],
+      "excludes2": [],
+      "relatedCodes": [
+        "A4206",
+        "A4207",
+        "A4209"
+      ],
+      "codeFirst": null,
+      "useAdditionalCode": null,
+      "codeAlso": null
+    },
+    "billing": {
+      "modifiers": [],
+      "cciEdits": [],
+      "feeSchedule": {
+        "year": 2026,
+        "nonFacilityRate": 0.19,
+        "facilityRate": 0.19,
+        "workRVU": 0,
+        "practiceExpenseRVU": 0,
+        "malpracticeRVU": 0,
+        "totalRVU": 0,
+        "conversionFactor": 33.29
+      },
+      "placeOfService": [
+        {
+          "code": "11",
+          "description": "Office"
+        },
+        {
+          "code": "12",
+          "description": "Home"
+        }
+      ],
+      "commonDenials": [],
+      "medicalNecessity": {
+        "covered": true,
+        "notes": "Covered when used with covered injectable drugs."
+      },
+      "documentationReqs": [
+        "Document associated drug",
+        "Quantity used"
+      ],
+      "payerRules": []
+    },
+    "source": {
+      "system": "CMS",
+      "url": "https://www.cms.gov/medicare/coding-billing/healthcare-common-procedure-system",
+      "lastUpdated": "2025-10-01"
+    }
+  },
+  {
+    "code": "J1644",
+    "system": "HCPCS",
+    "description": "Injection, heparin sodium, per 1000 units",
+    "category": "Drugs Administered Other Than Oral Method",
+    "specialty": "Cardiology",
+    "status": "active",
+    "keywords": [
+      "heparin",
+      "anticoagulant",
+      "blood thinner",
+      "injection",
+      "IV"
+    ],
+    "details": {
+      "includes": [
+        "Heparin sodium injection, 1000 units"
+      ],
+      "excludes1": [],
+      "excludes2": [],
+      "relatedCodes": [
+        "J1642",
+        "J1645"
+      ],
+      "codeFirst": null,
+      "useAdditionalCode": null,
+      "codeAlso": null
+    },
+    "billing": {
+      "modifiers": [],
+      "cciEdits": [],
+      "feeSchedule": {
+        "year": 2026,
+        "nonFacilityRate": 1.72,
+        "facilityRate": 1.72,
+        "workRVU": 0,
+        "practiceExpenseRVU": 0,
+        "malpracticeRVU": 0,
+        "totalRVU": 0,
+        "conversionFactor": 33.29
+      },
+      "placeOfService": [
+        {
+          "code": "21",
+          "description": "Inpatient Hospital"
+        },
+        {
+          "code": "23",
+          "description": "Emergency Room - Hospital"
+        }
+      ],
+      "commonDenials": [],
+      "medicalNecessity": {
+        "covered": true,
+        "notes": "Covered for anticoagulation therapy and line maintenance."
+      },
+      "documentationReqs": [
+        "Indication",
+        "Dosage",
+        "Route",
+        "NDC number"
+      ],
+      "payerRules": []
+    },
+    "source": {
+      "system": "CMS",
+      "url": "https://www.cms.gov/medicare/coding-billing/healthcare-common-procedure-system",
+      "lastUpdated": "2025-10-01"
+    }
+  },
+  {
+    "code": "J2405",
+    "system": "HCPCS",
+    "description": "Injection, ondansetron HCl, per 1 mg",
+    "category": "Drugs Administered Other Than Oral Method",
+    "specialty": "Gastroenterology",
+    "status": "active",
+    "keywords": [
+      "ondansetron",
+      "Zofran",
+      "anti-nausea",
+      "antiemetic",
+      "injection"
+    ],
+    "details": {
+      "includes": [
+        "Ondansetron HCl injection, 1 mg"
+      ],
+      "excludes1": [],
+      "excludes2": [],
+      "relatedCodes": [],
+      "codeFirst": null,
+      "useAdditionalCode": null,
+      "codeAlso": null
+    },
+    "billing": {
+      "modifiers": [],
+      "cciEdits": [],
+      "feeSchedule": {
+        "year": 2026,
+        "nonFacilityRate": 0.13,
+        "facilityRate": 0.13,
+        "workRVU": 0,
+        "practiceExpenseRVU": 0,
+        "malpracticeRVU": 0,
+        "totalRVU": 0,
+        "conversionFactor": 33.29
+      },
+      "placeOfService": [
+        {
+          "code": "11",
+          "description": "Office"
+        },
+        {
+          "code": "21",
+          "description": "Inpatient Hospital"
+        },
+        {
+          "code": "22",
+          "description": "On Campus-Outpatient Hospital"
+        }
+      ],
+      "commonDenials": [],
+      "medicalNecessity": {
+        "covered": true,
+        "notes": "Covered for nausea and vomiting, including chemotherapy-induced."
+      },
+      "documentationReqs": [
+        "Indication",
+        "Dosage",
+        "NDC number"
+      ],
+      "payerRules": []
+    },
+    "source": {
+      "system": "CMS",
+      "url": "https://www.cms.gov/medicare/coding-billing/healthcare-common-procedure-system",
+      "lastUpdated": "2025-10-01"
+    }
+  },
+  {
+    "code": "E0470",
+    "system": "HCPCS",
+    "description": "Respiratory assist device, bi-level pressure capability, without backup rate feature, used with noninvasive interface (e.g., nasal or facial mask)",
+    "category": "Durable Medical Equipment",
+    "specialty": "Pulmonology",
+    "status": "active",
+    "keywords": [
+      "BiPAP",
+      "bi-level",
+      "respiratory",
+      "noninvasive",
+      "sleep apnea",
+      "COPD"
+    ],
+    "details": {
+      "includes": [
+        "Bi-level positive airway pressure device without backup rate"
+      ],
+      "excludes1": [],
+      "excludes2": [],
+      "relatedCodes": [
+        "E0471",
+        "E0601"
+      ],
+      "codeFirst": null,
+      "useAdditionalCode": null,
+      "codeAlso": null
+    },
+    "billing": {
+      "modifiers": [
+        {
+          "code": "KX",
+          "description": "Requirements Specified in the Medical Policy Have Been Met",
+          "usageGuidance": "Use when LCD criteria are met",
+          "system": "HCPCS"
+        }
+      ],
+      "cciEdits": [],
+      "feeSchedule": {
+        "year": 2026,
+        "nonFacilityRate": 71.6,
+        "facilityRate": 71.6,
+        "workRVU": 0,
+        "practiceExpenseRVU": 0,
+        "malpracticeRVU": 0,
+        "totalRVU": 0,
+        "conversionFactor": 33.29
+      },
+      "placeOfService": [
+        {
+          "code": "12",
+          "description": "Home"
+        }
+      ],
+      "commonDenials": [
+        {
+          "code": "CO-50",
+          "type": "CARC",
+          "description": "Not deemed medically necessary",
+          "resolution": "Provide qualifying sleep study and documentation of CPAP failure or intolerance",
+          "frequency": "medium"
+        }
+      ],
+      "medicalNecessity": {
+        "covered": true,
+        "lcdId": "L33718",
+        "notes": "Covered for OSA when CPAP has been tried and failed, or for specific respiratory conditions."
+      },
+      "documentationReqs": [
+        "Qualifying sleep study",
+        "Documentation of CPAP trial and failure",
+        "Physician face-to-face encounter"
+      ],
+      "payerRules": [
+        {
+          "payer": "Medicare",
+          "timelyFiling": "365 days",
+          "priorAuth": "Not required but subject to review",
+          "notes": "Compliance review applies"
+        }
+      ]
+    },
+    "source": {
+      "system": "CMS",
+      "url": "https://www.cms.gov/medicare/coding-billing/healthcare-common-procedure-system",
+      "lastUpdated": "2025-10-01"
+    }
+  },
+  {
+    "code": "E0143",
+    "system": "HCPCS",
+    "description": "Walker, folding, wheeled, adjustable or fixed height",
+    "category": "Durable Medical Equipment",
+    "specialty": "Orthopedics",
+    "status": "active",
+    "keywords": [
+      "walker",
+      "folding",
+      "wheeled",
+      "mobility",
+      "ambulation"
+    ],
+    "details": {
+      "includes": [
+        "Folding wheeled walker",
+        "Adjustable or fixed height"
+      ],
+      "excludes1": [],
+      "excludes2": [],
+      "relatedCodes": [
+        "E0100",
+        "E0130",
+        "E0135",
+        "E0140",
+        "E0141"
+      ],
+      "codeFirst": null,
+      "useAdditionalCode": null,
+      "codeAlso": null
+    },
+    "billing": {
+      "modifiers": [],
+      "cciEdits": [],
+      "feeSchedule": {
+        "year": 2026,
+        "nonFacilityRate": 38.47,
+        "facilityRate": 38.47,
+        "workRVU": 0,
+        "practiceExpenseRVU": 0,
+        "malpracticeRVU": 0,
+        "totalRVU": 0,
+        "conversionFactor": 33.29
+      },
+      "placeOfService": [
+        {
+          "code": "12",
+          "description": "Home"
+        }
+      ],
+      "commonDenials": [],
+      "medicalNecessity": {
+        "covered": true,
+        "notes": "Covered when patient requires a wheeled walker for mobility assistance."
+      },
+      "documentationReqs": [
+        "Physician order",
+        "Documentation of mobility limitation",
+        "Face-to-face encounter"
+      ],
+      "payerRules": [
+        {
+          "payer": "Medicare",
+          "timelyFiling": "365 days",
+          "priorAuth": "Not required"
+        }
+      ]
+    },
+    "source": {
+      "system": "CMS",
+      "url": "https://www.cms.gov/medicare/coding-billing/healthcare-common-procedure-system",
+      "lastUpdated": "2025-10-01"
+    }
+  },
+  {
+    "code": "K0823",
+    "system": "HCPCS",
+    "description": "Power wheelchair, group 2 standard, captain's chair, patient weight capacity up to and including 300 pounds",
+    "category": "Durable Medical Equipment",
+    "specialty": "Orthopedics",
+    "status": "active",
+    "keywords": [
+      "power wheelchair",
+      "motorized",
+      "group 2",
+      "captain chair",
+      "mobility"
+    ],
+    "details": {
+      "includes": [
+        "Power wheelchair Group 2 standard",
+        "Captain's chair"
+      ],
+      "excludes1": [],
+      "excludes2": [],
+      "relatedCodes": [
+        "K0824",
+        "K0825",
+        "K0826"
+      ],
+      "codeFirst": null,
+      "useAdditionalCode": null,
+      "codeAlso": null
+    },
+    "billing": {
+      "modifiers": [
+        {
+          "code": "KX",
+          "description": "Requirements Specified in the Medical Policy Have Been Met",
+          "usageGuidance": "Required - mobility criteria must be documented",
+          "system": "HCPCS"
+        }
+      ],
+      "cciEdits": [],
+      "feeSchedule": {
+        "year": 2026,
+        "nonFacilityRate": 252.15,
+        "facilityRate": 252.15,
+        "workRVU": 0,
+        "practiceExpenseRVU": 0,
+        "malpracticeRVU": 0,
+        "totalRVU": 0,
+        "conversionFactor": 33.29
+      },
+      "placeOfService": [
+        {
+          "code": "12",
+          "description": "Home"
+        }
+      ],
+      "commonDenials": [
+        {
+          "code": "CO-50",
+          "type": "CARC",
+          "description": "Not deemed medically necessary",
+          "resolution": "Provide comprehensive mobility evaluation and documentation meeting all LCD criteria",
+          "frequency": "high"
+        }
+      ],
+      "medicalNecessity": {
+        "covered": true,
+        "lcdId": "L33789",
+        "notes": "Requires face-to-face exam, mobility limitation documentation, and specialty evaluation."
+      },
+      "documentationReqs": [
+        "Face-to-face examination by treating physician",
+        "Specialty mobility evaluation",
+        "Home assessment",
+        "Documentation of why lesser mobility device is insufficient",
+        "7-element order"
+      ],
+      "payerRules": [
+        {
+          "payer": "Medicare",
+          "timelyFiling": "365 days",
+          "priorAuth": "Prior authorization required",
+          "notes": "Subject to face-to-face and specialty evaluation requirements"
+        }
+      ]
+    },
+    "source": {
+      "system": "CMS",
+      "url": "https://www.cms.gov/medicare/coding-billing/healthcare-common-procedure-system",
+      "lastUpdated": "2025-10-01"
+    }
+  },
+  {
+    "code": "L3000",
+    "system": "HCPCS",
+    "description": "Foot insert, removable, molded to patient model, UCB type, Berkeley shell, each",
+    "category": "Orthotics",
+    "specialty": "Orthopedics",
+    "status": "active",
+    "keywords": [
+      "foot insert",
+      "orthotic",
+      "custom",
+      "UCB",
+      "arch support"
+    ],
+    "details": {
+      "includes": [
+        "Custom molded foot insert",
+        "UCB type"
+      ],
+      "excludes1": [],
+      "excludes2": [],
+      "relatedCodes": [
+        "L3001",
+        "L3002",
+        "L3003",
+        "L3010",
+        "L3020",
+        "L3030"
+      ],
+      "codeFirst": null,
+      "useAdditionalCode": null,
+      "codeAlso": null
+    },
+    "billing": {
+      "modifiers": [],
+      "cciEdits": [],
+      "feeSchedule": {
+        "year": 2026,
+        "nonFacilityRate": 86.23,
+        "facilityRate": 86.23,
+        "workRVU": 0,
+        "practiceExpenseRVU": 0,
+        "malpracticeRVU": 0,
+        "totalRVU": 0,
+        "conversionFactor": 33.29
+      },
+      "placeOfService": [
+        {
+          "code": "11",
+          "description": "Office"
+        }
+      ],
+      "commonDenials": [
+        {
+          "code": "CO-50",
+          "type": "CARC",
+          "description": "Not deemed medically necessary",
+          "resolution": "Provide documentation of qualifying foot condition and diabetic status if applicable",
+          "frequency": "medium"
+        }
+      ],
+      "medicalNecessity": {
+        "covered": true,
+        "notes": "Covered for patients with diabetes and qualifying foot conditions. Other indications may not be covered by Medicare."
+      },
+      "documentationReqs": [
+        "Physician order",
+        "Documentation of qualifying condition",
+        "Diabetic foot disease documentation if applicable"
+      ],
+      "payerRules": [
+        {
+          "payer": "Medicare",
+          "timelyFiling": "365 days",
+          "priorAuth": "Not required",
+          "notes": "Limited to diabetic patients with qualifying conditions for Medicare"
+        }
+      ]
+    },
+    "source": {
+      "system": "CMS",
+      "url": "https://www.cms.gov/medicare/coding-billing/healthcare-common-procedure-system",
+      "lastUpdated": "2025-10-01"
+    }
+  },
+  {
+    "code": "Q5103",
+    "system": "HCPCS",
+    "description": "Injection, infliximab-dyyb, biosimilar, (Inflectra), 10 mg",
+    "category": "Drugs Administered Other Than Oral Method",
+    "specialty": "Gastroenterology",
+    "status": "active",
+    "keywords": [
+      "infliximab",
+      "biosimilar",
+      "Inflectra",
+      "TNF inhibitor",
+      "biologic"
+    ],
+    "details": {
+      "includes": [
+        "Infliximab-dyyb (Inflectra) biosimilar injection, 10 mg"
+      ],
+      "excludes1": [],
+      "excludes2": [],
+      "relatedCodes": [
+        "J1745",
+        "Q5104",
+        "Q5121"
+      ],
+      "codeFirst": null,
+      "useAdditionalCode": null,
+      "codeAlso": null
+    },
+    "billing": {
+      "modifiers": [],
+      "cciEdits": [],
+      "feeSchedule": {
+        "year": 2026,
+        "nonFacilityRate": 708.52,
+        "facilityRate": 708.52,
+        "workRVU": 0,
+        "practiceExpenseRVU": 0,
+        "malpracticeRVU": 0,
+        "totalRVU": 0,
+        "conversionFactor": 33.29
+      },
+      "placeOfService": [
+        {
+          "code": "11",
+          "description": "Office"
+        },
+        {
+          "code": "22",
+          "description": "On Campus-Outpatient Hospital"
+        }
+      ],
+      "commonDenials": [],
+      "medicalNecessity": {
+        "covered": true,
+        "notes": "Biosimilar to Remicade. Some payers may require use of biosimilar before reference product."
+      },
+      "documentationReqs": [
+        "Diagnosis",
+        "Prior therapy documentation",
+        "NDC number",
+        "Weight-based dosing"
+      ],
+      "payerRules": []
+    },
+    "source": {
+      "system": "CMS",
+      "url": "https://www.cms.gov/medicare/coding-billing/healthcare-common-procedure-system",
+      "lastUpdated": "2025-10-01"
+    }
+  },
+  {
+    "code": "J7999",
+    "system": "HCPCS",
+    "description": "Compounded drug, not otherwise classified",
+    "category": "Drugs Administered Other Than Oral Method",
+    "specialty": "General",
+    "status": "discontinued",
+    "keywords": [
+      "compounded",
+      "drug",
+      "not classified",
+      "NOC"
+    ],
+    "details": {
+      "includes": [
+        "Compounded drugs not covered by specific HCPCS codes"
+      ],
+      "excludes1": [],
+      "excludes2": [],
+      "relatedCodes": [
+        "J7350"
+      ],
+      "codeFirst": null,
+      "useAdditionalCode": null,
+      "codeAlso": null
+    },
+    "billing": {
+      "modifiers": [],
+      "cciEdits": [],
+      "feeSchedule": null,
+      "placeOfService": [],
+      "commonDenials": [],
+      "medicalNecessity": {
+        "covered": false,
+        "notes": "DISCONTINUED: Replaced with specific compounded drug codes. Use J7350 or the appropriate specific drug code."
+      },
+      "documentationReqs": [],
+      "payerRules": []
+    },
+    "source": {
+      "system": "CMS",
+      "url": "https://www.cms.gov/medicare/coding-billing/healthcare-common-procedure-system",
+      "lastUpdated": "2025-10-01"
+    }
+  },
+  {
+    "code": "J3490",
+    "system": "HCPCS",
+    "description": "Unclassified drugs",
+    "category": "Drugs Administered Other Than Oral Method",
+    "specialty": "General",
+    "status": "active",
+    "keywords": [
+      "unclassified",
+      "drug",
+      "NOC",
+      "not otherwise classified"
+    ],
+    "details": {
+      "includes": [
+        "Drugs without a specific HCPCS code"
+      ],
+      "excludes1": [],
+      "excludes2": [],
+      "relatedCodes": [
+        "J3590"
+      ],
+      "codeFirst": null,
+      "useAdditionalCode": null,
+      "codeAlso": null
+    },
+    "billing": {
+      "modifiers": [],
+      "cciEdits": [],
+      "feeSchedule": null,
+      "placeOfService": [
+        {
+          "code": "11",
+          "description": "Office"
+        },
+        {
+          "code": "21",
+          "description": "Inpatient Hospital"
+        },
+        {
+          "code": "22",
+          "description": "On Campus-Outpatient Hospital"
+        }
+      ],
+      "commonDenials": [
+        {
+          "code": "CO-16",
+          "type": "CARC",
+          "description": "Lacks information or has submission error",
+          "resolution": "Include drug name, NDC, dosage, and invoice with the claim",
+          "frequency": "high"
+        }
+      ],
+      "medicalNecessity": {
+        "covered": true,
+        "notes": "Priced by individual consideration. Must include drug name, NDC, dosage, and invoice."
+      },
+      "documentationReqs": [
+        "Drug name and description",
+        "NDC number",
+        "Dosage and route",
+        "Invoice showing cost",
+        "Medical necessity documentation"
+      ],
+      "payerRules": [
+        {
+          "payer": "Medicare",
+          "timelyFiling": "365 days",
+          "priorAuth": "May be required",
+          "notes": "Claims manually priced. Include all supporting documentation."
+        }
+      ]
+    },
+    "source": {
+      "system": "CMS",
+      "url": "https://www.cms.gov/medicare/coding-billing/healthcare-common-procedure-system",
+      "lastUpdated": "2025-10-01"
+    }
+  },
+  {
+    "code": "A9585",
+    "system": "HCPCS",
+    "description": "Injection, gadopentetate dimeglumine (Magnevist), per ml",
+    "category": "Radiopharmaceuticals",
+    "specialty": "General",
+    "status": "active",
+    "keywords": [
+      "gadolinium",
+      "MRI contrast",
+      "Magnevist",
+      "gadopentetate",
+      "contrast agent"
+    ],
+    "details": {
+      "includes": [
+        "Gadopentetate dimeglumine contrast for MRI"
+      ],
+      "excludes1": [],
+      "excludes2": [],
+      "relatedCodes": [
+        "A9575",
+        "A9576",
+        "A9577",
+        "A9578"
+      ],
+      "codeFirst": null,
+      "useAdditionalCode": null,
+      "codeAlso": null
+    },
+    "billing": {
+      "modifiers": [],
+      "cciEdits": [],
+      "feeSchedule": {
+        "year": 2026,
+        "nonFacilityRate": 0.55,
+        "facilityRate": 0.55,
+        "workRVU": 0,
+        "practiceExpenseRVU": 0,
+        "malpracticeRVU": 0,
+        "totalRVU": 0,
+        "conversionFactor": 33.29
+      },
+      "placeOfService": [
+        {
+          "code": "22",
+          "description": "On Campus-Outpatient Hospital"
+        },
+        {
+          "code": "11",
+          "description": "Office"
+        }
+      ],
+      "commonDenials": [],
+      "medicalNecessity": {
+        "covered": true,
+        "notes": "Covered when administered with MRI studies requiring contrast."
+      },
+      "documentationReqs": [
+        "Associated MRI procedure",
+        "Volume administered",
+        "NDC number"
+      ],
+      "payerRules": []
+    },
+    "source": {
+      "system": "CMS",
+      "url": "https://www.cms.gov/medicare/coding-billing/healthcare-common-procedure-system",
+      "lastUpdated": "2025-10-01"
+    }
+  },
+  {
+    "code": "A4215",
+    "system": "HCPCS",
+    "description": "Needle, sterile, any size, each",
+    "category": "Medical and Surgical Supplies",
+    "specialty": "General",
+    "status": "active",
+    "keywords": [
+      "needle",
+      "sterile",
+      "injection"
+    ],
+    "details": {
+      "includes": [],
+      "excludes1": [],
+      "excludes2": [],
+      "relatedCodes": [
+        "A4206",
+        "A4207"
+      ],
+      "codeFirst": null,
+      "useAdditionalCode": null,
+      "codeAlso": null
+    },
+    "billing": {
+      "modifiers": [],
+      "cciEdits": [],
+      "feeSchedule": {
+        "year": 2026,
+        "nonFacilityRate": 0.11,
+        "facilityRate": 0.11,
+        "workRVU": 0,
+        "practiceExpenseRVU": 0,
+        "malpracticeRVU": 0,
+        "totalRVU": 0,
+        "conversionFactor": 33.29
+      },
+      "placeOfService": [
+        {
+          "code": "11",
+          "description": "Office"
+        }
+      ],
+      "commonDenials": [],
+      "medicalNecessity": {
+        "covered": true,
+        "lcdId": null,
+        "notes": "Covered per Medicare guidelines when medically necessary."
+      },
+      "documentationReqs": [
+        "Medical necessity documentation"
+      ],
+      "payerRules": []
+    },
+    "source": {
+      "system": "CMS",
+      "url": "https://www.cms.gov/medicare/coding-billing/healthcare-common-procedure-system",
+      "lastUpdated": "2025-10-01"
+    }
+  },
+  {
+    "code": "A4244",
+    "system": "HCPCS",
+    "description": "Alcohol or peroxide, per pint",
+    "category": "Medical and Surgical Supplies",
+    "specialty": "General",
+    "status": "active",
+    "keywords": [
+      "alcohol",
+      "peroxide",
+      "antiseptic"
+    ],
+    "details": {
+      "includes": [],
+      "excludes1": [],
+      "excludes2": [],
+      "relatedCodes": [],
+      "codeFirst": null,
+      "useAdditionalCode": null,
+      "codeAlso": null
+    },
+    "billing": {
+      "modifiers": [],
+      "cciEdits": [],
+      "feeSchedule": {
+        "year": 2026,
+        "nonFacilityRate": 1.58,
+        "facilityRate": 1.58,
+        "workRVU": 0,
+        "practiceExpenseRVU": 0,
+        "malpracticeRVU": 0,
+        "totalRVU": 0,
+        "conversionFactor": 33.29
+      },
+      "placeOfService": [
+        {
+          "code": "11",
+          "description": "Office"
+        }
+      ],
+      "commonDenials": [],
+      "medicalNecessity": {
+        "covered": true,
+        "lcdId": null,
+        "notes": "Covered per Medicare guidelines when medically necessary."
+      },
+      "documentationReqs": [
+        "Medical necessity documentation"
+      ],
+      "payerRules": []
+    },
+    "source": {
+      "system": "CMS",
+      "url": "https://www.cms.gov/medicare/coding-billing/healthcare-common-procedure-system",
+      "lastUpdated": "2025-10-01"
+    }
+  },
+  {
+    "code": "A4245",
+    "system": "HCPCS",
+    "description": "Alcohol wipes, per box",
+    "category": "Medical and Surgical Supplies",
+    "specialty": "General",
+    "status": "active",
+    "keywords": [
+      "alcohol wipes",
+      "antiseptic",
+      "prep pads"
+    ],
+    "details": {
+      "includes": [],
+      "excludes1": [],
+      "excludes2": [],
+      "relatedCodes": [],
+      "codeFirst": null,
+      "useAdditionalCode": null,
+      "codeAlso": null
+    },
+    "billing": {
+      "modifiers": [],
+      "cciEdits": [],
+      "feeSchedule": {
+        "year": 2026,
+        "nonFacilityRate": 1.91,
+        "facilityRate": 1.91,
+        "workRVU": 0,
+        "practiceExpenseRVU": 0,
+        "malpracticeRVU": 0,
+        "totalRVU": 0,
+        "conversionFactor": 33.29
+      },
+      "placeOfService": [
+        {
+          "code": "11",
+          "description": "Office"
+        }
+      ],
+      "commonDenials": [],
+      "medicalNecessity": {
+        "covered": true,
+        "lcdId": null,
+        "notes": "Covered per Medicare guidelines when medically necessary."
+      },
+      "documentationReqs": [
+        "Medical necessity documentation"
+      ],
+      "payerRules": []
+    },
+    "source": {
+      "system": "CMS",
+      "url": "https://www.cms.gov/medicare/coding-billing/healthcare-common-procedure-system",
+      "lastUpdated": "2025-10-01"
+    }
+  },
+  {
+    "code": "A4450",
+    "system": "HCPCS",
+    "description": "Tape, non-waterproof, per 18 square inches",
+    "category": "Medical and Surgical Supplies",
+    "specialty": "General",
+    "status": "active",
+    "keywords": [
+      "tape",
+      "medical tape",
+      "non-waterproof"
+    ],
+    "details": {
+      "includes": [],
+      "excludes1": [],
+      "excludes2": [],
+      "relatedCodes": [],
+      "codeFirst": null,
+      "useAdditionalCode": null,
+      "codeAlso": null
+    },
+    "billing": {
+      "modifiers": [],
+      "cciEdits": [],
+      "feeSchedule": {
+        "year": 2026,
+        "nonFacilityRate": 0.12,
+        "facilityRate": 0.12,
+        "workRVU": 0,
+        "practiceExpenseRVU": 0,
+        "malpracticeRVU": 0,
+        "totalRVU": 0,
+        "conversionFactor": 33.29
+      },
+      "placeOfService": [
+        {
+          "code": "11",
+          "description": "Office"
+        }
+      ],
+      "commonDenials": [],
+      "medicalNecessity": {
+        "covered": true,
+        "lcdId": null,
+        "notes": "Covered per Medicare guidelines when medically necessary."
+      },
+      "documentationReqs": [
+        "Medical necessity documentation"
+      ],
+      "payerRules": []
+    },
+    "source": {
+      "system": "CMS",
+      "url": "https://www.cms.gov/medicare/coding-billing/healthcare-common-procedure-system",
+      "lastUpdated": "2025-10-01"
+    }
+  },
+  {
+    "code": "A4452",
+    "system": "HCPCS",
+    "description": "Tape, waterproof, per 18 square inches",
+    "category": "Medical and Surgical Supplies",
+    "specialty": "General",
+    "status": "active",
+    "keywords": [
+      "tape",
+      "waterproof",
+      "medical tape"
+    ],
+    "details": {
+      "includes": [],
+      "excludes1": [],
+      "excludes2": [],
+      "relatedCodes": [],
+      "codeFirst": null,
+      "useAdditionalCode": null,
+      "codeAlso": null
+    },
+    "billing": {
+      "modifiers": [],
+      "cciEdits": [],
+      "feeSchedule": {
+        "year": 2026,
+        "nonFacilityRate": 0.15,
+        "facilityRate": 0.15,
+        "workRVU": 0,
+        "practiceExpenseRVU": 0,
+        "malpracticeRVU": 0,
+        "totalRVU": 0,
+        "conversionFactor": 33.29
+      },
+      "placeOfService": [
+        {
+          "code": "11",
+          "description": "Office"
+        }
+      ],
+      "commonDenials": [],
+      "medicalNecessity": {
+        "covered": true,
+        "lcdId": null,
+        "notes": "Covered per Medicare guidelines when medically necessary."
+      },
+      "documentationReqs": [
+        "Medical necessity documentation"
+      ],
+      "payerRules": []
+    },
+    "source": {
+      "system": "CMS",
+      "url": "https://www.cms.gov/medicare/coding-billing/healthcare-common-procedure-system",
+      "lastUpdated": "2025-10-01"
+    }
+  },
+  {
+    "code": "A6021",
+    "system": "HCPCS",
+    "description": "Collagen dressing, sterile, size 16 sq. in. or less, each",
+    "category": "Medical and Surgical Supplies",
+    "specialty": "Wound Care",
+    "status": "active",
+    "keywords": [
+      "collagen",
+      "dressing",
+      "wound care"
+    ],
+    "details": {
+      "includes": [],
+      "excludes1": [],
+      "excludes2": [],
+      "relatedCodes": [],
+      "codeFirst": null,
+      "useAdditionalCode": null,
+      "codeAlso": null
+    },
+    "billing": {
+      "modifiers": [],
+      "cciEdits": [],
+      "feeSchedule": {
+        "year": 2026,
+        "nonFacilityRate": 24.75,
+        "facilityRate": 24.75,
+        "workRVU": 0,
+        "practiceExpenseRVU": 0,
+        "malpracticeRVU": 0,
+        "totalRVU": 0,
+        "conversionFactor": 33.29
+      },
+      "placeOfService": [
+        {
+          "code": "11",
+          "description": "Office"
+        }
+      ],
+      "commonDenials": [],
+      "medicalNecessity": {
+        "covered": true,
+        "lcdId": "L33831",
+        "notes": "Covered per Medicare guidelines when medically necessary."
+      },
+      "documentationReqs": [
+        "Wound description",
+        "Size",
+        "Depth",
+        "Frequency"
+      ],
+      "payerRules": []
+    },
+    "source": {
+      "system": "CMS",
+      "url": "https://www.cms.gov/medicare/coding-billing/healthcare-common-procedure-system",
+      "lastUpdated": "2025-10-01"
+    }
+  },
+  {
+    "code": "A6402",
+    "system": "HCPCS",
+    "description": "Gauze, non-impregnated, non-sterile, pad size 16 sq. in. or less, each",
+    "category": "Medical and Surgical Supplies",
+    "specialty": "Wound Care",
+    "status": "active",
+    "keywords": [
+      "gauze",
+      "dressing",
+      "wound care"
+    ],
+    "details": {
+      "includes": [],
+      "excludes1": [],
+      "excludes2": [],
+      "relatedCodes": [],
+      "codeFirst": null,
+      "useAdditionalCode": null,
+      "codeAlso": null
+    },
+    "billing": {
+      "modifiers": [],
+      "cciEdits": [],
+      "feeSchedule": {
+        "year": 2026,
+        "nonFacilityRate": 0.14,
+        "facilityRate": 0.14,
+        "workRVU": 0,
+        "practiceExpenseRVU": 0,
+        "malpracticeRVU": 0,
+        "totalRVU": 0,
+        "conversionFactor": 33.29
+      },
+      "placeOfService": [
+        {
+          "code": "11",
+          "description": "Office"
+        }
+      ],
+      "commonDenials": [],
+      "medicalNecessity": {
+        "covered": true,
+        "lcdId": null,
+        "notes": "Covered per Medicare guidelines when medically necessary."
+      },
+      "documentationReqs": [
+        "Medical necessity documentation"
+      ],
+      "payerRules": []
+    },
+    "source": {
+      "system": "CMS",
+      "url": "https://www.cms.gov/medicare/coding-billing/healthcare-common-procedure-system",
+      "lastUpdated": "2025-10-01"
+    }
+  },
+  {
+    "code": "A6413",
+    "system": "HCPCS",
+    "description": "Adhesive bandage, first-aid type, any size, each",
+    "category": "Medical and Surgical Supplies",
+    "specialty": "General",
+    "status": "active",
+    "keywords": [
+      "bandage",
+      "adhesive",
+      "first aid"
+    ],
+    "details": {
+      "includes": [],
+      "excludes1": [],
+      "excludes2": [],
+      "relatedCodes": [],
+      "codeFirst": null,
+      "useAdditionalCode": null,
+      "codeAlso": null
+    },
+    "billing": {
+      "modifiers": [],
+      "cciEdits": [],
+      "feeSchedule": {
+        "year": 2026,
+        "nonFacilityRate": 0.03,
+        "facilityRate": 0.03,
+        "workRVU": 0,
+        "practiceExpenseRVU": 0,
+        "malpracticeRVU": 0,
+        "totalRVU": 0,
+        "conversionFactor": 33.29
+      },
+      "placeOfService": [
+        {
+          "code": "11",
+          "description": "Office"
+        }
+      ],
+      "commonDenials": [],
+      "medicalNecessity": {
+        "covered": true,
+        "lcdId": null,
+        "notes": "Covered per Medicare guidelines when medically necessary."
+      },
+      "documentationReqs": [
+        "Medical necessity documentation"
+      ],
+      "payerRules": []
+    },
+    "source": {
+      "system": "CMS",
+      "url": "https://www.cms.gov/medicare/coding-billing/healthcare-common-procedure-system",
+      "lastUpdated": "2025-10-01"
+    }
+  },
+  {
+    "code": "A7003",
+    "system": "HCPCS",
+    "description": "Administration set, with small volume nonfiltered pneumatic nebulizer, disposable",
+    "category": "Medical and Surgical Supplies",
+    "specialty": "Pulmonology",
+    "status": "active",
+    "keywords": [
+      "nebulizer",
+      "administration set",
+      "respiratory"
+    ],
+    "details": {
+      "includes": [],
+      "excludes1": [],
+      "excludes2": [],
+      "relatedCodes": [],
+      "codeFirst": null,
+      "useAdditionalCode": null,
+      "codeAlso": null
+    },
+    "billing": {
+      "modifiers": [],
+      "cciEdits": [],
+      "feeSchedule": {
+        "year": 2026,
+        "nonFacilityRate": 2.01,
+        "facilityRate": 2.01,
+        "workRVU": 0,
+        "practiceExpenseRVU": 0,
+        "malpracticeRVU": 0,
+        "totalRVU": 0,
+        "conversionFactor": 33.29
+      },
+      "placeOfService": [
+        {
+          "code": "12",
+          "description": "Home"
+        }
+      ],
+      "commonDenials": [],
+      "medicalNecessity": {
+        "covered": true,
+        "lcdId": null,
+        "notes": "Covered per Medicare guidelines when medically necessary."
+      },
+      "documentationReqs": [
+        "Medical necessity documentation"
+      ],
+      "payerRules": []
+    },
+    "source": {
+      "system": "CMS",
+      "url": "https://www.cms.gov/medicare/coding-billing/healthcare-common-procedure-system",
+      "lastUpdated": "2025-10-01"
+    }
+  },
+  {
+    "code": "E0114",
+    "system": "HCPCS",
+    "description": "Crutches underarm, other than wood, adjustable or fixed, pair, with pads, tips and handgrips",
+    "category": "Durable Medical Equipment",
+    "specialty": "Orthopedics",
+    "status": "active",
+    "keywords": [
+      "crutches",
+      "ambulation",
+      "DME",
+      "underarm"
+    ],
+    "details": {
+      "includes": [],
+      "excludes1": [],
+      "excludes2": [],
+      "relatedCodes": [],
+      "codeFirst": null,
+      "useAdditionalCode": null,
+      "codeAlso": null
+    },
+    "billing": {
+      "modifiers": [],
+      "cciEdits": [],
+      "feeSchedule": {
+        "year": 2026,
+        "nonFacilityRate": 39.27,
+        "facilityRate": 39.27,
+        "workRVU": 0,
+        "practiceExpenseRVU": 0,
+        "malpracticeRVU": 0,
+        "totalRVU": 0,
+        "conversionFactor": 33.29
+      },
+      "placeOfService": [
+        {
+          "code": "12",
+          "description": "Home"
+        }
+      ],
+      "commonDenials": [],
+      "medicalNecessity": {
+        "covered": true,
+        "lcdId": null,
+        "notes": "Covered per Medicare guidelines when medically necessary."
+      },
+      "documentationReqs": [
+        "Medical necessity documentation"
+      ],
+      "payerRules": []
+    },
+    "source": {
+      "system": "CMS",
+      "url": "https://www.cms.gov/medicare/coding-billing/healthcare-common-procedure-system",
+      "lastUpdated": "2025-10-01"
+    }
+  },
+  {
+    "code": "E0135",
+    "system": "HCPCS",
+    "description": "Walker, folding (pickup), adjustable or fixed height",
+    "category": "Durable Medical Equipment",
+    "specialty": "Orthopedics",
+    "status": "active",
+    "keywords": [
+      "walker",
+      "folding",
+      "ambulation",
+      "DME"
+    ],
+    "details": {
+      "includes": [],
+      "excludes1": [],
+      "excludes2": [],
+      "relatedCodes": [],
+      "codeFirst": null,
+      "useAdditionalCode": null,
+      "codeAlso": null
+    },
+    "billing": {
+      "modifiers": [],
+      "cciEdits": [],
+      "feeSchedule": {
+        "year": 2026,
+        "nonFacilityRate": 64.73,
+        "facilityRate": 64.73,
+        "workRVU": 0,
+        "practiceExpenseRVU": 0,
+        "malpracticeRVU": 0,
+        "totalRVU": 0,
+        "conversionFactor": 33.29
+      },
+      "placeOfService": [
+        {
+          "code": "11",
+          "description": "Office"
+        }
+      ],
+      "commonDenials": [],
+      "medicalNecessity": {
+        "covered": true,
+        "lcdId": null,
+        "notes": "Covered per Medicare guidelines when medically necessary."
+      },
+      "documentationReqs": [
+        "Medical necessity documentation"
+      ],
+      "payerRules": []
+    },
+    "source": {
+      "system": "CMS",
+      "url": "https://www.cms.gov/medicare/coding-billing/healthcare-common-procedure-system",
+      "lastUpdated": "2025-10-01"
+    }
+  },
+  {
+    "code": "E0163",
+    "system": "HCPCS",
+    "description": "Commode chair, mobile or stationary, with fixed arms",
+    "category": "Durable Medical Equipment",
+    "specialty": "General",
+    "status": "active",
+    "keywords": [
+      "commode",
+      "toilet",
+      "DME",
+      "mobility"
+    ],
+    "details": {
+      "includes": [],
+      "excludes1": [],
+      "excludes2": [],
+      "relatedCodes": [],
+      "codeFirst": null,
+      "useAdditionalCode": null,
+      "codeAlso": null
+    },
+    "billing": {
+      "modifiers": [],
+      "cciEdits": [],
+      "feeSchedule": {
+        "year": 2026,
+        "nonFacilityRate": 97.24,
+        "facilityRate": 97.24,
+        "workRVU": 0,
+        "practiceExpenseRVU": 0,
+        "malpracticeRVU": 0,
+        "totalRVU": 0,
+        "conversionFactor": 33.29
+      },
+      "placeOfService": [
+        {
+          "code": "11",
+          "description": "Office"
+        }
+      ],
+      "commonDenials": [],
+      "medicalNecessity": {
+        "covered": true,
+        "lcdId": null,
+        "notes": "Covered per Medicare guidelines when medically necessary."
+      },
+      "documentationReqs": [
+        "Medical necessity documentation"
+      ],
+      "payerRules": []
+    },
+    "source": {
+      "system": "CMS",
+      "url": "https://www.cms.gov/medicare/coding-billing/healthcare-common-procedure-system",
+      "lastUpdated": "2025-10-01"
+    }
+  },
+  {
+    "code": "E0250",
+    "system": "HCPCS",
+    "description": "Hospital bed, fixed height, with any type side rails, with mattress",
+    "category": "Durable Medical Equipment",
+    "specialty": "General",
+    "status": "active",
+    "keywords": [
+      "hospital bed",
+      "DME",
+      "manual"
+    ],
+    "details": {
+      "includes": [],
+      "excludes1": [],
+      "excludes2": [],
+      "relatedCodes": [],
+      "codeFirst": null,
+      "useAdditionalCode": null,
+      "codeAlso": null
+    },
+    "billing": {
+      "modifiers": [],
+      "cciEdits": [],
+      "feeSchedule": {
+        "year": 2026,
+        "nonFacilityRate": 430.13,
+        "facilityRate": 430.13,
+        "workRVU": 0,
+        "practiceExpenseRVU": 0,
+        "malpracticeRVU": 0,
+        "totalRVU": 0,
+        "conversionFactor": 33.29
+      },
+      "placeOfService": [
+        {
+          "code": "11",
+          "description": "Office"
+        }
+      ],
+      "commonDenials": [],
+      "medicalNecessity": {
+        "covered": true,
+        "lcdId": "L33820",
+        "notes": "Covered per Medicare guidelines when medically necessary."
+      },
+      "documentationReqs": [
+        "Medical necessity documentation"
+      ],
+      "payerRules": []
+    },
+    "source": {
+      "system": "CMS",
+      "url": "https://www.cms.gov/medicare/coding-billing/healthcare-common-procedure-system",
+      "lastUpdated": "2025-10-01"
+    }
+  },
+  {
+    "code": "E0424",
+    "system": "HCPCS",
+    "description": "Stationary compressed gaseous oxygen system, rental",
+    "category": "Durable Medical Equipment",
+    "specialty": "Pulmonology",
+    "status": "active",
+    "keywords": [
+      "oxygen",
+      "stationary",
+      "O2",
+      "compressed"
+    ],
+    "details": {
+      "includes": [],
+      "excludes1": [],
+      "excludes2": [],
+      "relatedCodes": [],
+      "codeFirst": null,
+      "useAdditionalCode": null,
+      "codeAlso": null
+    },
+    "billing": {
+      "modifiers": [],
+      "cciEdits": [],
+      "feeSchedule": {
+        "year": 2026,
+        "nonFacilityRate": 175.44,
+        "facilityRate": 175.44,
+        "workRVU": 0,
+        "practiceExpenseRVU": 0,
+        "malpracticeRVU": 0,
+        "totalRVU": 0,
+        "conversionFactor": 33.29
+      },
+      "placeOfService": [
+        {
+          "code": "11",
+          "description": "Office"
+        }
+      ],
+      "commonDenials": [],
+      "medicalNecessity": {
+        "covered": true,
+        "lcdId": "L33797",
+        "notes": "Covered per Medicare guidelines when medically necessary."
+      },
+      "documentationReqs": [
+        "Medical necessity documentation"
+      ],
+      "payerRules": []
+    },
+    "source": {
+      "system": "CMS",
+      "url": "https://www.cms.gov/medicare/coding-billing/healthcare-common-procedure-system",
+      "lastUpdated": "2025-10-01"
+    }
+  },
+  {
+    "code": "E0439",
+    "system": "HCPCS",
+    "description": "Stationary liquid oxygen system, rental",
+    "category": "Durable Medical Equipment",
+    "specialty": "Pulmonology",
+    "status": "active",
+    "keywords": [
+      "liquid oxygen",
+      "stationary",
+      "O2"
+    ],
+    "details": {
+      "includes": [],
+      "excludes1": [],
+      "excludes2": [],
+      "relatedCodes": [],
+      "codeFirst": null,
+      "useAdditionalCode": null,
+      "codeAlso": null
+    },
+    "billing": {
+      "modifiers": [],
+      "cciEdits": [],
+      "feeSchedule": {
+        "year": 2026,
+        "nonFacilityRate": 175.44,
+        "facilityRate": 175.44,
+        "workRVU": 0,
+        "practiceExpenseRVU": 0,
+        "malpracticeRVU": 0,
+        "totalRVU": 0,
+        "conversionFactor": 33.29
+      },
+      "placeOfService": [
+        {
+          "code": "11",
+          "description": "Office"
+        }
+      ],
+      "commonDenials": [],
+      "medicalNecessity": {
+        "covered": true,
+        "lcdId": "L33797",
+        "notes": "Covered per Medicare guidelines when medically necessary."
+      },
+      "documentationReqs": [
+        "Medical necessity documentation"
+      ],
+      "payerRules": []
+    },
+    "source": {
+      "system": "CMS",
+      "url": "https://www.cms.gov/medicare/coding-billing/healthcare-common-procedure-system",
+      "lastUpdated": "2025-10-01"
+    }
+  },
+  {
+    "code": "E0570",
+    "system": "HCPCS",
+    "description": "Nebulizer, with compressor",
+    "category": "Durable Medical Equipment",
+    "specialty": "Pulmonology",
+    "status": "active",
+    "keywords": [
+      "nebulizer",
+      "compressor",
+      "respiratory",
+      "asthma"
+    ],
+    "details": {
+      "includes": [],
+      "excludes1": [],
+      "excludes2": [],
+      "relatedCodes": [],
+      "codeFirst": null,
+      "useAdditionalCode": null,
+      "codeAlso": null
+    },
+    "billing": {
+      "modifiers": [],
+      "cciEdits": [],
+      "feeSchedule": {
+        "year": 2026,
+        "nonFacilityRate": 88.46,
+        "facilityRate": 88.46,
+        "workRVU": 0,
+        "practiceExpenseRVU": 0,
+        "malpracticeRVU": 0,
+        "totalRVU": 0,
+        "conversionFactor": 33.29
+      },
+      "placeOfService": [
+        {
+          "code": "11",
+          "description": "Office"
+        }
+      ],
+      "commonDenials": [],
+      "medicalNecessity": {
+        "covered": true,
+        "lcdId": "L33370",
+        "notes": "Covered per Medicare guidelines when medically necessary."
+      },
+      "documentationReqs": [
+        "Medical necessity documentation"
+      ],
+      "payerRules": []
+    },
+    "source": {
+      "system": "CMS",
+      "url": "https://www.cms.gov/medicare/coding-billing/healthcare-common-procedure-system",
+      "lastUpdated": "2025-10-01"
+    }
+  },
+  {
+    "code": "E0850",
+    "system": "HCPCS",
+    "description": "Traction stand, free standing, cervical traction",
+    "category": "Durable Medical Equipment",
+    "specialty": "Orthopedics",
+    "status": "active",
+    "keywords": [
+      "cervical traction",
+      "neck",
+      "traction"
+    ],
+    "details": {
+      "includes": [],
+      "excludes1": [],
+      "excludes2": [],
+      "relatedCodes": [],
+      "codeFirst": null,
+      "useAdditionalCode": null,
+      "codeAlso": null
+    },
+    "billing": {
+      "modifiers": [],
+      "cciEdits": [],
+      "feeSchedule": {
+        "year": 2026,
+        "nonFacilityRate": 146.21,
+        "facilityRate": 146.21,
+        "workRVU": 0,
+        "practiceExpenseRVU": 0,
+        "malpracticeRVU": 0,
+        "totalRVU": 0,
+        "conversionFactor": 33.29
+      },
+      "placeOfService": [
+        {
+          "code": "11",
+          "description": "Office"
+        }
+      ],
+      "commonDenials": [],
+      "medicalNecessity": {
+        "covered": true,
+        "lcdId": null,
+        "notes": "Covered per Medicare guidelines when medically necessary."
+      },
+      "documentationReqs": [
+        "Medical necessity documentation"
+      ],
+      "payerRules": []
+    },
+    "source": {
+      "system": "CMS",
+      "url": "https://www.cms.gov/medicare/coding-billing/healthcare-common-procedure-system",
+      "lastUpdated": "2025-10-01"
+    }
+  },
+  {
+    "code": "E1038",
+    "system": "HCPCS",
+    "description": "Transport chair, adult size, patient weight capacity up to and including 300 pounds",
+    "category": "Durable Medical Equipment",
+    "specialty": "General",
+    "status": "active",
+    "keywords": [
+      "transport chair",
+      "wheelchair",
+      "mobility"
+    ],
+    "details": {
+      "includes": [],
+      "excludes1": [],
+      "excludes2": [],
+      "relatedCodes": [],
+      "codeFirst": null,
+      "useAdditionalCode": null,
+      "codeAlso": null
+    },
+    "billing": {
+      "modifiers": [],
+      "cciEdits": [],
+      "feeSchedule": {
+        "year": 2026,
+        "nonFacilityRate": 133.84,
+        "facilityRate": 133.84,
+        "workRVU": 0,
+        "practiceExpenseRVU": 0,
+        "malpracticeRVU": 0,
+        "totalRVU": 0,
+        "conversionFactor": 33.29
+      },
+      "placeOfService": [
+        {
+          "code": "11",
+          "description": "Office"
+        }
+      ],
+      "commonDenials": [],
+      "medicalNecessity": {
+        "covered": true,
+        "lcdId": null,
+        "notes": "Covered per Medicare guidelines when medically necessary."
+      },
+      "documentationReqs": [
+        "Medical necessity documentation"
+      ],
+      "payerRules": []
+    },
+    "source": {
+      "system": "CMS",
+      "url": "https://www.cms.gov/medicare/coding-billing/healthcare-common-procedure-system",
+      "lastUpdated": "2025-10-01"
+    }
+  },
+  {
+    "code": "J0178",
+    "system": "HCPCS",
+    "description": "Injection, aflibercept, 1 mg",
+    "category": "Drugs Administered Other Than Oral Method",
+    "specialty": "Ophthalmology",
+    "status": "active",
+    "keywords": [
+      "aflibercept",
+      "Eylea",
+      "anti-VEGF",
+      "macular degeneration"
+    ],
+    "details": {
+      "includes": [],
+      "excludes1": [],
+      "excludes2": [],
+      "relatedCodes": [],
+      "codeFirst": null,
+      "useAdditionalCode": null,
+      "codeAlso": null
+    },
+    "billing": {
+      "modifiers": [],
+      "cciEdits": [],
+      "feeSchedule": {
+        "year": 2026,
+        "nonFacilityRate": 48.62,
+        "facilityRate": 48.62,
+        "workRVU": 0,
+        "practiceExpenseRVU": 0,
+        "malpracticeRVU": 0,
+        "totalRVU": 0,
+        "conversionFactor": 33.29
+      },
+      "placeOfService": [
+        {
+          "code": "11",
+          "description": "Office"
+        }
+      ],
+      "commonDenials": [],
+      "medicalNecessity": {
+        "covered": true,
+        "lcdId": null,
+        "notes": "Covered per Medicare guidelines when medically necessary."
+      },
+      "documentationReqs": [
+        "Diagnosis",
+        "Eye treated",
+        "Dose",
+        "NDC"
+      ],
+      "payerRules": []
+    },
+    "source": {
+      "system": "CMS",
+      "url": "https://www.cms.gov/medicare/coding-billing/healthcare-common-procedure-system",
+      "lastUpdated": "2025-10-01"
+    }
+  },
+  {
+    "code": "J0290",
+    "system": "HCPCS",
+    "description": "Injection, ampicillin sodium, 500 mg",
+    "category": "Drugs Administered Other Than Oral Method",
+    "specialty": "Infectious Disease",
+    "status": "active",
+    "keywords": [
+      "ampicillin",
+      "antibiotic",
+      "penicillin"
+    ],
+    "details": {
+      "includes": [],
+      "excludes1": [],
+      "excludes2": [],
+      "relatedCodes": [],
+      "codeFirst": null,
+      "useAdditionalCode": null,
+      "codeAlso": null
+    },
+    "billing": {
+      "modifiers": [],
+      "cciEdits": [],
+      "feeSchedule": {
+        "year": 2026,
+        "nonFacilityRate": 2.34,
+        "facilityRate": 2.34,
+        "workRVU": 0,
+        "practiceExpenseRVU": 0,
+        "malpracticeRVU": 0,
+        "totalRVU": 0,
+        "conversionFactor": 33.29
+      },
+      "placeOfService": [
+        {
+          "code": "22",
+          "description": "Outpatient Hospital"
+        },
+        {
+          "code": "11",
+          "description": "Office"
+        }
+      ],
+      "commonDenials": [],
+      "medicalNecessity": {
+        "covered": true,
+        "lcdId": null,
+        "notes": "Covered per Medicare guidelines when medically necessary."
+      },
+      "documentationReqs": [
+        "Medical necessity documentation"
+      ],
+      "payerRules": []
+    },
+    "source": {
+      "system": "CMS",
+      "url": "https://www.cms.gov/medicare/coding-billing/healthcare-common-procedure-system",
+      "lastUpdated": "2025-10-01"
+    }
+  },
+  {
+    "code": "J0696",
+    "system": "HCPCS",
+    "description": "Injection, ceftriaxone sodium, per 250 mg",
+    "category": "Drugs Administered Other Than Oral Method",
+    "specialty": "Infectious Disease",
+    "status": "active",
+    "keywords": [
+      "ceftriaxone",
+      "Rocephin",
+      "cephalosporin",
+      "antibiotic"
+    ],
+    "details": {
+      "includes": [],
+      "excludes1": [],
+      "excludes2": [],
+      "relatedCodes": [],
+      "codeFirst": null,
+      "useAdditionalCode": null,
+      "codeAlso": null
+    },
+    "billing": {
+      "modifiers": [],
+      "cciEdits": [],
+      "feeSchedule": {
+        "year": 2026,
+        "nonFacilityRate": 1.18,
+        "facilityRate": 1.18,
+        "workRVU": 0,
+        "practiceExpenseRVU": 0,
+        "malpracticeRVU": 0,
+        "totalRVU": 0,
+        "conversionFactor": 33.29
+      },
+      "placeOfService": [
+        {
+          "code": "11",
+          "description": "Office"
+        }
+      ],
+      "commonDenials": [],
+      "medicalNecessity": {
+        "covered": true,
+        "lcdId": null,
+        "notes": "Covered per Medicare guidelines when medically necessary."
+      },
+      "documentationReqs": [
+        "Medical necessity documentation"
+      ],
+      "payerRules": []
+    },
+    "source": {
+      "system": "CMS",
+      "url": "https://www.cms.gov/medicare/coding-billing/healthcare-common-procedure-system",
+      "lastUpdated": "2025-10-01"
+    }
+  },
+  {
+    "code": "J1030",
+    "system": "HCPCS",
+    "description": "Injection, methylprednisolone acetate, 40 mg",
+    "category": "Drugs Administered Other Than Oral Method",
+    "specialty": "Rheumatology",
+    "status": "active",
+    "keywords": [
+      "methylprednisolone",
+      "Depo-Medrol",
+      "steroid",
+      "corticosteroid"
+    ],
+    "details": {
+      "includes": [],
+      "excludes1": [],
+      "excludes2": [],
+      "relatedCodes": [],
+      "codeFirst": null,
+      "useAdditionalCode": null,
+      "codeAlso": null
+    },
+    "billing": {
+      "modifiers": [],
+      "cciEdits": [],
+      "feeSchedule": {
+        "year": 2026,
+        "nonFacilityRate": 6.17,
+        "facilityRate": 6.17,
+        "workRVU": 0,
+        "practiceExpenseRVU": 0,
+        "malpracticeRVU": 0,
+        "totalRVU": 0,
+        "conversionFactor": 33.29
+      },
+      "placeOfService": [
+        {
+          "code": "11",
+          "description": "Office"
+        }
+      ],
+      "commonDenials": [],
+      "medicalNecessity": {
+        "covered": true,
+        "lcdId": null,
+        "notes": "Covered per Medicare guidelines when medically necessary."
+      },
+      "documentationReqs": [
+        "Medical necessity documentation"
+      ],
+      "payerRules": []
+    },
+    "source": {
+      "system": "CMS",
+      "url": "https://www.cms.gov/medicare/coding-billing/healthcare-common-procedure-system",
+      "lastUpdated": "2025-10-01"
+    }
+  },
+  {
+    "code": "J1040",
+    "system": "HCPCS",
+    "description": "Injection, methylprednisolone acetate, 80 mg",
+    "category": "Drugs Administered Other Than Oral Method",
+    "specialty": "Rheumatology",
+    "status": "active",
+    "keywords": [
+      "methylprednisolone",
+      "Depo-Medrol",
+      "steroid"
+    ],
+    "details": {
+      "includes": [],
+      "excludes1": [],
+      "excludes2": [],
+      "relatedCodes": [],
+      "codeFirst": null,
+      "useAdditionalCode": null,
+      "codeAlso": null
+    },
+    "billing": {
+      "modifiers": [],
+      "cciEdits": [],
+      "feeSchedule": {
+        "year": 2026,
+        "nonFacilityRate": 12.04,
+        "facilityRate": 12.04,
+        "workRVU": 0,
+        "practiceExpenseRVU": 0,
+        "malpracticeRVU": 0,
+        "totalRVU": 0,
+        "conversionFactor": 33.29
+      },
+      "placeOfService": [
+        {
+          "code": "11",
+          "description": "Office"
+        }
+      ],
+      "commonDenials": [],
+      "medicalNecessity": {
+        "covered": true,
+        "lcdId": null,
+        "notes": "Covered per Medicare guidelines when medically necessary."
+      },
+      "documentationReqs": [
+        "Medical necessity documentation"
+      ],
+      "payerRules": []
+    },
+    "source": {
+      "system": "CMS",
+      "url": "https://www.cms.gov/medicare/coding-billing/healthcare-common-procedure-system",
+      "lastUpdated": "2025-10-01"
+    }
+  },
+  {
+    "code": "J1200",
+    "system": "HCPCS",
+    "description": "Injection, diphenhydramine HCl, up to 50 mg",
+    "category": "Drugs Administered Other Than Oral Method",
+    "specialty": "General",
+    "status": "active",
+    "keywords": [
+      "Benadryl",
+      "diphenhydramine",
+      "antihistamine"
+    ],
+    "details": {
+      "includes": [],
+      "excludes1": [],
+      "excludes2": [],
+      "relatedCodes": [],
+      "codeFirst": null,
+      "useAdditionalCode": null,
+      "codeAlso": null
+    },
+    "billing": {
+      "modifiers": [],
+      "cciEdits": [],
+      "feeSchedule": {
+        "year": 2026,
+        "nonFacilityRate": 1.01,
+        "facilityRate": 1.01,
+        "workRVU": 0,
+        "practiceExpenseRVU": 0,
+        "malpracticeRVU": 0,
+        "totalRVU": 0,
+        "conversionFactor": 33.29
+      },
+      "placeOfService": [
+        {
+          "code": "11",
+          "description": "Office"
+        }
+      ],
+      "commonDenials": [],
+      "medicalNecessity": {
+        "covered": true,
+        "lcdId": null,
+        "notes": "Covered per Medicare guidelines when medically necessary."
+      },
+      "documentationReqs": [
+        "Medical necessity documentation"
+      ],
+      "payerRules": []
+    },
+    "source": {
+      "system": "CMS",
+      "url": "https://www.cms.gov/medicare/coding-billing/healthcare-common-procedure-system",
+      "lastUpdated": "2025-10-01"
+    }
+  },
+  {
+    "code": "J1885",
+    "system": "HCPCS",
+    "description": "Injection, ketorolac tromethamine, per 15 mg",
+    "category": "Drugs Administered Other Than Oral Method",
+    "specialty": "Pain Management",
+    "status": "active",
+    "keywords": [
+      "Toradol",
+      "ketorolac",
+      "NSAID",
+      "analgesic"
+    ],
+    "details": {
+      "includes": [],
+      "excludes1": [],
+      "excludes2": [],
+      "relatedCodes": [],
+      "codeFirst": null,
+      "useAdditionalCode": null,
+      "codeAlso": null
+    },
+    "billing": {
+      "modifiers": [],
+      "cciEdits": [],
+      "feeSchedule": {
+        "year": 2026,
+        "nonFacilityRate": 0.99,
+        "facilityRate": 0.99,
+        "workRVU": 0,
+        "practiceExpenseRVU": 0,
+        "malpracticeRVU": 0,
+        "totalRVU": 0,
+        "conversionFactor": 33.29
+      },
+      "placeOfService": [
+        {
+          "code": "11",
+          "description": "Office"
+        }
+      ],
+      "commonDenials": [],
+      "medicalNecessity": {
+        "covered": true,
+        "lcdId": null,
+        "notes": "Covered per Medicare guidelines when medically necessary."
+      },
+      "documentationReqs": [
+        "Medical necessity documentation"
+      ],
+      "payerRules": []
+    },
+    "source": {
+      "system": "CMS",
+      "url": "https://www.cms.gov/medicare/coding-billing/healthcare-common-procedure-system",
+      "lastUpdated": "2025-10-01"
+    }
+  },
+  {
+    "code": "J2175",
+    "system": "HCPCS",
+    "description": "Injection, meperidine HCl, per 100 mg",
+    "category": "Drugs Administered Other Than Oral Method",
+    "specialty": "Pain Management",
+    "status": "active",
+    "keywords": [
+      "Demerol",
+      "meperidine",
+      "opioid",
+      "analgesic"
+    ],
+    "details": {
+      "includes": [],
+      "excludes1": [],
+      "excludes2": [],
+      "relatedCodes": [],
+      "codeFirst": null,
+      "useAdditionalCode": null,
+      "codeAlso": null
+    },
+    "billing": {
+      "modifiers": [],
+      "cciEdits": [],
+      "feeSchedule": {
+        "year": 2026,
+        "nonFacilityRate": 3.92,
+        "facilityRate": 3.92,
+        "workRVU": 0,
+        "practiceExpenseRVU": 0,
+        "malpracticeRVU": 0,
+        "totalRVU": 0,
+        "conversionFactor": 33.29
+      },
+      "placeOfService": [
+        {
+          "code": "11",
+          "description": "Office"
+        }
+      ],
+      "commonDenials": [],
+      "medicalNecessity": {
+        "covered": true,
+        "lcdId": null,
+        "notes": "Covered per Medicare guidelines when medically necessary."
+      },
+      "documentationReqs": [
+        "Medical necessity documentation"
+      ],
+      "payerRules": []
+    },
+    "source": {
+      "system": "CMS",
+      "url": "https://www.cms.gov/medicare/coding-billing/healthcare-common-procedure-system",
+      "lastUpdated": "2025-10-01"
+    }
+  },
+  {
+    "code": "J2250",
+    "system": "HCPCS",
+    "description": "Injection, midazolam HCl, per 1 mg",
+    "category": "Drugs Administered Other Than Oral Method",
+    "specialty": "Anesthesia",
+    "status": "active",
+    "keywords": [
+      "midazolam",
+      "Versed",
+      "benzodiazepine",
+      "sedation"
+    ],
+    "details": {
+      "includes": [],
+      "excludes1": [],
+      "excludes2": [],
+      "relatedCodes": [],
+      "codeFirst": null,
+      "useAdditionalCode": null,
+      "codeAlso": null
+    },
+    "billing": {
+      "modifiers": [],
+      "cciEdits": [],
+      "feeSchedule": {
+        "year": 2026,
+        "nonFacilityRate": 0.3,
+        "facilityRate": 0.3,
+        "workRVU": 0,
+        "practiceExpenseRVU": 0,
+        "malpracticeRVU": 0,
+        "totalRVU": 0,
+        "conversionFactor": 33.29
+      },
+      "placeOfService": [
+        {
+          "code": "11",
+          "description": "Office"
+        }
+      ],
+      "commonDenials": [],
+      "medicalNecessity": {
+        "covered": true,
+        "lcdId": null,
+        "notes": "Covered per Medicare guidelines when medically necessary."
+      },
+      "documentationReqs": [
+        "Medical necessity documentation"
+      ],
+      "payerRules": []
+    },
+    "source": {
+      "system": "CMS",
+      "url": "https://www.cms.gov/medicare/coding-billing/healthcare-common-procedure-system",
+      "lastUpdated": "2025-10-01"
+    }
+  },
+  {
+    "code": "J2543",
+    "system": "HCPCS",
+    "description": "Injection, piperacillin sodium/tazobactam sodium, 1 gram/0.125 grams (1.125 grams)",
+    "category": "Drugs Administered Other Than Oral Method",
+    "specialty": "Infectious Disease",
+    "status": "active",
+    "keywords": [
+      "Zosyn",
+      "piperacillin",
+      "tazobactam",
+      "antibiotic"
+    ],
+    "details": {
+      "includes": [],
+      "excludes1": [],
+      "excludes2": [],
+      "relatedCodes": [],
+      "codeFirst": null,
+      "useAdditionalCode": null,
+      "codeAlso": null
+    },
+    "billing": {
+      "modifiers": [],
+      "cciEdits": [],
+      "feeSchedule": {
+        "year": 2026,
+        "nonFacilityRate": 2.02,
+        "facilityRate": 2.02,
+        "workRVU": 0,
+        "practiceExpenseRVU": 0,
+        "malpracticeRVU": 0,
+        "totalRVU": 0,
+        "conversionFactor": 33.29
+      },
+      "placeOfService": [
+        {
+          "code": "11",
+          "description": "Office"
+        }
+      ],
+      "commonDenials": [],
+      "medicalNecessity": {
+        "covered": true,
+        "lcdId": null,
+        "notes": "Covered per Medicare guidelines when medically necessary."
+      },
+      "documentationReqs": [
+        "Medical necessity documentation"
+      ],
+      "payerRules": []
+    },
+    "source": {
+      "system": "CMS",
+      "url": "https://www.cms.gov/medicare/coding-billing/healthcare-common-procedure-system",
+      "lastUpdated": "2025-10-01"
+    }
+  },
+  {
+    "code": "J2765",
+    "system": "HCPCS",
+    "description": "Injection, metoclopramide HCl, up to 10 mg",
+    "category": "Drugs Administered Other Than Oral Method",
+    "specialty": "Gastroenterology",
+    "status": "active",
+    "keywords": [
+      "metoclopramide",
+      "Reglan",
+      "antiemetic"
+    ],
+    "details": {
+      "includes": [],
+      "excludes1": [],
+      "excludes2": [],
+      "relatedCodes": [],
+      "codeFirst": null,
+      "useAdditionalCode": null,
+      "codeAlso": null
+    },
+    "billing": {
+      "modifiers": [],
+      "cciEdits": [],
+      "feeSchedule": {
+        "year": 2026,
+        "nonFacilityRate": 0.24,
+        "facilityRate": 0.24,
+        "workRVU": 0,
+        "practiceExpenseRVU": 0,
+        "malpracticeRVU": 0,
+        "totalRVU": 0,
+        "conversionFactor": 33.29
+      },
+      "placeOfService": [
+        {
+          "code": "11",
+          "description": "Office"
+        }
+      ],
+      "commonDenials": [],
+      "medicalNecessity": {
+        "covered": true,
+        "lcdId": null,
+        "notes": "Covered per Medicare guidelines when medically necessary."
+      },
+      "documentationReqs": [
+        "Medical necessity documentation"
+      ],
+      "payerRules": []
+    },
+    "source": {
+      "system": "CMS",
+      "url": "https://www.cms.gov/medicare/coding-billing/healthcare-common-procedure-system",
+      "lastUpdated": "2025-10-01"
+    }
+  },
+  {
+    "code": "J3010",
+    "system": "HCPCS",
+    "description": "Injection, fentanyl citrate, 0.1 mg",
+    "category": "Drugs Administered Other Than Oral Method",
+    "specialty": "Pain Management",
+    "status": "active",
+    "keywords": [
+      "fentanyl",
+      "opioid",
+      "analgesic"
+    ],
+    "details": {
+      "includes": [],
+      "excludes1": [],
+      "excludes2": [],
+      "relatedCodes": [],
+      "codeFirst": null,
+      "useAdditionalCode": null,
+      "codeAlso": null
+    },
+    "billing": {
+      "modifiers": [],
+      "cciEdits": [],
+      "feeSchedule": {
+        "year": 2026,
+        "nonFacilityRate": 0.68,
+        "facilityRate": 0.68,
+        "workRVU": 0,
+        "practiceExpenseRVU": 0,
+        "malpracticeRVU": 0,
+        "totalRVU": 0,
+        "conversionFactor": 33.29
+      },
+      "placeOfService": [
+        {
+          "code": "11",
+          "description": "Office"
+        }
+      ],
+      "commonDenials": [],
+      "medicalNecessity": {
+        "covered": true,
+        "lcdId": null,
+        "notes": "Covered per Medicare guidelines when medically necessary."
+      },
+      "documentationReqs": [
+        "Medical necessity documentation"
+      ],
+      "payerRules": []
+    },
+    "source": {
+      "system": "CMS",
+      "url": "https://www.cms.gov/medicare/coding-billing/healthcare-common-procedure-system",
+      "lastUpdated": "2025-10-01"
+    }
+  },
+  {
+    "code": "J7050",
+    "system": "HCPCS",
+    "description": "Infusion, normal saline solution, 250 cc",
+    "category": "Drugs Administered Other Than Oral Method",
+    "specialty": "General",
+    "status": "active",
+    "keywords": [
+      "normal saline",
+      "IV fluids",
+      "hydration"
+    ],
+    "details": {
+      "includes": [],
+      "excludes1": [],
+      "excludes2": [],
+      "relatedCodes": [],
+      "codeFirst": null,
+      "useAdditionalCode": null,
+      "codeAlso": null
+    },
+    "billing": {
+      "modifiers": [],
+      "cciEdits": [],
+      "feeSchedule": {
+        "year": 2026,
+        "nonFacilityRate": 2.01,
+        "facilityRate": 2.01,
+        "workRVU": 0,
+        "practiceExpenseRVU": 0,
+        "malpracticeRVU": 0,
+        "totalRVU": 0,
+        "conversionFactor": 33.29
+      },
+      "placeOfService": [
+        {
+          "code": "11",
+          "description": "Office"
+        }
+      ],
+      "commonDenials": [],
+      "medicalNecessity": {
+        "covered": true,
+        "lcdId": null,
+        "notes": "Covered per Medicare guidelines when medically necessary."
+      },
+      "documentationReqs": [
+        "Medical necessity documentation"
+      ],
+      "payerRules": []
+    },
+    "source": {
+      "system": "CMS",
+      "url": "https://www.cms.gov/medicare/coding-billing/healthcare-common-procedure-system",
+      "lastUpdated": "2025-10-01"
+    }
+  },
+  {
+    "code": "J7030",
+    "system": "HCPCS",
+    "description": "Infusion, normal saline solution, 1000 cc",
+    "category": "Drugs Administered Other Than Oral Method",
+    "specialty": "General",
+    "status": "active",
+    "keywords": [
+      "normal saline",
+      "IV fluids",
+      "hydration"
+    ],
+    "details": {
+      "includes": [],
+      "excludes1": [],
+      "excludes2": [],
+      "relatedCodes": [],
+      "codeFirst": null,
+      "useAdditionalCode": null,
+      "codeAlso": null
+    },
+    "billing": {
+      "modifiers": [],
+      "cciEdits": [],
+      "feeSchedule": {
+        "year": 2026,
+        "nonFacilityRate": 2.59,
+        "facilityRate": 2.59,
+        "workRVU": 0,
+        "practiceExpenseRVU": 0,
+        "malpracticeRVU": 0,
+        "totalRVU": 0,
+        "conversionFactor": 33.29
+      },
+      "placeOfService": [
+        {
+          "code": "11",
+          "description": "Office"
+        }
+      ],
+      "commonDenials": [],
+      "medicalNecessity": {
+        "covered": true,
+        "lcdId": null,
+        "notes": "Covered per Medicare guidelines when medically necessary."
+      },
+      "documentationReqs": [
+        "Medical necessity documentation"
+      ],
+      "payerRules": []
+    },
+    "source": {
+      "system": "CMS",
+      "url": "https://www.cms.gov/medicare/coding-billing/healthcare-common-procedure-system",
+      "lastUpdated": "2025-10-01"
+    }
+  },
+  {
+    "code": "J9040",
+    "system": "HCPCS",
+    "description": "Injection, bleomycin sulfate, 15 units",
+    "category": "Drugs Administered Other Than Oral Method",
+    "specialty": "Oncology",
+    "status": "active",
+    "keywords": [
+      "bleomycin",
+      "chemotherapy",
+      "antineoplastic"
+    ],
+    "details": {
+      "includes": [],
+      "excludes1": [],
+      "excludes2": [],
+      "relatedCodes": [],
+      "codeFirst": null,
+      "useAdditionalCode": null,
+      "codeAlso": null
+    },
+    "billing": {
+      "modifiers": [],
+      "cciEdits": [],
+      "feeSchedule": {
+        "year": 2026,
+        "nonFacilityRate": 43.19,
+        "facilityRate": 43.19,
+        "workRVU": 0,
+        "practiceExpenseRVU": 0,
+        "malpracticeRVU": 0,
+        "totalRVU": 0,
+        "conversionFactor": 33.29
+      },
+      "placeOfService": [
+        {
+          "code": "11",
+          "description": "Office"
+        }
+      ],
+      "commonDenials": [],
+      "medicalNecessity": {
+        "covered": true,
+        "lcdId": null,
+        "notes": "Covered per Medicare guidelines when medically necessary."
+      },
+      "documentationReqs": [
+        "Diagnosis",
+        "Treatment plan",
+        "Dose",
+        "Cycle number"
+      ],
+      "payerRules": []
+    },
+    "source": {
+      "system": "CMS",
+      "url": "https://www.cms.gov/medicare/coding-billing/healthcare-common-procedure-system",
+      "lastUpdated": "2025-10-01"
+    }
+  },
+  {
+    "code": "G0439",
+    "system": "HCPCS",
+    "description": "Annual wellness visit, subsequent",
+    "category": "Physician Services",
+    "specialty": "Primary Care",
+    "status": "active",
+    "keywords": [
+      "AWV",
+      "annual wellness",
+      "subsequent",
+      "preventive",
+      "Medicare"
+    ],
+    "details": {
+      "includes": [],
+      "excludes1": [],
+      "excludes2": [],
+      "relatedCodes": [],
+      "codeFirst": null,
+      "useAdditionalCode": null,
+      "codeAlso": null
+    },
+    "billing": {
+      "modifiers": [],
+      "cciEdits": [],
+      "feeSchedule": {
+        "year": 2026,
+        "nonFacilityRate": 139.34,
+        "facilityRate": 139.34,
+        "workRVU": 0,
+        "practiceExpenseRVU": 0,
+        "malpracticeRVU": 0,
+        "totalRVU": 0,
+        "conversionFactor": 33.29
+      },
+      "placeOfService": [
+        {
+          "code": "11",
+          "description": "Office"
+        }
+      ],
+      "commonDenials": [],
+      "medicalNecessity": {
+        "covered": true,
+        "lcdId": null,
+        "notes": "Covered annually for Medicare beneficiaries. Cannot be billed in same year as G0438."
+      },
+      "documentationReqs": [
+        "HRA",
+        "Screening history",
+        "Personalized prevention plan"
+      ],
+      "payerRules": []
+    },
+    "source": {
+      "system": "CMS",
+      "url": "https://www.cms.gov/medicare/coding-billing/healthcare-common-procedure-system",
+      "lastUpdated": "2025-10-01"
+    }
+  },
+  {
+    "code": "G0444",
+    "system": "HCPCS",
+    "description": "Annual depression screening, 15 minutes",
+    "category": "Physician Services",
+    "specialty": "Primary Care",
+    "status": "active",
+    "keywords": [
+      "depression screening",
+      "PHQ-9",
+      "preventive",
+      "mental health"
+    ],
+    "details": {
+      "includes": [],
+      "excludes1": [],
+      "excludes2": [],
+      "relatedCodes": [],
+      "codeFirst": null,
+      "useAdditionalCode": null,
+      "codeAlso": null
+    },
+    "billing": {
+      "modifiers": [],
+      "cciEdits": [],
+      "feeSchedule": {
+        "year": 2026,
+        "nonFacilityRate": 18.3,
+        "facilityRate": 18.3,
+        "workRVU": 0,
+        "practiceExpenseRVU": 0,
+        "malpracticeRVU": 0,
+        "totalRVU": 0,
+        "conversionFactor": 33.29
+      },
+      "placeOfService": [
+        {
+          "code": "11",
+          "description": "Office"
+        }
+      ],
+      "commonDenials": [],
+      "medicalNecessity": {
+        "covered": true,
+        "lcdId": null,
+        "notes": "Medicare covers annually."
+      },
+      "documentationReqs": [
+        "Screening tool used",
+        "Score",
+        "Follow-up plan"
+      ],
+      "payerRules": []
+    },
+    "source": {
+      "system": "CMS",
+      "url": "https://www.cms.gov/medicare/coding-billing/healthcare-common-procedure-system",
+      "lastUpdated": "2025-10-01"
+    }
+  },
+  {
+    "code": "G0447",
+    "system": "HCPCS",
+    "description": "Face-to-face behavioral counseling for obesity, 15 minutes",
+    "category": "Physician Services",
+    "specialty": "Primary Care",
+    "status": "active",
+    "keywords": [
+      "obesity counseling",
+      "behavioral",
+      "weight loss",
+      "preventive"
+    ],
+    "details": {
+      "includes": [],
+      "excludes1": [],
+      "excludes2": [],
+      "relatedCodes": [],
+      "codeFirst": null,
+      "useAdditionalCode": null,
+      "codeAlso": null
+    },
+    "billing": {
+      "modifiers": [],
+      "cciEdits": [],
+      "feeSchedule": {
+        "year": 2026,
+        "nonFacilityRate": 24.97,
+        "facilityRate": 24.97,
+        "workRVU": 0,
+        "practiceExpenseRVU": 0,
+        "malpracticeRVU": 0,
+        "totalRVU": 0,
+        "conversionFactor": 33.29
+      },
+      "placeOfService": [
+        {
+          "code": "11",
+          "description": "Office"
+        }
+      ],
+      "commonDenials": [],
+      "medicalNecessity": {
+        "covered": true,
+        "lcdId": null,
+        "notes": "Covered per Medicare guidelines when medically necessary."
+      },
+      "documentationReqs": [
+        "BMI ≥30",
+        "Counseling provided",
+        "Behavior change plan"
+      ],
+      "payerRules": []
+    },
+    "source": {
+      "system": "CMS",
+      "url": "https://www.cms.gov/medicare/coding-billing/healthcare-common-procedure-system",
+      "lastUpdated": "2025-10-01"
+    }
+  },
+  {
+    "code": "G0463",
+    "system": "HCPCS",
+    "description": "Hospital outpatient clinic visit for assessment and management of a patient",
+    "category": "Physician Services",
+    "specialty": "General",
+    "status": "active",
+    "keywords": [
+      "outpatient clinic",
+      "hospital",
+      "OPPS",
+      "clinic visit"
+    ],
+    "details": {
+      "includes": [],
+      "excludes1": [],
+      "excludes2": [],
+      "relatedCodes": [],
+      "codeFirst": null,
+      "useAdditionalCode": null,
+      "codeAlso": null
+    },
+    "billing": {
+      "modifiers": [],
+      "cciEdits": [],
+      "feeSchedule": {
+        "year": 2026,
+        "nonFacilityRate": 135,
+        "facilityRate": 135,
+        "workRVU": 0,
+        "practiceExpenseRVU": 0,
+        "malpracticeRVU": 0,
+        "totalRVU": 0,
+        "conversionFactor": 33.29
+      },
+      "placeOfService": [
+        {
+          "code": "22",
+          "description": "Outpatient Hospital"
+        }
+      ],
+      "commonDenials": [],
+      "medicalNecessity": {
+        "covered": true,
+        "lcdId": null,
+        "notes": "Covered per Medicare guidelines when medically necessary."
+      },
+      "documentationReqs": [
+        "Medical necessity documentation"
+      ],
+      "payerRules": []
+    },
+    "source": {
+      "system": "CMS",
+      "url": "https://www.cms.gov/medicare/coding-billing/healthcare-common-procedure-system",
+      "lastUpdated": "2025-10-01"
+    }
+  },
+  {
+    "code": "G0477",
+    "system": "HCPCS",
+    "description": "Drug test(s), presumptive, any number of drug classes",
+    "category": "Laboratory",
+    "specialty": "General",
+    "status": "active",
+    "keywords": [
+      "drug test",
+      "presumptive",
+      "toxicology",
+      "screening"
+    ],
+    "details": {
+      "includes": [],
+      "excludes1": [],
+      "excludes2": [],
+      "relatedCodes": [],
+      "codeFirst": null,
+      "useAdditionalCode": null,
+      "codeAlso": null
+    },
+    "billing": {
+      "modifiers": [],
+      "cciEdits": [],
+      "feeSchedule": {
+        "year": 2026,
+        "nonFacilityRate": 14.23,
+        "facilityRate": 14.23,
+        "workRVU": 0,
+        "practiceExpenseRVU": 0,
+        "malpracticeRVU": 0,
+        "totalRVU": 0,
+        "conversionFactor": 33.29
+      },
+      "placeOfService": [
+        {
+          "code": "11",
+          "description": "Office"
+        }
+      ],
+      "commonDenials": [],
+      "medicalNecessity": {
+        "covered": true,
+        "lcdId": null,
+        "notes": "Covered per Medicare guidelines when medically necessary."
+      },
+      "documentationReqs": [
+        "Clinical indication",
+        "Drugs tested"
+      ],
+      "payerRules": []
+    },
+    "source": {
+      "system": "CMS",
+      "url": "https://www.cms.gov/medicare/coding-billing/healthcare-common-procedure-system",
+      "lastUpdated": "2025-10-01"
+    }
+  },
+  {
+    "code": "Q4081",
+    "system": "HCPCS",
+    "description": "Epoetin alfa, 100 units (for ESRD on dialysis)",
+    "category": "Drugs Administered Other Than Oral Method",
+    "specialty": "Nephrology",
+    "status": "active",
+    "keywords": [
+      "epoetin",
+      "Epogen",
+      "ESA",
+      "anemia",
+      "dialysis"
+    ],
+    "details": {
+      "includes": [],
+      "excludes1": [],
+      "excludes2": [],
+      "relatedCodes": [],
+      "codeFirst": null,
+      "useAdditionalCode": null,
+      "codeAlso": null
+    },
+    "billing": {
+      "modifiers": [],
+      "cciEdits": [],
+      "feeSchedule": {
+        "year": 2026,
+        "nonFacilityRate": 0.99,
+        "facilityRate": 0.99,
+        "workRVU": 0,
+        "practiceExpenseRVU": 0,
+        "malpracticeRVU": 0,
+        "totalRVU": 0,
+        "conversionFactor": 33.29
+      },
+      "placeOfService": [
+        {
+          "code": "11",
+          "description": "Office"
+        }
+      ],
+      "commonDenials": [],
+      "medicalNecessity": {
+        "covered": true,
+        "lcdId": "L33921",
+        "notes": "Covered per Medicare guidelines when medically necessary."
+      },
+      "documentationReqs": [
+        "Hemoglobin",
+        "ESRD status",
+        "Dialysis records",
+        "Dose"
+      ],
+      "payerRules": []
+    },
+    "source": {
+      "system": "CMS",
+      "url": "https://www.cms.gov/medicare/coding-billing/healthcare-common-procedure-system",
+      "lastUpdated": "2025-10-01"
+    }
+  },
+  {
+    "code": "Q5101",
+    "system": "HCPCS",
+    "description": "Injection, filgrastim-sndz, biosimilar, (zarxio), 1 microgram",
+    "category": "Drugs Administered Other Than Oral Method",
+    "specialty": "Oncology",
+    "status": "active",
+    "keywords": [
+      "filgrastim",
+      "Zarxio",
+      "biosimilar",
+      "G-CSF",
+      "neutropenia"
+    ],
+    "details": {
+      "includes": [],
+      "excludes1": [],
+      "excludes2": [],
+      "relatedCodes": [],
+      "codeFirst": null,
+      "useAdditionalCode": null,
+      "codeAlso": null
+    },
+    "billing": {
+      "modifiers": [],
+      "cciEdits": [],
+      "feeSchedule": {
+        "year": 2026,
+        "nonFacilityRate": 0.66,
+        "facilityRate": 0.66,
+        "workRVU": 0,
+        "practiceExpenseRVU": 0,
+        "malpracticeRVU": 0,
+        "totalRVU": 0,
+        "conversionFactor": 33.29
+      },
+      "placeOfService": [
+        {
+          "code": "11",
+          "description": "Office"
+        }
+      ],
+      "commonDenials": [],
+      "medicalNecessity": {
+        "covered": true,
+        "lcdId": null,
+        "notes": "Covered per Medicare guidelines when medically necessary."
+      },
+      "documentationReqs": [
+        "Medical necessity documentation"
+      ],
+      "payerRules": []
+    },
+    "source": {
+      "system": "CMS",
+      "url": "https://www.cms.gov/medicare/coding-billing/healthcare-common-procedure-system",
+      "lastUpdated": "2025-10-01"
+    }
+  },
+  {
+    "code": "Q2039",
+    "system": "HCPCS",
+    "description": "Influenza virus vaccine, not otherwise specified",
+    "category": "Drugs Administered Other Than Oral Method",
+    "specialty": "Primary Care",
+    "status": "active",
+    "keywords": [
+      "influenza",
+      "flu vaccine",
+      "immunization",
+      "preventive"
+    ],
+    "details": {
+      "includes": [],
+      "excludes1": [],
+      "excludes2": [],
+      "relatedCodes": [],
+      "codeFirst": null,
+      "useAdditionalCode": null,
+      "codeAlso": null
+    },
+    "billing": {
+      "modifiers": [],
+      "cciEdits": [],
+      "feeSchedule": {
+        "year": 2026,
+        "nonFacilityRate": 17.98,
+        "facilityRate": 17.98,
+        "workRVU": 0,
+        "practiceExpenseRVU": 0,
+        "malpracticeRVU": 0,
+        "totalRVU": 0,
+        "conversionFactor": 33.29
+      },
+      "placeOfService": [
+        {
+          "code": "11",
+          "description": "Office"
+        }
+      ],
+      "commonDenials": [],
+      "medicalNecessity": {
+        "covered": true,
+        "lcdId": null,
+        "notes": "Covered per Medicare guidelines when medically necessary."
+      },
+      "documentationReqs": [
+        "Medical necessity documentation"
+      ],
+      "payerRules": []
+    },
+    "source": {
+      "system": "CMS",
+      "url": "https://www.cms.gov/medicare/coding-billing/healthcare-common-procedure-system",
+      "lastUpdated": "2025-10-01"
+    }
+  },
+  {
+    "code": "K0001",
+    "system": "HCPCS",
+    "description": "Standard wheelchair",
+    "category": "Durable Medical Equipment",
+    "specialty": "General",
+    "status": "active",
+    "keywords": [
+      "wheelchair",
+      "standard",
+      "mobility",
+      "DME"
+    ],
+    "details": {
+      "includes": [],
+      "excludes1": [],
+      "excludes2": [],
+      "relatedCodes": [],
+      "codeFirst": null,
+      "useAdditionalCode": null,
+      "codeAlso": null
+    },
+    "billing": {
+      "modifiers": [],
+      "cciEdits": [],
+      "feeSchedule": {
+        "year": 2026,
+        "nonFacilityRate": 512,
+        "facilityRate": 512,
+        "workRVU": 0,
+        "practiceExpenseRVU": 0,
+        "malpracticeRVU": 0,
+        "totalRVU": 0,
+        "conversionFactor": 33.29
+      },
+      "placeOfService": [
+        {
+          "code": "11",
+          "description": "Office"
+        }
+      ],
+      "commonDenials": [],
+      "medicalNecessity": {
+        "covered": true,
+        "lcdId": "L33788",
+        "notes": "Covered per Medicare guidelines when medically necessary."
+      },
+      "documentationReqs": [
+        "Face-to-face evaluation",
+        "Home assessment",
+        "Functional mobility deficits"
+      ],
+      "payerRules": []
+    },
+    "source": {
+      "system": "CMS",
+      "url": "https://www.cms.gov/medicare/coding-billing/healthcare-common-procedure-system",
+      "lastUpdated": "2025-10-01"
+    }
+  },
+  {
+    "code": "K0005",
+    "system": "HCPCS",
+    "description": "Ultralightweight wheelchair",
+    "category": "Durable Medical Equipment",
+    "specialty": "General",
+    "status": "active",
+    "keywords": [
+      "wheelchair",
+      "ultralightweight",
+      "manual",
+      "DME"
+    ],
+    "details": {
+      "includes": [],
+      "excludes1": [],
+      "excludes2": [],
+      "relatedCodes": [],
+      "codeFirst": null,
+      "useAdditionalCode": null,
+      "codeAlso": null
+    },
+    "billing": {
+      "modifiers": [],
+      "cciEdits": [],
+      "feeSchedule": {
+        "year": 2026,
+        "nonFacilityRate": 2310,
+        "facilityRate": 2310,
+        "workRVU": 0,
+        "practiceExpenseRVU": 0,
+        "malpracticeRVU": 0,
+        "totalRVU": 0,
+        "conversionFactor": 33.29
+      },
+      "placeOfService": [
+        {
+          "code": "11",
+          "description": "Office"
+        }
+      ],
+      "commonDenials": [],
+      "medicalNecessity": {
+        "covered": true,
+        "lcdId": "L33788",
+        "notes": "Covered per Medicare guidelines when medically necessary."
+      },
+      "documentationReqs": [
+        "Medical necessity documentation"
+      ],
+      "payerRules": []
+    },
+    "source": {
+      "system": "CMS",
+      "url": "https://www.cms.gov/medicare/coding-billing/healthcare-common-procedure-system",
+      "lastUpdated": "2025-10-01"
+    }
+  },
+  {
+    "code": "L0637",
+    "system": "HCPCS",
+    "description": "Lumbar-sacral orthosis, sagittal-coronal control, with rigid anterior and posterior panels",
+    "category": "Orthotics",
+    "specialty": "Orthopedics",
+    "status": "active",
+    "keywords": [
+      "LSO",
+      "back brace",
+      "lumbar support",
+      "orthotic"
+    ],
+    "details": {
+      "includes": [],
+      "excludes1": [],
+      "excludes2": [],
+      "relatedCodes": [],
+      "codeFirst": null,
+      "useAdditionalCode": null,
+      "codeAlso": null
+    },
+    "billing": {
+      "modifiers": [],
+      "cciEdits": [],
+      "feeSchedule": {
+        "year": 2026,
+        "nonFacilityRate": 891,
+        "facilityRate": 891,
+        "workRVU": 0,
+        "practiceExpenseRVU": 0,
+        "malpracticeRVU": 0,
+        "totalRVU": 0,
+        "conversionFactor": 33.29
+      },
+      "placeOfService": [
+        {
+          "code": "11",
+          "description": "Office"
+        }
+      ],
+      "commonDenials": [],
+      "medicalNecessity": {
+        "covered": true,
+        "lcdId": null,
+        "notes": "Covered per Medicare guidelines when medically necessary."
+      },
+      "documentationReqs": [
+        "Diagnosis",
+        "Measurements",
+        "Delivery confirmation"
+      ],
+      "payerRules": []
+    },
+    "source": {
+      "system": "CMS",
+      "url": "https://www.cms.gov/medicare/coding-billing/healthcare-common-procedure-system",
+      "lastUpdated": "2025-10-01"
+    }
+  },
+  {
+    "code": "L1832",
+    "system": "HCPCS",
+    "description": "Knee orthosis, adjustable knee joints",
+    "category": "Orthotics",
+    "specialty": "Orthopedics",
+    "status": "active",
+    "keywords": [
+      "knee brace",
+      "KO",
+      "orthotic",
+      "ligament"
+    ],
+    "details": {
+      "includes": [],
+      "excludes1": [],
+      "excludes2": [],
+      "relatedCodes": [],
+      "codeFirst": null,
+      "useAdditionalCode": null,
+      "codeAlso": null
+    },
+    "billing": {
+      "modifiers": [],
+      "cciEdits": [],
+      "feeSchedule": {
+        "year": 2026,
+        "nonFacilityRate": 421,
+        "facilityRate": 421,
+        "workRVU": 0,
+        "practiceExpenseRVU": 0,
+        "malpracticeRVU": 0,
+        "totalRVU": 0,
+        "conversionFactor": 33.29
+      },
+      "placeOfService": [
+        {
+          "code": "11",
+          "description": "Office"
+        }
+      ],
+      "commonDenials": [],
+      "medicalNecessity": {
+        "covered": true,
+        "lcdId": null,
+        "notes": "Covered per Medicare guidelines when medically necessary."
+      },
+      "documentationReqs": [
+        "Medical necessity documentation"
+      ],
+      "payerRules": []
+    },
+    "source": {
+      "system": "CMS",
+      "url": "https://www.cms.gov/medicare/coding-billing/healthcare-common-procedure-system",
+      "lastUpdated": "2025-10-01"
+    }
+  },
+  {
+    "code": "L3908",
+    "system": "HCPCS",
+    "description": "Wrist hand orthosis, wrist extension control cock-up, non molded",
+    "category": "Orthotics",
+    "specialty": "Orthopedics",
+    "status": "active",
+    "keywords": [
+      "wrist brace",
+      "cock-up",
+      "WHO",
+      "orthotic"
+    ],
+    "details": {
+      "includes": [],
+      "excludes1": [],
+      "excludes2": [],
+      "relatedCodes": [],
+      "codeFirst": null,
+      "useAdditionalCode": null,
+      "codeAlso": null
+    },
+    "billing": {
+      "modifiers": [],
+      "cciEdits": [],
+      "feeSchedule": {
+        "year": 2026,
+        "nonFacilityRate": 52,
+        "facilityRate": 52,
+        "workRVU": 0,
+        "practiceExpenseRVU": 0,
+        "malpracticeRVU": 0,
+        "totalRVU": 0,
+        "conversionFactor": 33.29
+      },
+      "placeOfService": [
+        {
+          "code": "11",
+          "description": "Office"
+        }
+      ],
+      "commonDenials": [],
+      "medicalNecessity": {
+        "covered": true,
+        "lcdId": null,
+        "notes": "Covered per Medicare guidelines when medically necessary."
+      },
+      "documentationReqs": [
+        "Medical necessity documentation"
+      ],
+      "payerRules": []
+    },
+    "source": {
+      "system": "CMS",
+      "url": "https://www.cms.gov/medicare/coding-billing/healthcare-common-procedure-system",
+      "lastUpdated": "2025-10-01"
+    }
+  },
+  {
+    "code": "A4611",
+    "system": "HCPCS",
+    "description": "Battery, heavy duty; replacement for patient owned ventilator",
+    "category": "Durable Medical Equipment",
+    "specialty": "Pulmonology",
+    "status": "discontinued",
+    "keywords": [
+      "battery",
+      "ventilator",
+      "replacement"
+    ],
+    "details": {
+      "includes": [],
+      "excludes1": [],
+      "excludes2": [],
+      "relatedCodes": [],
+      "codeFirst": null,
+      "useAdditionalCode": null,
+      "codeAlso": null
+    },
+    "billing": {
+      "modifiers": [],
+      "cciEdits": [],
+      "feeSchedule": null,
+      "placeOfService": [
+        {
+          "code": "11",
+          "description": "Office"
+        }
+      ],
+      "commonDenials": [],
+      "medicalNecessity": {
+        "covered": true,
+        "lcdId": null,
+        "notes": "Discontinued. Use A4601 for replacement batteries for ventilator."
+      },
+      "documentationReqs": [
+        "Medical necessity documentation"
+      ],
+      "payerRules": []
+    },
+    "source": {
+      "system": "CMS",
+      "url": "https://www.cms.gov/medicare/coding-billing/healthcare-common-procedure-system",
+      "lastUpdated": "2025-10-01"
+    },
+    "replacementCode": "A4601"
+  }
+]
