@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { Player } from "@/types";
 import { StatusBadge } from "./StatusBadge";
+import { getStatLine } from "@/utils/statLine";
 
 interface DepthChartRowProps {
   position: string;
@@ -41,6 +42,13 @@ export function DepthChartRow({ position, players }: DepthChartRowProps) {
       <td className="px-3 py-2">
         {third && <PlayerCell player={third} />}
       </td>
+      <td className="px-3 py-2 text-right">
+        {starter && (
+          <span className="font-mono text-[11px] text-text-muted">
+            {getStatLine(starter)}
+          </span>
+        )}
+      </td>
     </tr>
   );
 }
@@ -70,10 +78,30 @@ function PlayerCell({
         </span>{" "}
         {player.name}
       </Link>
+      {player.depthChange === "up" && (
+        <span className="text-[10px] text-status-green">▲</span>
+      )}
+      {player.depthChange === "down" && (
+        <span className="text-[10px] text-status-red">▼</span>
+      )}
       <StatusBadge status={player.injuryStatus} showOnlyIfNotActive />
       {showDetail && player.injuryDetail && (
         <span className="text-[10px] text-text-muted">
           {player.injuryDetail}
+        </span>
+      )}
+      {showDetail && player.estimatedReturn && (
+        <span className="text-[10px] font-medium text-status-blue">
+          ETA: {player.estimatedReturn}
+        </span>
+      )}
+      {showDetail && player.practiceStatus && player.injuryStatus !== "Active" && (
+        <span className={`text-[10px] font-medium ${
+          player.practiceStatus === "Full" ? "text-status-green" :
+          player.practiceStatus === "Limited" ? "text-status-amber" :
+          "text-status-red"
+        }`}>
+          {player.practiceStatus}
         </span>
       )}
     </div>

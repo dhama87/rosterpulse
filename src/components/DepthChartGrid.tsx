@@ -58,6 +58,7 @@ export function DepthChartGrid({ depthChart }: DepthChartGridProps) {
               <th className="px-3 py-2 text-left text-[10px] font-semibold uppercase tracking-wider text-text-muted">
                 3rd
               </th>
+              <th className="px-3 py-2 text-right text-[10px] font-semibold uppercase tracking-wider text-text-muted">Stats</th>
             </tr>
           </thead>
           <tbody>
