@@ -35,6 +35,7 @@ export interface Team {
   record: string;
   logo: string;
   lastUpdated: string;
+  byeWeek: number;
 }
 
 export interface Player {
@@ -52,6 +53,11 @@ export interface Player {
   experience: number;
   injuryStatus: InjuryStatus;
   injuryDetail?: string;
+  injuryDate?: string;
+  estimatedReturn?: string;
+  irDesignation?: "4-game" | "8-game" | "season";
+  practiceStatus?: "DNP" | "Limited" | "Full";
+  depthChange?: "up" | "down";
   stats: Record<string, number>;
 }
 

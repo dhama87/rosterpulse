@@ -9,8 +9,9 @@ export const teams: Team[] = [
     conference: "AFC",
     division: "East",
     record: "13-4",
-    logo: "\ud83e\udd2c",
+    logo: "https://a.espncdn.com/i/teamlogos/nfl/500/buf.png",
     lastUpdated: new Date().toISOString(),
+    byeWeek: 12,
   },
   {
     id: "MIA",
@@ -19,8 +20,9 @@ export const teams: Team[] = [
     conference: "AFC",
     division: "East",
     record: "11-6",
-    logo: "\ud83d\udc2c",
+    logo: "https://a.espncdn.com/i/teamlogos/nfl/500/mia.png",
     lastUpdated: new Date().toISOString(),
+    byeWeek: 6,
   },
   {
     id: "NE",
@@ -29,8 +31,9 @@ export const teams: Team[] = [
     conference: "AFC",
     division: "East",
     record: "4-13",
-    logo: "\ud83c\uddfa\ud83c\uddf8",
+    logo: "https://a.espncdn.com/i/teamlogos/nfl/500/ne.png",
     lastUpdated: new Date().toISOString(),
+    byeWeek: 14,
   },
   {
     id: "NYJ",
@@ -39,8 +42,9 @@ export const teams: Team[] = [
     conference: "AFC",
     division: "East",
     record: "5-12",
-    logo: "\u2708\ufe0f",
+    logo: "https://a.espncdn.com/i/teamlogos/nfl/500/nyj.png",
     lastUpdated: new Date().toISOString(),
+    byeWeek: 12,
   },
   // === AFC North ===
   {
@@ -50,8 +54,9 @@ export const teams: Team[] = [
     conference: "AFC",
     division: "North",
     record: "12-5",
-    logo: "\ud83e\udd85",
+    logo: "https://a.espncdn.com/i/teamlogos/nfl/500/bal.png",
     lastUpdated: new Date().toISOString(),
+    byeWeek: 14,
   },
   {
     id: "CIN",
@@ -60,8 +65,9 @@ export const teams: Team[] = [
     conference: "AFC",
     division: "North",
     record: "9-8",
-    logo: "\ud83d\udc2f",
+    logo: "https://a.espncdn.com/i/teamlogos/nfl/500/cin.png",
     lastUpdated: new Date().toISOString(),
+    byeWeek: 12,
   },
   {
     id: "CLE",
@@ -70,8 +76,9 @@ export const teams: Team[] = [
     conference: "AFC",
     division: "North",
     record: "3-14",
-    logo: "\ud83d\udfe0",
+    logo: "https://a.espncdn.com/i/teamlogos/nfl/500/cle.png",
     lastUpdated: new Date().toISOString(),
+    byeWeek: 10,
   },
   {
     id: "PIT",
@@ -80,8 +87,9 @@ export const teams: Team[] = [
     conference: "AFC",
     division: "North",
     record: "10-7",
-    logo: "\ud83d\udfe1",
+    logo: "https://a.espncdn.com/i/teamlogos/nfl/500/pit.png",
     lastUpdated: new Date().toISOString(),
+    byeWeek: 9,
   },
   // === AFC South ===
   {
@@ -91,8 +99,9 @@ export const teams: Team[] = [
     conference: "AFC",
     division: "South",
     record: "10-7",
-    logo: "\ud83e\udd20",
+    logo: "https://a.espncdn.com/i/teamlogos/nfl/500/hou.png",
     lastUpdated: new Date().toISOString(),
+    byeWeek: 14,
   },
   {
     id: "IND",
@@ -101,8 +110,9 @@ export const teams: Team[] = [
     conference: "AFC",
     division: "South",
     record: "8-9",
-    logo: "\ud83d\udc34",
+    logo: "https://a.espncdn.com/i/teamlogos/nfl/500/ind.png",
     lastUpdated: new Date().toISOString(),
+    byeWeek: 14,
   },
   {
     id: "JAX",
@@ -111,8 +121,9 @@ export const teams: Team[] = [
     conference: "AFC",
     division: "South",
     record: "4-13",
-    logo: "\ud83d\udc06",
+    logo: "https://a.espncdn.com/i/teamlogos/nfl/500/jax.png",
     lastUpdated: new Date().toISOString(),
+    byeWeek: 12,
   },
   {
     id: "TEN",
@@ -121,8 +132,9 @@ export const teams: Team[] = [
     conference: "AFC",
     division: "South",
     record: "3-14",
-    logo: "\u2694\ufe0f",
+    logo: "https://a.espncdn.com/i/teamlogos/nfl/500/ten.png",
     lastUpdated: new Date().toISOString(),
+    byeWeek: 5,
   },
   // === AFC West ===
   {
@@ -132,8 +144,9 @@ export const teams: Team[] = [
     conference: "AFC",
     division: "West",
     record: "15-2",
-    logo: "\ud83c\udff9",
+    logo: "https://a.espncdn.com/i/teamlogos/nfl/500/kc.png",
     lastUpdated: new Date().toISOString(),
+    byeWeek: 6,
   },
   {
     id: "LV",
@@ -142,8 +155,9 @@ export const teams: Team[] = [
     conference: "AFC",
     division: "West",
     record: "4-13",
-    logo: "\u2620\ufe0f",
+    logo: "https://a.espncdn.com/i/teamlogos/nfl/500/lv.png",
     lastUpdated: new Date().toISOString(),
+    byeWeek: 10,
   },
   {
     id: "LAC",
@@ -152,8 +166,9 @@ export const teams: Team[] = [
     conference: "AFC",
     division: "West",
     record: "11-6",
-    logo: "\u26a1",
+    logo: "https://a.espncdn.com/i/teamlogos/nfl/500/lac.png",
     lastUpdated: new Date().toISOString(),
+    byeWeek: 5,
   },
   {
     id: "DEN",
@@ -162,8 +177,9 @@ export const teams: Team[] = [
     conference: "AFC",
     division: "West",
     record: "10-7",
-    logo: "\ud83d\udc0e",
+    logo: "https://a.espncdn.com/i/teamlogos/nfl/500/den.png",
     lastUpdated: new Date().toISOString(),
+    byeWeek: 14,
   },
   // === NFC East ===
   {
@@ -173,8 +189,9 @@ export const teams: Team[] = [
     conference: "NFC",
     division: "East",
     record: "7-10",
-    logo: "\u2b50",
+    logo: "https://a.espncdn.com/i/teamlogos/nfl/500/dal.png",
     lastUpdated: new Date().toISOString(),
+    byeWeek: 7,
   },
   {
     id: "NYG",
@@ -183,8 +200,9 @@ export const teams: Team[] = [
     conference: "NFC",
     division: "East",
     record: "3-14",
-    logo: "\ud83d\uddfd",
+    logo: "https://a.espncdn.com/i/teamlogos/nfl/500/nyg.png",
     lastUpdated: new Date().toISOString(),
+    byeWeek: 11,
   },
   {
     id: "PHI",
@@ -193,8 +211,9 @@ export const teams: Team[] = [
     conference: "NFC",
     division: "East",
     record: "14-3",
-    logo: "\ud83e\udd85",
+    logo: "https://a.espncdn.com/i/teamlogos/nfl/500/phi.png",
     lastUpdated: new Date().toISOString(),
+    byeWeek: 5,
   },
   {
     id: "WAS",
@@ -203,8 +222,9 @@ export const teams: Team[] = [
     conference: "NFC",
     division: "East",
     record: "12-5",
-    logo: "\ud83c\udfdb\ufe0f",
+    logo: "https://a.espncdn.com/i/teamlogos/nfl/500/wsh.png",
     lastUpdated: new Date().toISOString(),
+    byeWeek: 14,
   },
   // === NFC North ===
   {
@@ -214,8 +234,9 @@ export const teams: Team[] = [
     conference: "NFC",
     division: "North",
     record: "5-12",
-    logo: "\ud83d\udc3b",
+    logo: "https://a.espncdn.com/i/teamlogos/nfl/500/chi.png",
     lastUpdated: new Date().toISOString(),
+    byeWeek: 7,
   },
   {
     id: "DET",
@@ -224,8 +245,9 @@ export const teams: Team[] = [
     conference: "NFC",
     division: "North",
     record: "15-2",
-    logo: "\ud83e\udd81",
+    logo: "https://a.espncdn.com/i/teamlogos/nfl/500/det.png",
     lastUpdated: new Date().toISOString(),
+    byeWeek: 5,
   },
   {
     id: "GB",
@@ -234,8 +256,9 @@ export const teams: Team[] = [
     conference: "NFC",
     division: "North",
     record: "11-6",
-    logo: "\ud83e\uddc0",
+    logo: "https://a.espncdn.com/i/teamlogos/nfl/500/gb.png",
     lastUpdated: new Date().toISOString(),
+    byeWeek: 10,
   },
   {
     id: "MIN",
@@ -244,8 +267,9 @@ export const teams: Team[] = [
     conference: "NFC",
     division: "North",
     record: "14-3",
-    logo: "\u2693",
+    logo: "https://a.espncdn.com/i/teamlogos/nfl/500/min.png",
     lastUpdated: new Date().toISOString(),
+    byeWeek: 6,
   },
   // === NFC South ===
   {
@@ -255,8 +279,9 @@ export const teams: Team[] = [
     conference: "NFC",
     division: "South",
     record: "8-9",
-    logo: "\ud83e\udd85",
+    logo: "https://a.espncdn.com/i/teamlogos/nfl/500/atl.png",
     lastUpdated: new Date().toISOString(),
+    byeWeek: 12,
   },
   {
     id: "CAR",
@@ -265,8 +290,9 @@ export const teams: Team[] = [
     conference: "NFC",
     division: "South",
     record: "4-13",
-    logo: "\ud83d\udc3e",
+    logo: "https://a.espncdn.com/i/teamlogos/nfl/500/car.png",
     lastUpdated: new Date().toISOString(),
+    byeWeek: 11,
   },
   {
     id: "NO",
@@ -275,8 +301,9 @@ export const teams: Team[] = [
     conference: "NFC",
     division: "South",
     record: "5-12",
-    logo: "\u269c\ufe0f",
+    logo: "https://a.espncdn.com/i/teamlogos/nfl/500/no.png",
     lastUpdated: new Date().toISOString(),
+    byeWeek: 12,
   },
   {
     id: "TB",
@@ -285,8 +312,9 @@ export const teams: Team[] = [
     conference: "NFC",
     division: "South",
     record: "10-7",
-    logo: "\ud83c\udff4\u200d\u2620\ufe0f",
+    logo: "https://a.espncdn.com/i/teamlogos/nfl/500/tb.png",
     lastUpdated: new Date().toISOString(),
+    byeWeek: 11,
   },
   // === NFC West ===
   {
@@ -296,8 +324,9 @@ export const teams: Team[] = [
     conference: "NFC",
     division: "West",
     record: "8-9",
-    logo: "\ud83d\udc26",
+    logo: "https://a.espncdn.com/i/teamlogos/nfl/500/ari.png",
     lastUpdated: new Date().toISOString(),
+    byeWeek: 11,
   },
   {
     id: "LAR",
@@ -306,8 +335,9 @@ export const teams: Team[] = [
     conference: "NFC",
     division: "West",
     record: "10-7",
-    logo: "\ud83d\udc0f",
+    logo: "https://a.espncdn.com/i/teamlogos/nfl/500/lar.png",
     lastUpdated: new Date().toISOString(),
+    byeWeek: 6,
   },
   {
     id: "SF",
@@ -316,8 +346,9 @@ export const teams: Team[] = [
     conference: "NFC",
     division: "West",
     record: "6-11",
-    logo: "\ud83c\udf09",
+    logo: "https://a.espncdn.com/i/teamlogos/nfl/500/sf.png",
     lastUpdated: new Date().toISOString(),
+    byeWeek: 9,
   },
   {
     id: "SEA",
@@ -326,7 +357,8 @@ export const teams: Team[] = [
     conference: "NFC",
     division: "West",
     record: "10-7",
-    logo: "\ud83e\udd85",
+    logo: "https://a.espncdn.com/i/teamlogos/nfl/500/sea.png",
     lastUpdated: new Date().toISOString(),
+    byeWeek: 10,
   },
 ];
