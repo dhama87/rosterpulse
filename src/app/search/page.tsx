@@ -2,7 +2,7 @@
 
 import { use } from "react";
 import Link from "next/link";
-import { createMockRosterService } from "@/services/rosterService";
+import { createRosterService } from "@/services/createRosterService";
 import { StatusBadge } from "@/components/StatusBadge";
 
 export default function SearchPage({
@@ -13,7 +13,7 @@ export default function SearchPage({
   const { q } = use(searchParams);
   const query = typeof q === "string" ? q : "";
 
-  const service = createMockRosterService();
+  const service = createRosterService();
   const matchingPlayers = query ? service.searchPlayers(query) : [];
   const matchingTeams = query ? service.searchTeams(query) : [];
 
@@ -45,7 +45,7 @@ export default function SearchPage({
                 href={`/team/${team.id}`}
                 className="flex items-center gap-3 rounded-lg border border-border bg-bg-card px-4 py-3 transition-colors hover:bg-bg-card-hover"
               >
-                <span className="text-xl">{team.logo}</span>
+                <img src={team.logo} alt={team.fullName} className="h-8 w-8 object-contain" />
                 <div>
                   <p className="text-sm font-medium text-text-primary">
                     {team.fullName}

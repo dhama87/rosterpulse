@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { createMockRosterService } from "@/services/rosterService";
+import { createRosterService } from "@/services/createRosterService";
 import { PlayerHeader } from "@/components/PlayerHeader";
 import { PlayerStatusCard } from "@/components/PlayerStatusCard";
 import { PlayerTimeline } from "@/components/PlayerTimeline";
@@ -12,7 +12,7 @@ export default async function PlayerPage({
   params: Promise<{ playerId: string }>;
 }) {
   const { playerId } = await params;
-  const service = createMockRosterService();
+  const service = createRosterService();
 
   const player = service.getPlayer(playerId);
   if (!player) {

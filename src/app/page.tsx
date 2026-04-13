@@ -1,4 +1,4 @@
-import { createMockRosterService } from "@/services/rosterService";
+import { createRosterService } from "@/services/createRosterService";
 import { TeamCard } from "@/components/TeamCard";
 import { NewsFeed } from "@/components/NewsFeed";
 import { Conference, Division } from "@/types";
@@ -7,7 +7,7 @@ const divisions: Division[] = ["East", "North", "South", "West"];
 const conferences: Conference[] = ["AFC", "NFC"];
 
 export default function Home() {
-  const service = createMockRosterService();
+  const service = createRosterService();
   const allTeams = service.getAllTeams();
   const allNews = service.getAllNews();
 

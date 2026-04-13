@@ -1,5 +1,5 @@
 import { notFound } from "next/navigation";
-import { createMockRosterService } from "@/services/rosterService";
+import { createRosterService } from "@/services/createRosterService";
 import { DepthChartGrid } from "@/components/DepthChartGrid";
 import { NewsFeed } from "@/components/NewsFeed";
 
@@ -19,7 +19,7 @@ export default async function TeamPage({
   params: Promise<{ teamId: string }>;
 }) {
   const { teamId } = await params;
-  const service = createMockRosterService();
+  const service = createRosterService();
   const roster = service.getTeamRoster(teamId);
 
   if (!roster) {
@@ -35,7 +35,7 @@ export default async function TeamPage({
         {/* Team Header */}
         <div className="mb-6">
           <div className="flex items-center gap-4">
-            <span className="text-4xl">{team.logo}</span>
+            <img src={team.logo} alt={team.name} className="h-12 w-12 object-contain" />
             <div>
               <h1 className="text-2xl font-bold text-text-primary">
                 {team.fullName}
