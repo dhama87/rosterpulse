@@ -2,6 +2,7 @@ import Database from "better-sqlite3";
 import { SourceAdapter, AdapterResult, ScrapedItem } from "./types";
 import { normalizeToPlayer, normalizeToNewsItem } from "./normalize";
 import { makeDedupKey, shouldUpgradeConfidence } from "./dedup";
+import { enrichNewsItems } from "./enrich";
 
 export interface ScrapeResult {
   totalItems: number;
@@ -59,6 +60,20 @@ export async function runScrape(
       completedAt: new Date().toISOString(),
     };
   });
+
+  // Enrich and filter news items from all adapters
+  for (const adapterResult of adapterResults) {
+    if (adapterResult.status !== "success") continue;
+
+    const newsItems = adapterResult.items.filter((i) => i.type === "news");
+    const nonNewsItems = adapterResult.items.filter((i) => i.type !== "news");
+
+    if (newsItems.length > 0) {
+      const enriched = enrichNewsItems(newsItems, db);
+      adapterResult.items = [...nonNewsItems, ...enriched];
+      adapterResult.itemsFound = adapterResult.items.length;
+    }
+  }
 
   // Load existing dedup keys from DB
   const existingKeys = new Set<string>(
