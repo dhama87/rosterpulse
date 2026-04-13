@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+import { TopBar } from "@/components/TopBar";
+import { createMockRosterService } from "@/services/rosterService";
 import "./globals.css";
 
 const inter = Inter({
@@ -18,10 +20,14 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+  const service = createMockRosterService();
+  const lastVerified = service.getLastVerified();
+
   return (
     <html lang="en">
       <body className={`${inter.variable} font-body antialiased`}>
-        {children}
+        <TopBar lastVerified={lastVerified} />
+        <main>{children}</main>
       </body>
     </html>
   );
