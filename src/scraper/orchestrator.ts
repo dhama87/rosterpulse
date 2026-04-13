@@ -96,10 +96,12 @@ export async function runScrape(
     INSERT OR REPLACE INTO players
       (id, name, team, position, positionGroup, depthOrder, jerseyNumber,
        height, weight, age, college, experience, injuryStatus, injuryDetail,
+       injuryDate, estimatedReturn, irDesignation, practiceStatus, depthChange,
        stats, source, sourceUrl, updatedAt)
     VALUES
       (@id, @name, @team, @position, @positionGroup, @depthOrder, @jerseyNumber,
        @height, @weight, @age, @college, @experience, @injuryStatus, @injuryDetail,
+       @injuryDate, @estimatedReturn, @irDesignation, @practiceStatus, @depthChange,
        @stats, @source, @sourceUrl, @updatedAt)
   `);
 
@@ -131,6 +133,11 @@ export async function runScrape(
           insertPlayer.run({
             ...player,
             injuryDetail: player.injuryDetail ?? null,
+            injuryDate: player.injuryDate ?? null,
+            estimatedReturn: player.estimatedReturn ?? null,
+            irDesignation: player.irDesignation ?? null,
+            practiceStatus: player.practiceStatus ?? null,
+            depthChange: player.depthChange ?? null,
             stats: JSON.stringify(player.stats ?? {}),
             source: item.source,
             sourceUrl: item.sourceUrl,
