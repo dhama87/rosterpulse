@@ -430,107 +430,128 @@ function createRemainingTeamRosters(): Player[] {
   // remaining teams with a streamlined helper for the standard positions.
 
   // Helper to add a full 2-deep roster for a team given key player info
-  function addTeamRoster(
-    team: string,
-    qb1: [string, number], qb2: [string, number],
-    rb1: [string, number], rb2: [string, number],
-    wr1: [string, number], wr2: [string, number], wr3: [string, number],
-    te1: [string, number], te2: [string, number],
-    k1: [string, number], p1: [string, number],
-  ) {
+  interface FullRoster {
+    qb1: [string, number]; qb2: [string, number]; qb3: [string, number];
+    rb1: [string, number]; rb2: [string, number]; rb3: [string, number];
+    wr1: [string, number]; wr2: [string, number]; wr3: [string, number];
+    wr4: [string, number]; wr5: [string, number]; wr6: [string, number];
+    te1: [string, number]; te2: [string, number]; te3: [string, number];
+    lt1: [string, number]; lt2: [string, number]; lt3: [string, number];
+    lg1: [string, number]; lg2: [string, number]; lg3: [string, number];
+    c1: [string, number]; c2: [string, number]; c3: [string, number];
+    rg1: [string, number]; rg2: [string, number]; rg3: [string, number];
+    rt1: [string, number]; rt2: [string, number]; rt3: [string, number];
+    de1a: [string, number]; de1b: [string, number]; de1c: [string, number];
+    de2a: [string, number]; de2b: [string, number]; de2c: [string, number];
+    dt1a: [string, number]; dt1b: [string, number]; dt1c: [string, number];
+    dt2a: [string, number]; dt2b: [string, number]; dt2c: [string, number];
+    lb1a: [string, number]; lb1b: [string, number]; lb1c: [string, number];
+    lb2a: [string, number]; lb2b: [string, number]; lb2c: [string, number];
+    lb3a: [string, number]; lb3b: [string, number]; lb3c: [string, number];
+    cb1a: [string, number]; cb1b: [string, number]; cb1c: [string, number];
+    cb2a: [string, number]; cb2b: [string, number]; cb2c: [string, number];
+    ss1: [string, number]; ss2: [string, number]; ss3: [string, number];
+    fs1: [string, number]; fs2: [string, number]; fs3: [string, number];
+    k1: [string, number]; k2: [string, number]; k3: [string, number];
+    p1: [string, number]; p2: [string, number]; p3: [string, number];
+    kr1: [string, number]; kr2: [string, number]; kr3: [string, number];
+    pr1: [string, number]; pr2: [string, number]; pr3: [string, number];
+    ls1: [string, number]; ls2: [string, number]; ls3: [string, number];
+  }
+
+  function addTeamRoster(team: string, r: FullRoster) {
     // QB
-    add(team,"QB",1,qb1[0],qb1[1],"6-2","220",27,"College",5,{passYds:3500,passTD:24,int:10,qbr:88.0});
-    add(team,"QB",2,qb2[0],qb2[1],"6-3","215",26,"College",3,qbB);
+    add(team,"QB",1,r.qb1[0],r.qb1[1],"6-2","220",27,"College",5,{passYds:3500,passTD:24,int:10,qbr:88.0});
+    add(team,"QB",2,r.qb2[0],r.qb2[1],"6-3","215",26,"College",3,qbB);
+    add(team,"QB",3,r.qb3[0],r.qb3[1],"6-1","210",24,"College",1,qbT);
     // RB
-    add(team,"RB",1,rb1[0],rb1[1],"5-11","215",26,"College",4,{rushYds:900,rushTD:6,ypc:4.3,rec:25});
-    add(team,"RB",2,rb2[0],rb2[1],"5-10","210",25,"College",3,rbB);
+    add(team,"RB",1,r.rb1[0],r.rb1[1],"5-11","215",26,"College",4,{rushYds:900,rushTD:6,ypc:4.3,rec:25});
+    add(team,"RB",2,r.rb2[0],r.rb2[1],"5-10","210",25,"College",3,rbB);
+    add(team,"RB",3,r.rb3[0],r.rb3[1],"5-10","205",23,"College",1,rbT);
     // WRs
-    add(team,"WR1",1,wr1[0],wr1[1],"6-1","200",26,"College",4,{recYds:950,recTD:7,rec:65,targets:100});
-    add(team,"WR1",2,wr2[0],wr2[1],"6-0","195",25,"College",3,wrB);
-    add(team,"WR2",1,wr2[0],wr2[1],"6-0","195",25,"College",3,{recYds:550,recTD:4,rec:40,targets:60});
-    add(team,"WR2",2,wr3[0],wr3[1],"5-11","190",24,"College",2,wrB);
-    add(team,"WR3",1,wr3[0],wr3[1],"5-11","190",24,"College",2,{recYds:280,recTD:2,rec:22,targets:35});
-    add(team,"WR3",2,"Reserve WR",80,"5-10","185",24,"College",1,wrB);
+    add(team,"WR1",1,r.wr1[0],r.wr1[1],"6-1","200",26,"College",4,{recYds:950,recTD:7,rec:65,targets:100});
+    add(team,"WR1",2,r.wr2[0],r.wr2[1],"6-0","195",25,"College",3,wrB);
+    add(team,"WR1",3,r.wr4[0],r.wr4[1],"6-0","190",23,"College",1,wrT);
+    add(team,"WR2",1,r.wr2[0],r.wr2[1],"6-0","195",25,"College",3,{recYds:550,recTD:4,rec:40,targets:60});
+    add(team,"WR2",2,r.wr3[0],r.wr3[1],"5-11","190",24,"College",2,wrB);
+    add(team,"WR2",3,r.wr5[0],r.wr5[1],"5-11","185",23,"College",1,wrT);
+    add(team,"WR3",1,r.wr3[0],r.wr3[1],"5-11","190",24,"College",2,{recYds:280,recTD:2,rec:22,targets:35});
+    add(team,"WR3",2,r.wr4[0],r.wr4[1],"5-10","185",24,"College",1,wrB);
+    add(team,"WR3",3,r.wr6[0],r.wr6[1],"5-10","180",22,"College",1,wrT);
     // TE
-    add(team,"TE",1,te1[0],te1[1],"6-5","250",27,"College",5,{recYds:450,recTD:3,rec:38,targets:50});
-    add(team,"TE",2,te2[0],te2[1],"6-4","245",25,"College",3,teB);
+    add(team,"TE",1,r.te1[0],r.te1[1],"6-5","250",27,"College",5,{recYds:450,recTD:3,rec:38,targets:50});
+    add(team,"TE",2,r.te2[0],r.te2[1],"6-4","245",25,"College",3,teB);
+    add(team,"TE",3,r.te3[0],r.te3[1],"6-4","248",24,"College",1,teT);
     // OL
-    add(team,"LT",1,"Starting LT",72,"6-5","315",28,"College",6,{gamesStarted:16,sacks:3});
-    add(team,"LT",2,"Backup LT",76,"6-6","310",25,"College",3,olB);
-    add(team,"LG",1,"Starting LG",66,"6-4","310",27,"College",5,{gamesStarted:16,sacks:1});
-    add(team,"LG",2,"Backup LG",63,"6-5","305",24,"College",2,olB);
-    add(team,"C",1,"Starting C",55,"6-3","305",28,"College",6,{gamesStarted:17,sacks:0});
-    add(team,"C",2,"Backup C",67,"6-3","300",25,"College",3,olB);
-    add(team,"RG",1,"Starting RG",74,"6-5","315",27,"College",5,{gamesStarted:15,sacks:1});
-    add(team,"RG",2,"Backup RG",68,"6-4","310",24,"College",2,olB);
-    add(team,"RT",1,"Starting RT",78,"6-6","320",28,"College",6,{gamesStarted:16,sacks:3});
-    add(team,"RT",2,"Backup RT",70,"6-5","312",25,"College",3,olB);
+    add(team,"LT",1,r.lt1[0],r.lt1[1],"6-5","315",28,"College",6,{gamesStarted:16,sacks:3});
+    add(team,"LT",2,r.lt2[0],r.lt2[1],"6-6","310",25,"College",3,olB);
+    add(team,"LT",3,r.lt3[0],r.lt3[1],"6-5","310",23,"College",1,olT);
+    add(team,"LG",1,r.lg1[0],r.lg1[1],"6-4","310",27,"College",5,{gamesStarted:16,sacks:1});
+    add(team,"LG",2,r.lg2[0],r.lg2[1],"6-5","305",24,"College",2,olB);
+    add(team,"LG",3,r.lg3[0],r.lg3[1],"6-4","305",23,"College",1,olT);
+    add(team,"C",1,r.c1[0],r.c1[1],"6-3","305",28,"College",6,{gamesStarted:17,sacks:0});
+    add(team,"C",2,r.c2[0],r.c2[1],"6-3","300",25,"College",3,olB);
+    add(team,"C",3,r.c3[0],r.c3[1],"6-3","300",23,"College",1,olT);
+    add(team,"RG",1,r.rg1[0],r.rg1[1],"6-5","315",27,"College",5,{gamesStarted:15,sacks:1});
+    add(team,"RG",2,r.rg2[0],r.rg2[1],"6-4","310",24,"College",2,olB);
+    add(team,"RG",3,r.rg3[0],r.rg3[1],"6-4","308",23,"College",1,olT);
+    add(team,"RT",1,r.rt1[0],r.rt1[1],"6-6","320",28,"College",6,{gamesStarted:16,sacks:3});
+    add(team,"RT",2,r.rt2[0],r.rt2[1],"6-5","312",25,"College",3,olB);
+    add(team,"RT",3,r.rt3[0],r.rt3[1],"6-5","312",23,"College",1,olT);
     // DE
-    add(team,"DE1",1,"Starting DE1",91,"6-4","270",27,"College",5,{tackles:45,sacks:8.0,tfl:10,ff:2});
-    add(team,"DE1",2,"Backup DE1",93,"6-3","260",24,"College",2,dlB);
-    add(team,"DE2",1,"Starting DE2",94,"6-5","275",28,"College",6,{tackles:40,sacks:6.0,tfl:8,ff:1});
-    add(team,"DE2",2,"Backup DE2",96,"6-4","265",24,"College",2,dlB);
+    add(team,"DE1",1,r.de1a[0],r.de1a[1],"6-4","270",27,"College",5,{tackles:45,sacks:8.0,tfl:10,ff:2});
+    add(team,"DE1",2,r.de1b[0],r.de1b[1],"6-3","260",24,"College",2,dlB);
+    add(team,"DE1",3,r.de1c[0],r.de1c[1],"6-3","260",23,"College",1,dlT);
+    add(team,"DE2",1,r.de2a[0],r.de2a[1],"6-5","275",28,"College",6,{tackles:40,sacks:6.0,tfl:8,ff:1});
+    add(team,"DE2",2,r.de2b[0],r.de2b[1],"6-4","265",24,"College",2,dlB);
+    add(team,"DE2",3,r.de2c[0],r.de2c[1],"6-4","265",23,"College",1,dlT);
     // DT
-    add(team,"DT1",1,"Starting DT1",98,"6-3","310",28,"College",6,{tackles:42,sacks:4.0,tfl:7,ff:1});
-    add(team,"DT1",2,"Backup DT1",92,"6-2","305",25,"College",3,dlB);
-    add(team,"DT2",1,"Starting DT2",97,"6-4","320",27,"College",5,{tackles:30,sacks:2.0,tfl:4,ff:0});
-    add(team,"DT2",2,"Backup DT2",95,"6-3","315",24,"College",2,dlB);
+    add(team,"DT1",1,r.dt1a[0],r.dt1a[1],"6-3","310",28,"College",6,{tackles:42,sacks:4.0,tfl:7,ff:1});
+    add(team,"DT1",2,r.dt1b[0],r.dt1b[1],"6-2","305",25,"College",3,dlB);
+    add(team,"DT1",3,r.dt1c[0],r.dt1c[1],"6-2","305",23,"College",1,dlT);
+    add(team,"DT2",1,r.dt2a[0],r.dt2a[1],"6-4","320",27,"College",5,{tackles:30,sacks:2.0,tfl:4,ff:0});
+    add(team,"DT2",2,r.dt2b[0],r.dt2b[1],"6-3","315",24,"College",2,dlB);
+    add(team,"DT2",3,r.dt2c[0],r.dt2c[1],"6-3","310",23,"College",1,dlT);
     // LB
-    add(team,"LB1",1,"Starting LB1",52,"6-2","235",27,"College",5,{tackles:95,sacks:3.0,tfl:7,int:1});
-    add(team,"LB1",2,"Backup LB1",54,"6-1","230",24,"College",2,lbB);
-    add(team,"LB2",1,"Starting LB2",50,"6-1","232",26,"College",4,{tackles:70,sacks:1.5,tfl:5,int:0});
-    add(team,"LB2",2,"Backup LB2",58,"6-2","228",24,"College",2,lbB);
-    add(team,"LB3",1,"Starting LB3",48,"6-0","225",25,"College",3,{tackles:40,sacks:0.5,tfl:3,int:0});
-    add(team,"LB3",2,"Backup LB3",56,"6-1","228",23,"College",1,lbB);
+    add(team,"LB1",1,r.lb1a[0],r.lb1a[1],"6-2","235",27,"College",5,{tackles:95,sacks:3.0,tfl:7,int:1});
+    add(team,"LB1",2,r.lb1b[0],r.lb1b[1],"6-1","230",24,"College",2,lbB);
+    add(team,"LB1",3,r.lb1c[0],r.lb1c[1],"6-1","230",23,"College",1,lbT);
+    add(team,"LB2",1,r.lb2a[0],r.lb2a[1],"6-1","232",26,"College",4,{tackles:70,sacks:1.5,tfl:5,int:0});
+    add(team,"LB2",2,r.lb2b[0],r.lb2b[1],"6-2","228",24,"College",2,lbB);
+    add(team,"LB2",3,r.lb2c[0],r.lb2c[1],"6-0","228",23,"College",1,lbT);
+    add(team,"LB3",1,r.lb3a[0],r.lb3a[1],"6-0","225",25,"College",3,{tackles:40,sacks:0.5,tfl:3,int:0});
+    add(team,"LB3",2,r.lb3b[0],r.lb3b[1],"6-1","228",23,"College",1,lbB);
+    add(team,"LB3",3,r.lb3c[0],r.lb3c[1],"6-1","225",22,"College",1,lbT);
     // CB
-    add(team,"CB1",1,"Starting CB1",21,"6-0","190",27,"College",5,{tackles:50,int:3,pd:12,ff:0});
-    add(team,"CB1",2,"Backup CB1",23,"5-11","185",24,"College",2,cbB);
-    add(team,"CB2",1,"Starting CB2",24,"6-1","195",26,"College",4,{tackles:45,int:2,pd:8,ff:0});
-    add(team,"CB2",2,"Backup CB2",29,"5-10","188",23,"College",1,cbB);
+    add(team,"CB1",1,r.cb1a[0],r.cb1a[1],"6-0","190",27,"College",5,{tackles:50,int:3,pd:12,ff:0});
+    add(team,"CB1",2,r.cb1b[0],r.cb1b[1],"5-11","185",24,"College",2,cbB);
+    add(team,"CB1",3,r.cb1c[0],r.cb1c[1],"5-11","185",23,"College",1,cbT);
+    add(team,"CB2",1,r.cb2a[0],r.cb2a[1],"6-1","195",26,"College",4,{tackles:45,int:2,pd:8,ff:0});
+    add(team,"CB2",2,r.cb2b[0],r.cb2b[1],"5-10","188",23,"College",1,cbB);
+    add(team,"CB2",3,r.cb2c[0],r.cb2c[1],"5-10","182",23,"College",1,cbT);
     // S
-    add(team,"SS",1,"Starting SS",32,"6-1","210",27,"College",5,{tackles:68,int:2,pd:7,ff:1});
-    add(team,"SS",2,"Backup SS",36,"6-0","205",24,"College",2,sB);
-    add(team,"FS",1,"Starting FS",27,"6-0","205",26,"College",4,{tackles:60,int:2,pd:6,ff:0});
-    add(team,"FS",2,"Backup FS",38,"5-11","200",24,"College",2,sB);
+    add(team,"SS",1,r.ss1[0],r.ss1[1],"6-1","210",27,"College",5,{tackles:68,int:2,pd:7,ff:1});
+    add(team,"SS",2,r.ss2[0],r.ss2[1],"6-0","205",24,"College",2,sB);
+    add(team,"SS",3,r.ss3[0],r.ss3[1],"6-0","205",23,"College",1,sT);
+    add(team,"FS",1,r.fs1[0],r.fs1[1],"6-0","205",26,"College",4,{tackles:60,int:2,pd:6,ff:0});
+    add(team,"FS",2,r.fs2[0],r.fs2[1],"5-11","200",24,"College",2,sB);
+    add(team,"FS",3,r.fs3[0],r.fs3[1],"5-11","200",23,"College",1,sT);
     // ST
-    add(team,"K",1,k1[0],k1[1],"6-0","195",28,"College",6,{fgMade:26,fgAtt:30,xpMade:38,longFG:54});
-    add(team,"K",2,"Backup K",8,"5-11","190",24,"College",1,kB);
-    add(team,"P",1,p1[0],p1[1],"6-2","210",28,"College",6,{punts:52,puntAvg:45.5,inside20:20,longPunt:60});
-    add(team,"P",2,"Backup P",4,"6-1","200",24,"College",1,pB);
-    add(team,"KR",1,rb2[0],rb2[1],"5-10","210",25,"College",3,{krYds:300,krAvg:22.0,krTD:0,krLong:35});
-    add(team,"KR",2,wr3[0],wr3[1],"5-11","190",24,"College",2,krB);
-    add(team,"PR",1,wr3[0],wr3[1],"5-11","190",24,"College",2,{prYds:100,prAvg:8.0,prTD:0,prLong:18});
-    add(team,"PR",2,rb2[0],rb2[1],"5-10","210",25,"College",3,prB);
-    add(team,"LS",1,"Starting LS",45,"6-2","240",30,"College",8,{gamesPlayed:17,badSnaps:0});
-    add(team,"LS",2,"Backup LS",49,"6-1","235",25,"College",2,lsB);
-    // Depth 3
-    add(team,"QB",3,"Third QB",9,"6-1","210",24,"College",1,qbT);
-    add(team,"RB",3,"Third RB",39,"5-10","205",23,"College",1,rbT);
-    add(team,"WR1",3,"Third WR1",15,"6-0","190",23,"College",1,wrT);
-    add(team,"WR2",3,"Third WR2",16,"5-11","185",23,"College",1,wrT);
-    add(team,"WR3",3,"Third WR3",17,"5-10","180",22,"College",1,wrT);
-    add(team,"TE",3,"Third TE",84,"6-4","248",24,"College",1,teT);
-    add(team,"LT",3,"Third LT",79,"6-5","310",23,"College",1,olT);
-    add(team,"LG",3,"Third LG",61,"6-4","305",23,"College",1,olT);
-    add(team,"C",3,"Third C",69,"6-3","300",23,"College",1,olT);
-    add(team,"RG",3,"Third RG",60,"6-4","308",23,"College",1,olT);
-    add(team,"RT",3,"Third RT",71,"6-5","312",23,"College",1,olT);
-    add(team,"DE1",3,"Third DE1",46,"6-3","260",23,"College",1,dlT);
-    add(team,"DE2",3,"Third DE2",47,"6-4","265",23,"College",1,dlT);
-    add(team,"DT1",3,"Third DT1",62,"6-2","305",23,"College",1,dlT);
-    add(team,"DT2",3,"Third DT2",64,"6-3","310",23,"College",1,dlT);
-    add(team,"LB1",3,"Third LB1",42,"6-1","230",23,"College",1,lbT);
-    add(team,"LB2",3,"Third LB2",43,"6-0","228",23,"College",1,lbT);
-    add(team,"LB3",3,"Third LB3",57,"6-1","225",22,"College",1,lbT);
-    add(team,"CB1",3,"Third CB1",31,"5-11","185",23,"College",1,cbT);
-    add(team,"CB2",3,"Third CB2",34,"5-10","182",23,"College",1,cbT);
-    add(team,"SS",3,"Third SS",41,"6-0","205",23,"College",1,sT);
-    add(team,"FS",3,"Third FS",40,"5-11","200",23,"College",1,sT);
-    add(team,"K",3,"Third K",10,"5-10","185",23,"College",1,kT);
-    add(team,"P",3,"Third P",11,"6-1","200",23,"College",1,pT);
-    add(team,"KR",3,"Third KR",33,"5-10","190",23,"College",1,krT);
-    add(team,"PR",3,"Third PR",35,"5-9","185",23,"College",1,prT);
-    add(team,"LS",3,"Third LS",59,"6-1","235",24,"College",1,lsT);
+    add(team,"K",1,r.k1[0],r.k1[1],"6-0","195",28,"College",6,{fgMade:26,fgAtt:30,xpMade:38,longFG:54});
+    add(team,"K",2,r.k2[0],r.k2[1],"5-11","190",24,"College",1,kB);
+    add(team,"K",3,r.k3[0],r.k3[1],"5-10","185",23,"College",1,kT);
+    add(team,"P",1,r.p1[0],r.p1[1],"6-2","210",28,"College",6,{punts:52,puntAvg:45.5,inside20:20,longPunt:60});
+    add(team,"P",2,r.p2[0],r.p2[1],"6-1","200",24,"College",1,pB);
+    add(team,"P",3,r.p3[0],r.p3[1],"6-1","200",23,"College",1,pT);
+    add(team,"KR",1,r.kr1[0],r.kr1[1],"5-10","210",25,"College",3,{krYds:300,krAvg:22.0,krTD:0,krLong:35});
+    add(team,"KR",2,r.kr2[0],r.kr2[1],"5-11","190",24,"College",2,krB);
+    add(team,"KR",3,r.kr3[0],r.kr3[1],"5-10","190",23,"College",1,krT);
+    add(team,"PR",1,r.pr1[0],r.pr1[1],"5-11","190",24,"College",2,{prYds:100,prAvg:8.0,prTD:0,prLong:18});
+    add(team,"PR",2,r.pr2[0],r.pr2[1],"5-10","210",25,"College",3,prB);
+    add(team,"PR",3,r.pr3[0],r.pr3[1],"5-9","185",23,"College",1,prT);
+    add(team,"LS",1,r.ls1[0],r.ls1[1],"6-2","240",30,"College",8,{gamesPlayed:17,badSnaps:0});
+    add(team,"LS",2,r.ls2[0],r.ls2[1],"6-1","235",25,"College",2,lsB);
+    add(team,"LS",3,r.ls3[0],r.ls3[1],"6-1","235",24,"College",1,lsT);
   }
 
   // Process simple team data already added (HOU, IND)
@@ -633,152 +654,591 @@ function createRemainingTeamRosters(): Player[] {
   add("IND","LS",1,"Luke Rhodes",46,"6-2","240",30,"William & Mary",7,{gamesPlayed:17,badSnaps:0});
   add("IND","LS",2,"Ryan Kelly",78,"6-4","311",31,"Alabama",9,lsB);
 
-  // For the remaining 21 teams, use the addTeamRoster helper with real names for key players
+  // For the remaining 20 teams, use the addTeamRoster helper with real names for all positions
   // JAX, TEN, LV, LAC, DEN, NE, NYJ, NYG, WAS, CHI, DET, GB, MIN, ATL, CAR, NO, TB, ARI, LAR, SEA
-  // Note: SF is already a showcase team
 
-  addTeamRoster("JAX",
-    ["Trevor Lawrence",16],["Mac Jones",5],
-    ["Travis Etienne Jr.",1],["Tank Bigsby",4],
-    ["Calvin Ridley",0],["Christian Kirk",13],["Zay Jones",7],
-    ["Evan Engram",17],["Luke Farrell",89],
-    ["Brandon McManus",2],["Logan Cooke",9]);
+  addTeamRoster("JAX", {
+    qb1:["Trevor Lawrence",16], qb2:["Mac Jones",5], qb3:["C.J. Beathard",3],
+    rb1:["Travis Etienne Jr.",1], rb2:["Tank Bigsby",4], rb3:["D'Ernest Johnson",25],
+    wr1:["Calvin Ridley",0], wr2:["Christian Kirk",13], wr3:["Zay Jones",7],
+    wr4:["Tim Jones",83], wr5:["Parker Washington",18], wr6:["Seth Williams",82],
+    te1:["Evan Engram",17], te2:["Luke Farrell",89], te3:["Brenton Strange",84],
+    lt1:["Cam Robinson",74], lt2:["Walker Little",72], lt3:["Cole Van Lanen",68],
+    lg1:["Ben Bartch",64], lg2:["Tyler Shatley",69], lg3:["Wes Martin",76],
+    c1:["Luke Fortner",79], c2:["Tyler Shatley",69], c3:["Wes Martin",76],
+    rg1:["Brandon Scherff",68], rg2:["Tyler Shatley",69], rg3:["Wes Martin",76],
+    rt1:["Anton Harrison",71], rt2:["Walker Little",72], rt3:["Cole Van Lanen",68],
+    de1a:["Josh Allen",41], de1b:["Dawuane Smoot",91], de1c:["De'Shaan Dixon",92],
+    de2a:["Travon Walker",44], de2b:["Dawuane Smoot",91], de2c:["De'Shaan Dixon",92],
+    dt1a:["Foley Fatukasi",94], dt1b:["DaVon Hamilton",52], dt1c:["Corey Peters",98],
+    dt2a:["Roy Robertson-Harris",95], dt2b:["DaVon Hamilton",52], dt2c:["Corey Peters",98],
+    lb1a:["Foyesade Oluokun",23], lb1b:["Ventrell Miller",51], lb1c:["Ty Summers",42],
+    lb2a:["Devin Lloyd",33], lb2b:["Ventrell Miller",51], lb2c:["Ty Summers",42],
+    lb3a:["Chad Muma",48], lb3b:["Andrew Wingard",42], lb3c:["Grant Morgan",57],
+    cb1a:["Tyson Campbell",32], cb1b:["Tre Herndon",37], cb1c:["Montaric Brown",31],
+    cb2a:["Darious Williams",21], cb2b:["Tre Herndon",37], cb2c:["Gregory Junior",34],
+    ss1:["Andre Cisco",5], ss2:["Daniel Thomas",20], ss3:["Chris Claybrooks",27],
+    fs1:["Rayshawn Jenkins",2], fs2:["Daniel Thomas",20], fs3:["Chris Claybrooks",27],
+    k1:["Brandon McManus",2], k2:["Logan Cooke",9], k3:["Andrew Mevis",8],
+    p1:["Logan Cooke",9], p2:["Brandon McManus",2], p3:["Andrew Mevis",8],
+    kr1:["Tank Bigsby",4], kr2:["Zay Jones",7], kr3:["Parker Washington",18],
+    pr1:["Zay Jones",7], pr2:["Tank Bigsby",4], pr3:["Parker Washington",18],
+    ls1:["Ross Matiscik",46], ls2:["Luke Fortner",79], ls3:["Tyler Shatley",69],
+  });
 
-  addTeamRoster("TEN",
-    ["Will Levis",8],["Mason Rudolph",11],
-    ["Tony Pollard",20],["Tyjae Spears",2],
-    ["DeAndre Hopkins",10],["Treylon Burks",16],["Nick Westbrook-Ikhine",15],
-    ["Chigoziem Okonkwo",85],["Josh Whyle",81],
-    ["Nick Folk",6],["Ryan Stonehouse",4]);
-  // Override TEN Hopkins with injury
-  result[result.length - 54 + 8].injuryStatus = "Questionable";
-  result[result.length - 54 + 8].injuryDetail = "Knee — limited practice";
+  addTeamRoster("TEN", {
+    qb1:["Will Levis",8], qb2:["Mason Rudolph",11], qb3:["Malik Willis",7],
+    rb1:["Tony Pollard",20], rb2:["Tyjae Spears",2], rb3:["Julius Chestnut",36],
+    wr1:["DeAndre Hopkins",10], wr2:["Treylon Burks",16], wr3:["Nick Westbrook-Ikhine",15],
+    wr4:["Kyle Philips",18], wr5:["Chris Moore",12], wr6:["Colton Dowell",83],
+    te1:["Chigoziem Okonkwo",85], te2:["Josh Whyle",81], te3:["Thomas Odukoya",82],
+    lt1:["Nicholas Petit-Frere",78], lt2:["Leroy Watson III",72], lt3:["Andrew Rupcich",70],
+    lg1:["Peter Skoronski",77], lg2:["Daniel Brunskill",67], lg3:["Andrew Rupcich",70],
+    c1:["Lloyd Cushenberry III",55], c2:["Corey Levin",62], c3:["Andrew Rupcich",70],
+    rg1:["Dillon Radunz",75], rg2:["Daniel Brunskill",67], rg3:["Corey Levin",62],
+    rt1:["Andre Dillard",76], rt2:["Nicholas Petit-Frere",78], rt3:["Leroy Watson III",72],
+    de1a:["Harold Landry III",58], de1b:["Arden Key",49], de1c:["Thomas Rush",46],
+    de2a:["Denico Autry",96], de2b:["Arden Key",49], de2c:["Thomas Rush",46],
+    dt1a:["Jeffery Simmons",98], dt1b:["Keondre Coburn",93], dt1c:["Teair Tart",92],
+    dt2a:["Sebastian Joseph-Day",69], dt2b:["Keondre Coburn",93], dt2c:["Teair Tart",92],
+    lb1a:["Kenneth Murray Jr.",56], lb1b:["Jack Gibbens",52], lb1c:["Luke Gifford",43],
+    lb2a:["Azeez Al-Shaair",0], lb2b:["Jack Gibbens",52], lb2c:["Luke Gifford",43],
+    lb3a:["Jack Gibbens",52], lb3b:["Luke Gifford",43], lb3c:["Otis Reese",44],
+    cb1a:["L'Jarius Sneed",38], cb1b:["Kristian Fulton",26], cb1c:["Eric Garror",31],
+    cb2a:["Roger McCreary",21], cb2b:["Kristian Fulton",26], cb2c:["Eric Garror",31],
+    ss1:["Amani Hooker",37], ss2:["Jamal Adams",33], ss3:["Mike Brown",41],
+    fs1:["Quandre Diggs",6], fs2:["Jamal Adams",33], fs3:["Mike Brown",41],
+    k1:["Nick Folk",6], k2:["Brayden Narveson",3], k3:["Brayden Narveson",3],
+    p1:["Ryan Stonehouse",4], p2:["Nick Folk",6], p3:["Ryan Stonehouse",4],
+    kr1:["Tyjae Spears",2], kr2:["Nick Westbrook-Ikhine",15], kr3:["Kyle Philips",18],
+    pr1:["Nick Westbrook-Ikhine",15], pr2:["Tyjae Spears",2], pr3:["Kyle Philips",18],
+    ls1:["Morgan Cox",46], ls2:["Lloyd Cushenberry III",55], ls3:["Corey Levin",62],
+  });
+  // Override TEN Hopkins with injury (WR1-1 is the 7th player added: QB1,QB2,QB3,RB1,RB2,RB3,WR1-1)
+  result[result.length - 81 + 6].injuryStatus = "Questionable";
+  result[result.length - 81 + 6].injuryDetail = "Knee — limited practice";
 
-  addTeamRoster("LV",
-    ["Jimmy Garoppolo",10],["Aidan O'Connell",12],
-    ["Josh Jacobs",28],["Zamir White",35],
-    ["Davante Adams",17],["Jakobi Meyers",16],["Tre Tucker",11],
-    ["Michael Mayer",87],["Austin Hooper",81],
-    ["Daniel Carlson",2],["AJ Cole",6]);
+  addTeamRoster("LV", {
+    qb1:["Jimmy Garoppolo",10], qb2:["Aidan O'Connell",12], qb3:["Chase Garbers",15],
+    rb1:["Josh Jacobs",28], rb2:["Zamir White",35], rb3:["Ameer Abdullah",22],
+    wr1:["Davante Adams",17], wr2:["Jakobi Meyers",16], wr3:["Tre Tucker",11],
+    wr4:["Kristian Wilkerson",85], wr5:["DeAndre Carter",1], wr6:["Phillip Dorsett II",4],
+    te1:["Michael Mayer",87], te2:["Austin Hooper",81], te3:["Jesper Horsted",89],
+    lt1:["Kolton Miller",74], lt2:["Thayer Munford Jr.",77], lt3:["Jackson Powers-Johnson",68],
+    lg1:["Dylan Parham",66], lg2:["Jordan Meredith",64], lg3:["Jackson Powers-Johnson",68],
+    c1:["Andre James",68], c2:["Jordan Meredith",64], c3:["Hroniss Grasu",67],
+    rg1:["Greg Van Roten",65], rg2:["Jordan Meredith",64], rg3:["Hroniss Grasu",67],
+    rt1:["Jermaine Eluemunor",72], rt2:["Thayer Munford Jr.",77], rt3:["Jackson Powers-Johnson",68],
+    de1a:["Maxx Crosby",98], de1b:["Malcolm Koonce",51], de1c:["Janarius Robinson",94],
+    de2a:["Chandler Jones",55], de2b:["Malcolm Koonce",51], de2c:["Janarius Robinson",94],
+    dt1a:["Jerry Tillery",99], dt1b:["Bilal Nichols",91], dt1c:["Matthew Butler",92],
+    dt2a:["Bilal Nichols",91], dt2b:["Adam Butler",69], dt2c:["Matthew Butler",92],
+    lb1a:["Robert Spillane",41], lb1b:["Luke Masterson",50], lb1c:["Darien Butler",56],
+    lb2a:["Divine Deablo",5], lb2b:["Luke Masterson",50], lb2c:["Darien Butler",56],
+    lb3a:["Luke Masterson",50], lb3b:["Darien Butler",56], lb3c:["Curtis Bolton",43],
+    cb1a:["Jack Jones",18], cb1b:["Nate Hobbs",39], cb1c:["Sam Webb",27],
+    cb2a:["Nate Hobbs",39], cb2b:["Amik Robertson",21], cb2c:["Sam Webb",27],
+    ss1:["Marcus Epps",1], ss2:["Tre'von Moehrig",25], ss3:["Isaiah Pola-Mao",20],
+    fs1:["Tre'von Moehrig",25], fs2:["Marcus Epps",1], fs3:["Isaiah Pola-Mao",20],
+    k1:["Daniel Carlson",2], k2:["AJ Cole",6], k3:["Cole Tracy",8],
+    p1:["AJ Cole",6], p2:["Daniel Carlson",2], p3:["Cole Tracy",8],
+    kr1:["Zamir White",35], kr2:["Tre Tucker",11], kr3:["DeAndre Carter",1],
+    pr1:["Tre Tucker",11], pr2:["Zamir White",35], pr3:["DeAndre Carter",1],
+    ls1:["Jacob Bobenmoyer",46], ls2:["Andre James",68], ls3:["Jordan Meredith",64],
+  });
 
-  addTeamRoster("LAC",
-    ["Justin Herbert",10],["Easton Stick",2],
-    ["Austin Ekeler",30],["Joshua Kelley",25],
-    ["Keenan Allen",13],["Joshua Palmer",5],["Quentin Johnston",1],
-    ["Gerald Everett",87],["Donald Parham Jr.",89],
-    ["Cameron Dicker",15],["JK Scott",16]);
+  addTeamRoster("LAC", {
+    qb1:["Justin Herbert",10], qb2:["Easton Stick",2], qb3:["Max Duggan",6],
+    rb1:["Austin Ekeler",30], rb2:["Joshua Kelley",25], rb3:["Isaiah Spiller",28],
+    wr1:["Keenan Allen",13], wr2:["Joshua Palmer",5], wr3:["Quentin Johnston",1],
+    wr4:["Jalen Guyton",15], wr5:["Simi Fehoko",81], wr6:["Derius Davis",20],
+    te1:["Gerald Everett",87], te2:["Donald Parham Jr.",89], te3:["Stone Smartt",84],
+    lt1:["Rashawn Slater",70], lt2:["Jamaree Salyer",68], lt3:["Foster Sarell",78],
+    lg1:["Zion Johnson",77], lg2:["Jamaree Salyer",68], lg3:["Brenden Jaimes",60],
+    c1:["Corey Linsley",63], c2:["Will Clapp",64], c3:["Brenden Jaimes",60],
+    rg1:["Trey Pipkins III",79], rg2:["Jamaree Salyer",68], rg3:["Brenden Jaimes",60],
+    rt1:["Trey Pipkins III",79], rt2:["Foster Sarell",78], rt3:["Jamaree Salyer",68],
+    de1a:["Joey Bosa",97], de1b:["Chris Rumph II",94], de1c:["Carlo Kemp",91],
+    de2a:["Khalil Mack",52], de2b:["Chris Rumph II",94], de2c:["Carlo Kemp",91],
+    dt1a:["Sebastian Joseph-Day",69], dt1b:["Morgan Fox",56], dt1c:["Otito Ogbonnia",93],
+    dt2a:["Poona Ford",98], dt2b:["Morgan Fox",56], dt2c:["Otito Ogbonnia",93],
+    lb1a:["Eric Kendricks",23], lb1b:["Troy Dye",45], lb1c:["Amen Ogbongbemiga",43],
+    lb2a:["Kenneth Murray Jr.",56], lb2b:["Troy Dye",45], lb2c:["Amen Ogbongbemiga",43],
+    lb3a:["Troy Dye",45], lb3b:["Amen Ogbongbemiga",43], lb3c:["Nick Niemann",31],
+    cb1a:["Asante Samuel Jr.",26], cb1b:["Michael Davis",43], cb1c:["Deane Leonard",33],
+    cb2a:["Michael Davis",43], cb2b:["Ja'Sir Taylor",36], cb2c:["Deane Leonard",33],
+    ss1:["Derwin James Jr.",3], ss2:["Alohi Gilman",32], ss3:["Raheem Layne",38],
+    fs1:["Alohi Gilman",32], fs2:["JT Woods",22], fs3:["Raheem Layne",38],
+    k1:["Cameron Dicker",15], k2:["Dustin Hopkins",18], k3:["Dustin Hopkins",18],
+    p1:["JK Scott",16], p2:["Cameron Dicker",15], p3:["JK Scott",16],
+    kr1:["Joshua Kelley",25], kr2:["Quentin Johnston",1], kr3:["Derius Davis",20],
+    pr1:["Quentin Johnston",1], pr2:["Joshua Kelley",25], pr3:["Derius Davis",20],
+    ls1:["Josh Harris",47], ls2:["Corey Linsley",63], ls3:["Will Clapp",64],
+  });
 
-  addTeamRoster("DEN",
-    ["Bo Nix",10],["Jarrett Stidham",4],
-    ["Javonte Williams",33],["Samaje Perine",25],
-    ["Courtland Sutton",14],["Jerry Jeudy",10],["Marvin Mims Jr.",11],
-    ["Adam Trautman",82],["Greg Dulcich",80],
-    ["Wil Lutz",3],["Riley Dixon",9]);
+  addTeamRoster("DEN", {
+    qb1:["Bo Nix",10], qb2:["Jarrett Stidham",4], qb3:["Ben DiNucci",3],
+    rb1:["Javonte Williams",33], rb2:["Samaje Perine",25], rb3:["Tyler Badie",30],
+    wr1:["Courtland Sutton",14], wr2:["Jerry Jeudy",10], wr3:["Marvin Mims Jr.",11],
+    wr4:["Lil'Jordan Humphrey",16], wr5:["Brandon Johnson",7], wr6:["Jalen Virgil",17],
+    te1:["Adam Trautman",82], te2:["Greg Dulcich",80], te3:["Nate Adkins",83],
+    lt1:["Garett Bolles",72], lt2:["Alex Palczewski",66], lt3:["Frank Crum",61],
+    lg1:["Ben Powers",64], lg2:["Quinn Meinerz",77], lg3:["Frank Crum",61],
+    c1:["Luke Wattenberg",60], c2:["Quinn Meinerz",77], c3:["Alex Palczewski",66],
+    rg1:["Quinn Meinerz",77], rg2:["Alex Palczewski",66], rg3:["Frank Crum",61],
+    rt1:["Mike McGlinchey",68], rt2:["Alex Palczewski",66], rt3:["Frank Crum",61],
+    de1a:["Nik Bonitto",42], de1b:["Baron Browning",56], de1c:["Matt Henningsen",92],
+    de2a:["Zach Allen",99], de2b:["Baron Browning",56], de2c:["Matt Henningsen",92],
+    dt1a:["D.J. Jones",97], dt1b:["Mike Purcell",98], dt1c:["Eyioma Uwazurike",94],
+    dt2a:["Mike Purcell",98], dt2b:["Elijah Garcia",95], dt2c:["Eyioma Uwazurike",94],
+    lb1a:["Alex Singleton",49], lb1b:["Jonas Griffith",50], lb1c:["Justin Strnad",40],
+    lb2a:["Josey Jewell",47], lb2b:["Jonas Griffith",50], lb2c:["Justin Strnad",40],
+    lb3a:["Jonas Griffith",50], lb3b:["Justin Strnad",40], lb3c:["Barrington Wade",43],
+    cb1a:["Pat Surtain II",2], cb1b:["Damarri Mathis",27], cb1c:["Art Green",36],
+    cb2a:["Riley Moss",21], cb2b:["Damarri Mathis",27], cb2c:["Art Green",36],
+    ss1:["Justin Simmons",31], ss2:["P.J. Locke",6], ss3:["Delarrin Turner-Yell",32],
+    fs1:["P.J. Locke",6], fs2:["Caden Sterns",30], fs3:["Delarrin Turner-Yell",32],
+    k1:["Wil Lutz",3], k2:["Matt Ammendola",19], k3:["Matt Ammendola",19],
+    p1:["Riley Dixon",9], p2:["Wil Lutz",3], p3:["Riley Dixon",9],
+    kr1:["Samaje Perine",25], kr2:["Marvin Mims Jr.",11], kr3:["Tyler Badie",30],
+    pr1:["Marvin Mims Jr.",11], pr2:["Samaje Perine",25], pr3:["Tyler Badie",30],
+    ls1:["Mitchell Fraboni",46], ls2:["Luke Wattenberg",60], ls3:["Quinn Meinerz",77],
+  });
 
-  addTeamRoster("NE",
-    ["Drake Maye",10],["Jacoby Brissett",7],
-    ["Rhamondre Stevenson",38],["Antonio Gibson",21],
-    ["Kendrick Bourne",84],["JuJu Smith-Schuster",7],["Demario Douglas",3],
-    ["Hunter Henry",85],["Mike Gesicki",88],
-    ["Chad Ryland",37],["Bryce Baringer",17]);
+  addTeamRoster("NE", {
+    qb1:["Drake Maye",10], qb2:["Jacoby Brissett",7], qb3:["Bailey Zappe",4],
+    rb1:["Rhamondre Stevenson",38], rb2:["Antonio Gibson",21], rb3:["Kevin Harris",36],
+    wr1:["Kendrick Bourne",84], wr2:["JuJu Smith-Schuster",7], wr3:["Demario Douglas",3],
+    wr4:["Tyquan Thornton",11], wr5:["Kayshon Boutte",18], wr6:["Jalen Reagor",16],
+    te1:["Hunter Henry",85], te2:["Mike Gesicki",88], te3:["Matt Sokol",80],
+    lt1:["Trent Brown",77], lt2:["Vederian Lowe",71], lt3:["Atonio Mafi",64],
+    lg1:["Cole Strange",69], lg2:["Michael Jordan",60], lg3:["Atonio Mafi",64],
+    c1:["David Andrews",60], c2:["James Ferentz",66], c3:["Michael Jordan",60],
+    rg1:["Michael Onwenu",71], rg2:["Michael Jordan",60], rg3:["Atonio Mafi",64],
+    rt1:["Michael Onwenu",71], rt2:["Vederian Lowe",71], rt3:["Atonio Mafi",64],
+    de1a:["Matthew Judon",9], de1b:["Joshua Uche",55], de1c:["Anfernee Jennings",33],
+    de2a:["Keion White",99], de2b:["Joshua Uche",55], de2c:["Anfernee Jennings",33],
+    dt1a:["Davon Godchaux",92], dt1b:["Lawrence Guy",93], dt1c:["Sam Roberts",96],
+    dt2a:["Christian Barmore",90], dt2b:["Lawrence Guy",93], dt2c:["Sam Roberts",96],
+    lb1a:["Ja'Whaun Bentley",8], lb1b:["Marte Mapu",30], lb1c:["Chris Board",49],
+    lb2a:["Jahlani Tavai",48], lb2b:["Marte Mapu",30], lb2c:["Chris Board",49],
+    lb3a:["Marte Mapu",30], lb3b:["Chris Board",49], lb3c:["Diego Fagot",54],
+    cb1a:["Christian Gonzalez",0], cb1b:["Jonathan Jones",31], cb1c:["Shaun Wade",26],
+    cb2a:["Jonathan Jones",31], cb2b:["Marcus Jones",25], cb2c:["Shaun Wade",26],
+    ss1:["Kyle Dugger",23], ss2:["Jabrill Peppers",5], ss3:["Brenden Schooler",43],
+    fs1:["Jabrill Peppers",5], fs2:["Adrian Phillips",21], fs3:["Brenden Schooler",43],
+    k1:["Chad Ryland",37], k2:["Bryce Baringer",17], k3:["Chad Ryland",37],
+    p1:["Bryce Baringer",17], p2:["Chad Ryland",37], p3:["Bryce Baringer",17],
+    kr1:["Antonio Gibson",21], kr2:["Demario Douglas",3], kr3:["Tyquan Thornton",11],
+    pr1:["Demario Douglas",3], pr2:["Antonio Gibson",21], pr3:["Marcus Jones",25],
+    ls1:["Joe Cardona",49], ls2:["David Andrews",60], ls3:["James Ferentz",66],
+  });
 
-  addTeamRoster("NYJ",
-    ["Aaron Rodgers",8],["Tyrod Taylor",2],
-    ["Breece Hall",20],["Dalvin Cook",33],
-    ["Garrett Wilson",17],["Allen Lazard",10],["Xavier Gipson",3],
-    ["Tyler Conklin",83],["C.J. Uzomah",87],
-    ["Greg Zuerlein",1],["Thomas Morstead",4]);
+  addTeamRoster("NYJ", {
+    qb1:["Aaron Rodgers",8], qb2:["Tyrod Taylor",2], qb3:["Tim Boyle",7],
+    rb1:["Breece Hall",20], rb2:["Dalvin Cook",33], rb3:["Israel Abanikanda",25],
+    wr1:["Garrett Wilson",17], wr2:["Allen Lazard",10], wr3:["Xavier Gipson",3],
+    wr4:["Randall Cobb",18], wr5:["Jason Brownlee",15], wr6:["Irvin Charles",82],
+    te1:["Tyler Conklin",83], te2:["C.J. Uzomah",87], te3:["Kenny Yeboah",89],
+    lt1:["Mekhi Becton",77], lt2:["Billy Turner",78], lt3:["Carter Warren",76],
+    lg1:["Laken Tomlinson",78], lg2:["Wes Schweitzer",60], lg3:["Carter Warren",76],
+    c1:["Connor McGovern",60], c2:["Wes Schweitzer",60], c3:["Carter Warren",76],
+    rg1:["Alijah Vera-Tucker",75], rg2:["Wes Schweitzer",60], rg3:["Carter Warren",76],
+    rt1:["Morgan Moses",74], rt2:["Billy Turner",78], rt3:["Carter Warren",76],
+    de1a:["Carl Lawson",58], de1b:["Bryce Huff",47], de1c:["Micheal Clemons",72],
+    de2a:["Jermaine Johnson II",52], de2b:["Bryce Huff",47], de2c:["Micheal Clemons",72],
+    dt1a:["Quinnen Williams",95], dt1b:["Solomon Thomas",94], dt1c:["Tanzel Smart",91],
+    dt2a:["Al Woods",99], dt2b:["Solomon Thomas",94], dt2c:["Tanzel Smart",91],
+    lb1a:["C.J. Mosley",57], lb1b:["Jamien Sherwood",44], lb1c:["Zaire Barnes",50],
+    lb2a:["Quincy Williams",56], lb2b:["Jamien Sherwood",44], lb2c:["Zaire Barnes",50],
+    lb3a:["Jamien Sherwood",44], lb3b:["Zaire Barnes",50], lb3c:["Chazz Surratt",41],
+    cb1a:["Sauce Gardner",1], cb1b:["D.J. Reed",4], cb1c:["Bryce Hall",37],
+    cb2a:["D.J. Reed",4], cb2b:["Brandin Echols",26], cb2c:["Bryce Hall",37],
+    ss1:["Jordan Whitehead",3], ss2:["Tony Adams",22], ss3:["Ashtyn Davis",21],
+    fs1:["Tony Adams",22], fs2:["Ashtyn Davis",21], fs3:["Tony Adams",22],
+    k1:["Greg Zuerlein",1], k2:["Thomas Morstead",4], k3:["Greg Zuerlein",1],
+    p1:["Thomas Morstead",4], p2:["Greg Zuerlein",1], p3:["Thomas Morstead",4],
+    kr1:["Dalvin Cook",33], kr2:["Xavier Gipson",3], kr3:["Israel Abanikanda",25],
+    pr1:["Xavier Gipson",3], pr2:["Dalvin Cook",33], pr3:["Israel Abanikanda",25],
+    ls1:["Thomas Hennessy",42], ls2:["Connor McGovern",60], ls3:["Wes Schweitzer",60],
+  });
 
-  addTeamRoster("NYG",
-    ["Daniel Jones",8],["Tommy DeVito",15],
-    ["Saquon Barkley",26],["Matt Breida",31],
-    ["Darius Slayton",86],["Wan'Dale Robinson",17],["Isaiah Hodgins",18],
-    ["Darren Waller",12],["Daniel Bellinger",82],
-    ["Graham Gano",5],["Jamie Gillan",6]);
+  addTeamRoster("NYG", {
+    qb1:["Daniel Jones",8], qb2:["Tommy DeVito",15], qb3:["Matt Barkley",5],
+    rb1:["Saquon Barkley",26], rb2:["Matt Breida",31], rb3:["Eric Gray",20],
+    wr1:["Darius Slayton",86], wr2:["Wan'Dale Robinson",17], wr3:["Isaiah Hodgins",18],
+    wr4:["Jalin Hyatt",13], wr5:["Gunner Olszewski",82], wr6:["David Sills V",84],
+    te1:["Darren Waller",12], te2:["Daniel Bellinger",82], te3:["Chris Myarick",85],
+    lt1:["Andrew Thomas",78], lt2:["Joshua Ezeudu",75], lt3:["Matt Peart",74],
+    lg1:["Joshua Ezeudu",75], lg2:["Ben Bredeson",68], lg3:["Matt Peart",74],
+    c1:["John Michael Schmitz",60], c2:["Ben Bredeson",68], c3:["Matt Peart",74],
+    rg1:["Mark Glowinski",64], rg2:["Ben Bredeson",68], rg3:["Matt Peart",74],
+    rt1:["Evan Neal",73], rt2:["Joshua Ezeudu",75], rt3:["Matt Peart",74],
+    de1a:["Kayvon Thibodeaux",5], de1b:["Azeez Ojulari",51], de1c:["Boogie Basham",96],
+    de2a:["Azeez Ojulari",51], de2b:["Jihad Ward",55], de2c:["Boogie Basham",96],
+    dt1a:["Dexter Lawrence",97], dt1b:["Rakeem Nunez-Roches",45], dt1c:["Jordon Riley",91],
+    dt2a:["A'Shawn Robinson",91], dt2b:["Rakeem Nunez-Roches",45], dt2c:["Jordon Riley",91],
+    lb1a:["Bobby Okereke",58], lb1b:["Micah McFadden",41], lb1c:["Carter Coughlin",49],
+    lb2a:["Micah McFadden",41], lb2b:["Carter Coughlin",49], lb2c:["Cam Brown",47],
+    lb3a:["Darrian Beavers",43], lb3b:["Carter Coughlin",49], lb3c:["Cam Brown",47],
+    cb1a:["Adoree' Jackson",22], cb1b:["Cor'Dale Flott",28], cb1c:["Nick McCloud",29],
+    cb2a:["Deonte Banks",25], cb2b:["Cor'Dale Flott",28], cb2c:["Nick McCloud",29],
+    ss1:["Xavier McKinney",29], ss2:["Dane Belton",24], ss3:["Jason Pinnock",21],
+    fs1:["Dane Belton",24], fs2:["Jason Pinnock",21], fs3:["Dane Belton",24],
+    k1:["Graham Gano",5], k2:["Jamie Gillan",6], k3:["Randy Bullock",3],
+    p1:["Jamie Gillan",6], p2:["Graham Gano",5], p3:["Jamie Gillan",6],
+    kr1:["Matt Breida",31], kr2:["Isaiah Hodgins",18], kr3:["Eric Gray",20],
+    pr1:["Wan'Dale Robinson",17], pr2:["Matt Breida",31], pr3:["Eric Gray",20],
+    ls1:["Casey Kreiter",47], ls2:["John Michael Schmitz",60], ls3:["Ben Bredeson",68],
+  });
 
-  addTeamRoster("WAS",
-    ["Jayden Daniels",5],["Marcus Mariota",8],
-    ["Brian Robinson Jr.",8],["Austin Ekeler",30],
-    ["Terry McLaurin",17],["Jahan Dotson",1],["Dyami Brown",2],
-    ["Logan Thomas",82],["John Bates",87],
-    ["Cade York",3],["Tress Way",5]);
+  addTeamRoster("WAS", {
+    qb1:["Jayden Daniels",5], qb2:["Marcus Mariota",8], qb3:["Sam Hartman",10],
+    rb1:["Brian Robinson Jr.",8], rb2:["Austin Ekeler",30], rb3:["Chris Rodriguez Jr.",23],
+    wr1:["Terry McLaurin",17], wr2:["Jahan Dotson",1], wr3:["Dyami Brown",2],
+    wr4:["Luke McCaffrey",16], wr5:["Kazmeir Allen",14], wr6:["Mitchell Tinsley",89],
+    te1:["Logan Thomas",82], te2:["John Bates",87], te3:["Armani Rogers",88],
+    lt1:["Charles Leno Jr.",72], lt2:["Cornelius Lucas",78], lt3:["Alex Leatherwood",76],
+    lg1:["Sam Cosmi",52], lg2:["Chris Paul",74], lg3:["Alex Leatherwood",76],
+    c1:["Tyler Larsen",69], c2:["Nick Gates",65], c3:["Chris Paul",74],
+    rg1:["Andrew Wylie",77], rg2:["Chris Paul",74], rg3:["Nick Gates",65],
+    rt1:["Andrew Wylie",77], rt2:["Cornelius Lucas",78], rt3:["Alex Leatherwood",76],
+    de1a:["Chase Young",99], de1b:["James Smith-Williams",96], de1c:["Casey Toohill",57],
+    de2a:["Montez Sweat",90], de2b:["James Smith-Williams",96], de2c:["Casey Toohill",57],
+    dt1a:["Daron Payne",94], dt1b:["Phidarian Mathis",98], dt1c:["Benning Potoa'e",93],
+    dt2a:["Jonathan Allen",93], dt2b:["Phidarian Mathis",98], dt2c:["Benning Potoa'e",93],
+    lb1a:["Frankie Luvu",4], lb1b:["Cody Barton",57], lb1c:["De'Jon Harris",48],
+    lb2a:["Cody Barton",57], lb2b:["David Mayo",55], lb2c:["De'Jon Harris",48],
+    lb3a:["David Mayo",55], lb3b:["De'Jon Harris",48], lb3c:["Khaleke Hudson",44],
+    cb1a:["Emmanuel Forbes Jr.",13], cb1b:["Benjamin St-Juste",25], cb1c:["Christian Holmes",37],
+    cb2a:["Benjamin St-Juste",25], cb2b:["Danny Johnson",36], cb2c:["Christian Holmes",37],
+    ss1:["Kamren Curl",31], ss2:["Jeremy Chinn",21], ss3:["Percy Butler",35],
+    fs1:["Jeremy Chinn",21], fs2:["Percy Butler",35], fs3:["Kamren Curl",31],
+    k1:["Cade York",3], k2:["Tress Way",5], k3:["Cade York",3],
+    p1:["Tress Way",5], p2:["Cade York",3], p3:["Tress Way",5],
+    kr1:["Austin Ekeler",30], kr2:["Dyami Brown",2], kr3:["Chris Rodriguez Jr.",23],
+    pr1:["Dyami Brown",2], pr2:["Austin Ekeler",30], pr3:["Chris Rodriguez Jr.",23],
+    ls1:["Camaron Cheeseman",50], ls2:["Tyler Larsen",69], ls3:["Nick Gates",65],
+  });
 
-  addTeamRoster("CHI",
-    ["Caleb Williams",18],["Tyson Bagent",17],
-    ["D'Andre Swift",14],["Khalil Herbert",24],
-    ["DJ Moore",2],["Keenan Allen",13],["Tyler Scott",12],
-    ["Cole Kmet",85],["Gerald Everett",87],
-    ["Cairo Santos",2],["Trenton Gill",16]);
+  addTeamRoster("CHI", {
+    qb1:["Caleb Williams",18], qb2:["Tyson Bagent",17], qb3:["Brett Rypien",11],
+    rb1:["D'Andre Swift",14], rb2:["Khalil Herbert",24], rb3:["Roschon Johnson",23],
+    wr1:["DJ Moore",2], wr2:["Keenan Allen",13], wr3:["Tyler Scott",12],
+    wr4:["Velus Jones Jr.",15], wr5:["Nsimba Webster",16], wr6:["Dante Pettis",83],
+    te1:["Cole Kmet",85], te2:["Gerald Everett",87], te3:["Robert Tonyan",82],
+    lt1:["Braxton Jones",73], lt2:["Larry Borom",75], lt3:["Ja'Tyre Carter",63],
+    lg1:["Teven Jenkins",76], lg2:["Nate Davis",64], lg3:["Ja'Tyre Carter",63],
+    c1:["Cody Whitehair",65], c2:["Lucas Patrick",62], c3:["Ja'Tyre Carter",63],
+    rg1:["Nate Davis",64], rg2:["Matt Pryor",69], rg3:["Ja'Tyre Carter",63],
+    rt1:["Darnell Wright",58], rt2:["Larry Borom",75], rt3:["Ja'Tyre Carter",63],
+    de1a:["Montez Sweat",98], de1b:["DeMarcus Walker",95], de1c:["Dominique Robinson",91],
+    de2a:["DeMarcus Walker",95], de2b:["Rasheem Green",94], de2c:["Dominique Robinson",91],
+    dt1a:["Andrew Billings",97], dt1b:["Zacch Pickens",96], dt1c:["Armon Watts",99],
+    dt2a:["Gervon Dexter Sr.",92], dt2b:["Zacch Pickens",96], dt2c:["Armon Watts",99],
+    lb1a:["Tremaine Edmunds",49], lb1b:["T.J. Edwards",53], lb1c:["Noah Sewell",44],
+    lb2a:["T.J. Edwards",53], lb2b:["Jack Sanborn",57], lb2c:["Noah Sewell",44],
+    lb3a:["Jack Sanborn",57], lb3b:["Noah Sewell",44], lb3c:["Amen Ogbongbemiga",48],
+    cb1a:["Jaylon Johnson",1], cb1b:["Kyler Gordon",6], cb1c:["Josh Blackwell",39],
+    cb2a:["Kyler Gordon",6], cb2b:["Tyrique Stevenson",29], cb2c:["Josh Blackwell",39],
+    ss1:["Kevin Byard",4], ss2:["Jaquan Brisker",9], ss3:["Elijah Hicks",37],
+    fs1:["Jaquan Brisker",9], fs2:["Eddie Jackson",4], fs3:["Elijah Hicks",37],
+    k1:["Cairo Santos",2], k2:["Trenton Gill",16], k3:["Cairo Santos",2],
+    p1:["Trenton Gill",16], p2:["Cairo Santos",2], p3:["Trenton Gill",16],
+    kr1:["Khalil Herbert",24], kr2:["Tyler Scott",12], kr3:["Velus Jones Jr.",15],
+    pr1:["Tyler Scott",12], pr2:["Khalil Herbert",24], pr3:["Velus Jones Jr.",15],
+    ls1:["Patrick Scales",48], ls2:["Cody Whitehair",65], ls3:["Lucas Patrick",62],
+  });
 
-  addTeamRoster("DET",
-    ["Jared Goff",16],["Hendon Hooker",4],
-    ["David Montgomery",5],["Jahmyr Gibbs",26],
-    ["Amon-Ra St. Brown",14],["Jameson Williams",9],["Kalif Raymond",11],
-    ["Sam LaPorta",87],["Brock Wright",89],
-    ["Michael Badgley",17],["Jack Fox",3]);
+  addTeamRoster("DET", {
+    qb1:["Jared Goff",16], qb2:["Hendon Hooker",4], qb3:["Nate Sudfeld",1],
+    rb1:["David Montgomery",5], rb2:["Jahmyr Gibbs",26], rb3:["Craig Reynolds",46],
+    wr1:["Amon-Ra St. Brown",14], wr2:["Jameson Williams",9], wr3:["Kalif Raymond",11],
+    wr4:["Josh Reynolds",8], wr5:["Antoine Green",17], wr6:["Donovan Peoples-Jones",80],
+    te1:["Sam LaPorta",87], te2:["Brock Wright",89], te3:["Shane Zylstra",84],
+    lt1:["Taylor Decker",68], lt2:["Dan Skipper",70], lt3:["Colby Sorsdal",72],
+    lg1:["Graham Glasgow",60], lg2:["Dan Skipper",70], lg3:["Colby Sorsdal",72],
+    c1:["Frank Ragnow",77], c2:["Graham Glasgow",60], c3:["Colby Sorsdal",72],
+    rg1:["Kevin Zeitler",76], rg2:["Graham Glasgow",60], rg3:["Colby Sorsdal",72],
+    rt1:["Penei Sewell",58], rt2:["Dan Skipper",70], rt3:["Colby Sorsdal",72],
+    de1a:["Aidan Hutchinson",97], de1b:["Marcus Davenport",92], de1c:["James Houston",41],
+    de2a:["Marcus Davenport",92], de2b:["Josh Paschal",93], de2c:["James Houston",41],
+    dt1a:["Alim McNeill",54], dt1b:["Isaiah Buggs",96], dt1c:["Brodric Martin",98],
+    dt2a:["D.J. Reader",98], dt2b:["Isaiah Buggs",96], dt2c:["Brodric Martin",98],
+    lb1a:["Alex Anzalone",34], lb1b:["Derrick Barnes",55], lb1c:["Anthony Pittman",52],
+    lb2a:["Jack Campbell",45], lb2b:["Derrick Barnes",55], lb2c:["Anthony Pittman",52],
+    lb3a:["Derrick Barnes",55], lb3b:["Anthony Pittman",52], lb3c:["Malcolm Rodriguez",44],
+    cb1a:["Cameron Sutton",1], cb1b:["Emmanuel Moseley",21], cb1c:["Steven Gilmore",38],
+    cb2a:["Emmanuel Moseley",21], cb2b:["Jerry Jacobs",39], cb2c:["Steven Gilmore",38],
+    ss1:["Tracy Walker III",21], ss2:["Kerby Joseph",31], ss3:["C.J. Moore",20],
+    fs1:["Kerby Joseph",31], fs2:["Brian Branch",32], fs3:["C.J. Moore",20],
+    k1:["Michael Badgley",17], k2:["Riley Patterson",36], k3:["Michael Badgley",17],
+    p1:["Jack Fox",3], p2:["Michael Badgley",17], p3:["Jack Fox",3],
+    kr1:["Jahmyr Gibbs",26], kr2:["Kalif Raymond",11], kr3:["Craig Reynolds",46],
+    pr1:["Kalif Raymond",11], pr2:["Jahmyr Gibbs",26], pr3:["Craig Reynolds",46],
+    ls1:["Scott Daly",47], ls2:["Frank Ragnow",77], ls3:["Graham Glasgow",60],
+  });
 
-  addTeamRoster("GB",
-    ["Jordan Love",10],["Sean Clifford",8],
-    ["Aaron Jones",33],["AJ Dillon",28],
-    ["Christian Watson",9],["Romeo Doubs",87],["Jayden Reed",11],
-    ["Luke Musgrave",88],["Tucker Kraft",85],
-    ["Anders Carlson",7],["Daniel Whelan",2]);
+  addTeamRoster("GB", {
+    qb1:["Jordan Love",10], qb2:["Sean Clifford",8], qb3:["Alex McGough",5],
+    rb1:["Aaron Jones",33], rb2:["AJ Dillon",28], rb3:["Emanuel Wilson",31],
+    wr1:["Christian Watson",9], wr2:["Romeo Doubs",87], wr3:["Jayden Reed",11],
+    wr4:["Bo Melton",18], wr5:["Dontayvion Wicks",13], wr6:["Samori Toure",83],
+    te1:["Luke Musgrave",88], te2:["Tucker Kraft",85], te3:["Ben Sims",89],
+    lt1:["David Bakhtiari",69], lt2:["Rasheed Walker",73], lt3:["Caleb Jones",78],
+    lg1:["Elgton Jenkins",74], lg2:["Sean Rhyan",75], lg3:["Caleb Jones",78],
+    c1:["Josh Myers",71], c2:["Jake Hanson",50], c3:["Sean Rhyan",75],
+    rg1:["Jon Runyan Jr.",76], rg2:["Sean Rhyan",75], rg3:["Caleb Jones",78],
+    rt1:["Zach Tom",65], rt2:["Rasheed Walker",73], rt3:["Caleb Jones",78],
+    de1a:["Rashan Gary",52], de1b:["Lukas Van Ness",90], de1c:["Brenton Cox Jr.",44],
+    de2a:["Preston Smith",91], de2b:["Lukas Van Ness",90], de2c:["Brenton Cox Jr.",44],
+    dt1a:["Kenny Clark",97], dt1b:["T.J. Slaton",93], dt1c:["Jonathan Ford",92],
+    dt2a:["Devonte Wyatt",95], dt2b:["T.J. Slaton",93], dt2c:["Jonathan Ford",92],
+    lb1a:["De'Vondre Campbell",59], lb1b:["Quay Walker",7], lb1c:["Ty'Ron Hopper",42],
+    lb2a:["Quay Walker",7], lb2b:["Ty'Ron Hopper",42], lb2c:["Krys Barnes",51],
+    lb3a:["Ty'Ron Hopper",42], lb3b:["Krys Barnes",51], lb3c:["Isaiah McDuffie",58],
+    cb1a:["Jaire Alexander",23], cb1b:["Eric Stokes",21], cb1c:["Carrington Valentine",36],
+    cb2a:["Eric Stokes",21], cb2b:["Corey Ballentine",25], cb2c:["Carrington Valentine",36],
+    ss1:["Darnell Savage",26], ss2:["Jonathan Owens",34], ss3:["Anthony Johnson Jr.",38],
+    fs1:["Jonathan Owens",34], fs2:["Anthony Johnson Jr.",38], fs3:["Darnell Savage",26],
+    k1:["Anders Carlson",7], k2:["Daniel Whelan",2], k3:["Anders Carlson",7],
+    p1:["Daniel Whelan",2], p2:["Anders Carlson",7], p3:["Daniel Whelan",2],
+    kr1:["AJ Dillon",28], kr2:["Jayden Reed",11], kr3:["Emanuel Wilson",31],
+    pr1:["Jayden Reed",11], pr2:["AJ Dillon",28], pr3:["Emanuel Wilson",31],
+    ls1:["Jack Coco",48], ls2:["Josh Myers",71], ls3:["Jake Hanson",50],
+  });
 
-  addTeamRoster("MIN",
-    ["Sam Darnold",14],["Nick Mullens",12],
-    ["Aaron Jones",33],["Ty Chandler",32],
-    ["Justin Jefferson",18],["Jordan Addison",3],["K.J. Osborn",17],
-    ["T.J. Hockenson",87],["Josh Oliver",84],
-    ["Greg Joseph",1],["Ryan Wright",2]);
+  addTeamRoster("MIN", {
+    qb1:["Sam Darnold",14], qb2:["Nick Mullens",12], qb3:["Jaren Hall",3],
+    rb1:["Aaron Jones",33], rb2:["Ty Chandler",32], rb3:["DeWayne McBride",22],
+    wr1:["Justin Jefferson",18], wr2:["Jordan Addison",3], wr3:["K.J. Osborn",17],
+    wr4:["Brandon Powell",8], wr5:["Jalen Nailor",83], wr6:["Thayer Thomas",81],
+    te1:["T.J. Hockenson",87], te2:["Josh Oliver",84], te3:["Johnny Mundt",86],
+    lt1:["Christian Darrisaw",71], lt2:["David Quessenberry",77], lt3:["Blake Brandel",64],
+    lg1:["Dalton Risner",66], lg2:["Blake Brandel",64], lg3:["David Quessenberry",77],
+    c1:["Garrett Bradbury",56], c2:["Austin Schlottmann",60], c3:["Blake Brandel",64],
+    rg1:["Ed Ingram",67], rg2:["David Quessenberry",77], rg3:["Blake Brandel",64],
+    rt1:["Brian O'Neill",75], rt2:["David Quessenberry",77], rt3:["Blake Brandel",64],
+    de1a:["Jonathan Greenard",91], de1b:["Pat Jones II",98], de1c:["Benton Whitley",55],
+    de2a:["Dallas Turner",11], de2b:["Pat Jones II",98], de2c:["Benton Whitley",55],
+    dt1a:["Harrison Phillips",97], dt1b:["Jaquelin Roy",92], dt1c:["James Lynch",93],
+    dt2a:["Jerry Tillery",99], dt2b:["Jaquelin Roy",92], dt2c:["James Lynch",93],
+    lb1a:["Ivan Pace Jr.",46], lb1b:["Brian Asamoah",25], lb1c:["Troy Reeder",52],
+    lb2a:["Andrew Van Ginkel",43], lb2b:["Brian Asamoah",25], lb2c:["Troy Reeder",52],
+    lb3a:["Brian Asamoah",25], lb3b:["Troy Reeder",52], lb3c:["Abraham Beauplan",44],
+    cb1a:["Byron Murphy Jr.",7], cb1b:["Shaquill Griffin",33], cb1c:["Mekhi Blackmon",36],
+    cb2a:["Shaquill Griffin",33], cb2b:["Akayleb Evans",21], cb2c:["Mekhi Blackmon",36],
+    ss1:["Harrison Smith",22], ss2:["Josh Metellus",44], ss3:["Lewis Cine",6],
+    fs1:["Josh Metellus",44], fs2:["Lewis Cine",6], fs3:["Jay Ward",20],
+    k1:["Greg Joseph",1], k2:["Ryan Wright",2], k3:["Greg Joseph",1],
+    p1:["Ryan Wright",2], p2:["Greg Joseph",1], p3:["Ryan Wright",2],
+    kr1:["Ty Chandler",32], kr2:["K.J. Osborn",17], kr3:["DeWayne McBride",22],
+    pr1:["K.J. Osborn",17], pr2:["Ty Chandler",32], pr3:["Brandon Powell",8],
+    ls1:["Andrew DePaola",42], ls2:["Garrett Bradbury",56], ls3:["Austin Schlottmann",60],
+  });
 
-  addTeamRoster("ATL",
-    ["Kirk Cousins",18],["Desmond Ridder",4],
-    ["Bijan Robinson",7],["Tyler Allgeier",25],
-    ["Drake London",5],["Darnell Mooney",11],["Mack Hollins",17],
-    ["Kyle Pitts",8],["Jonnu Smith",81],
-    ["Younghoe Koo",7],["Bradley Pinion",4]);
+  addTeamRoster("ATL", {
+    qb1:["Kirk Cousins",18], qb2:["Desmond Ridder",4], qb3:["Taylor Heinicke",2],
+    rb1:["Bijan Robinson",7], rb2:["Tyler Allgeier",25], rb3:["Avery Williams",35],
+    wr1:["Drake London",5], wr2:["Darnell Mooney",11], wr3:["Mack Hollins",17],
+    wr4:["Scotty Miller",14], wr5:["KhaDarel Hodge",12], wr6:["Josh Ali",19],
+    te1:["Kyle Pitts",8], te2:["Jonnu Smith",81], te3:["MyCole Pruitt",85],
+    lt1:["Jake Matthews",70], lt2:["Kaleb McGary",76], lt3:["Barry Wesley",78],
+    lg1:["Matthew Bergeron",61], lg2:["Elijah Wilkinson",68], lg3:["Barry Wesley",78],
+    c1:["Drew Dalman",67], c2:["Ryan Neuzil",62], c3:["Elijah Wilkinson",68],
+    rg1:["Chris Lindstrom",63], rg2:["Ryan Neuzil",62], rg3:["Barry Wesley",78],
+    rt1:["Kaleb McGary",76], rt2:["Matt Hennessy",61], rt3:["Barry Wesley",78],
+    de1a:["Bud Dupree",48], de1b:["Arnold Ebiketie",47], de1c:["Brandon Copeland",51],
+    de2a:["Arnold Ebiketie",47], de2b:["Lorenzo Carter",90], de2c:["Brandon Copeland",51],
+    dt1a:["Grady Jarrett",97], dt1b:["David Onyemata",90], dt1c:["LaCale London",99],
+    dt2a:["David Onyemata",90], dt2b:["Eddie Goldman",93], dt2c:["LaCale London",99],
+    lb1a:["Kaden Elliss",56], lb1b:["Troy Andersen",44], lb1c:["Nate Landman",53],
+    lb2a:["Troy Andersen",44], lb2b:["Nate Landman",53], lb2c:["Adetokunbo Ogundeji",92],
+    lb3a:["Nate Landman",53], lb3b:["Adetokunbo Ogundeji",92], lb3c:["Mykal Walker",43],
+    cb1a:["A.J. Terrell",24], cb1b:["Jeff Okudah",1], cb1c:["Dee Alford",29],
+    cb2a:["Jeff Okudah",1], cb2b:["Clark Phillips III",21], cb2c:["Dee Alford",29],
+    ss1:["Jessie Bates III",3], ss2:["Richie Grant",27], ss3:["Tre Webb",38],
+    fs1:["Richie Grant",27], fs2:["Tre Webb",38], fs3:["Jessie Bates III",3],
+    k1:["Younghoe Koo",7], k2:["Bradley Pinion",4], k3:["Younghoe Koo",7],
+    p1:["Bradley Pinion",4], p2:["Younghoe Koo",7], p3:["Bradley Pinion",4],
+    kr1:["Tyler Allgeier",25], kr2:["Mack Hollins",17], kr3:["Avery Williams",35],
+    pr1:["Mack Hollins",17], pr2:["Tyler Allgeier",25], pr3:["Avery Williams",35],
+    ls1:["Liam McCullough",46], ls2:["Drew Dalman",67], ls3:["Ryan Neuzil",62],
+  });
 
-  addTeamRoster("CAR",
-    ["Bryce Young",9],["Andy Dalton",14],
-    ["Chuba Hubbard",30],["Miles Sanders",6],
-    ["Adam Thielen",19],["Diontae Johnson",1],["Jonathan Mingo",15],
-    ["Tommy Tremble",82],["Ian Thomas",80],
-    ["Eddy Pineiro",5],["Johnny Hekker",6]);
+  addTeamRoster("CAR", {
+    qb1:["Bryce Young",9], qb2:["Andy Dalton",14], qb3:["Jake Luton",6],
+    rb1:["Chuba Hubbard",30], rb2:["Miles Sanders",6], rb3:["Raheem Blackshear",20],
+    wr1:["Adam Thielen",19], wr2:["Diontae Johnson",1], wr3:["Jonathan Mingo",15],
+    wr4:["Shi Smith",12], wr5:["Terrace Marshall Jr.",88], wr6:["DJ Chark",17],
+    te1:["Tommy Tremble",82], te2:["Ian Thomas",80], te3:["Stephen Sullivan",84],
+    lt1:["Ikem Ekwonu",79], lt2:["Brady Christensen",70], lt3:["Chandler Zavala",66],
+    lg1:["Brady Christensen",70], lg2:["Cade Mays",72], lg3:["Chandler Zavala",66],
+    c1:["Austin Corbett",63], c2:["Pat Elflein",65], c3:["Chandler Zavala",66],
+    rg1:["Robert Hunt",68], rg2:["Cade Mays",72], rg3:["Chandler Zavala",66],
+    rt1:["Taylor Moton",72], rt2:["Brady Christensen",70], rt3:["Chandler Zavala",66],
+    de1a:["Brian Burns",0], de1b:["Yetur Gross-Matos",97], de1c:["Amare Barno",91],
+    de2a:["Jadeveon Clowney",99], de2b:["Yetur Gross-Matos",97], de2c:["Amare Barno",91],
+    dt1a:["Derrick Brown",95], dt1b:["Shy Tuttle",99], dt1c:["Jalen Twyman",92],
+    dt2a:["Shy Tuttle",99], dt2b:["DeShawn Williams",93], dt2c:["Jalen Twyman",92],
+    lb1a:["Frankie Luvu",49], lb1b:["Shaq Thompson",7], lb1c:["Chandler Wooten",57],
+    lb2a:["Shaq Thompson",7], lb2b:["Josey Jewell",47], lb2c:["Chandler Wooten",57],
+    lb3a:["Josey Jewell",47], lb3b:["Chandler Wooten",57], lb3c:["Justin Houston",50],
+    cb1a:["Jaycee Horn",8], cb1b:["CJ Henderson",24], cb1c:["Dicaprio Bootle",33],
+    cb2a:["Donte Jackson",26], cb2b:["CJ Henderson",24], cb2c:["Dicaprio Bootle",33],
+    ss1:["Vonn Bell",24], ss2:["Sam Franklin Jr.",42], ss3:["Jeremy Chinn",21],
+    fs1:["Xavier Woods",25], fs2:["Sam Franklin Jr.",42], fs3:["Jeremy Chinn",21],
+    k1:["Eddy Pineiro",5], k2:["Johnny Hekker",6], k3:["Eddy Pineiro",5],
+    p1:["Johnny Hekker",6], p2:["Eddy Pineiro",5], p3:["Johnny Hekker",6],
+    kr1:["Miles Sanders",6], kr2:["Jonathan Mingo",15], kr3:["Raheem Blackshear",20],
+    pr1:["Jonathan Mingo",15], pr2:["Miles Sanders",6], pr3:["Shi Smith",12],
+    ls1:["J.J. Jansen",44], ls2:["Austin Corbett",63], ls3:["Pat Elflein",65],
+  });
 
-  addTeamRoster("NO",
-    ["Derek Carr",4],["Jameis Winston",2],
-    ["Alvin Kamara",41],["Kendre Miller",25],
-    ["Chris Olave",12],["Rashid Shaheed",89],["A.T. Perry",16],
-    ["Juwan Johnson",83],["Taysom Hill",7],
-    ["Blake Grupe",19],["Lou Hedley",6]);
+  addTeamRoster("NO", {
+    qb1:["Derek Carr",4], qb2:["Jameis Winston",2], qb3:["Jake Haener",6],
+    rb1:["Alvin Kamara",41], rb2:["Kendre Miller",25], rb3:["Jamaal Williams",30],
+    wr1:["Chris Olave",12], wr2:["Rashid Shaheed",89], wr3:["A.T. Perry",16],
+    wr4:["Cedrick Wilson Jr.",1], wr5:["Keith Kirkwood",18], wr6:["Shaquil Barrett",7],
+    te1:["Juwan Johnson",83], te2:["Taysom Hill",7], te3:["Foster Moreau",87],
+    lt1:["Trevor Penning",70], lt2:["Landon Young",67], lt3:["Lewis Kidd",78],
+    lg1:["Andrus Peat",75], lg2:["Cesar Ruiz",51], lg3:["Lewis Kidd",78],
+    c1:["Erik McCoy",78], c2:["Cesar Ruiz",51], c3:["Landon Young",67],
+    rg1:["Cesar Ruiz",51], rg2:["Calvin Throckmorton",64], rg3:["Lewis Kidd",78],
+    rt1:["Ryan Ramczyk",71], rt2:["Landon Young",67], rt3:["Lewis Kidd",78],
+    de1a:["Cameron Jordan",94], de1b:["Carl Granderson",96], de1c:["Payton Turner",98],
+    de2a:["Marcus Davenport",92], de2b:["Carl Granderson",96], de2c:["Payton Turner",98],
+    dt1a:["Bryan Bresee",90], dt1b:["Shy Tuttle",99], dt1c:["Nathan Shepherd",93],
+    dt2a:["Khalen Saunders",99], dt2b:["Shy Tuttle",99], dt2c:["Nathan Shepherd",93],
+    lb1a:["Demario Davis",56], lb1b:["Pete Werner",20], lb1c:["D'Marco Jackson",52],
+    lb2a:["Pete Werner",20], lb2b:["Zack Baun",53], lb2c:["D'Marco Jackson",52],
+    lb3a:["Zack Baun",53], lb3b:["D'Marco Jackson",52], lb3c:["Nephi Sewell",45],
+    cb1a:["Marshon Lattimore",23], cb1b:["Paulson Adebo",29], cb1c:["Alontae Taylor",27],
+    cb2a:["Paulson Adebo",29], cb2b:["Alontae Taylor",27], cb2c:["Isaiah Dunning",34],
+    ss1:["Tyrann Mathieu",32], ss2:["Jordan Howden",31], ss3:["Smoke Monday",41],
+    fs1:["Jordan Howden",31], fs2:["Smoke Monday",41], fs3:["Ugo Amadi",38],
+    k1:["Blake Grupe",19], k2:["Lou Hedley",6], k3:["Blake Grupe",19],
+    p1:["Lou Hedley",6], p2:["Blake Grupe",19], p3:["Lou Hedley",6],
+    kr1:["Kendre Miller",25], kr2:["A.T. Perry",16], kr3:["Jamaal Williams",30],
+    pr1:["Rashid Shaheed",89], pr2:["Kendre Miller",25], pr3:["A.T. Perry",16],
+    ls1:["Zach Wood",49], ls2:["Erik McCoy",78], ls3:["Cesar Ruiz",51],
+  });
 
-  addTeamRoster("TB",
-    ["Baker Mayfield",6],["Kyle Trask",2],
-    ["Rachaad White",1],["Chase Edmonds",2],
-    ["Mike Evans",13],["Chris Godwin",14],["Trey Palmer",10],
-    ["Cade Otton",88],["Ko Kieft",41],
-    ["Chase McLaughlin",44],["Jake Camarda",5]);
+  addTeamRoster("TB", {
+    qb1:["Baker Mayfield",6], qb2:["Kyle Trask",2], qb3:["John Wolford",7],
+    rb1:["Rachaad White",1], rb2:["Chase Edmonds",2], rb3:["Sean Tucker",44],
+    wr1:["Mike Evans",13], wr2:["Chris Godwin",14], wr3:["Trey Palmer",10],
+    wr4:["Jalen McMillan",15], wr5:["Rakim Jarrett",17], wr6:["Deven Thompkins",83],
+    te1:["Cade Otton",88], te2:["Ko Kieft",41], te3:["Payne Durham",85],
+    lt1:["Tristan Wirfs",78], lt2:["Luke Goedeke",67], lt3:["Justin Skule",74],
+    lg1:["Luke Goedeke",67], lg2:["Nick Leverett",60], lg3:["Justin Skule",74],
+    c1:["Robert Hainsey",70], c2:["Graham Barton",65], c3:["Nick Leverett",60],
+    rg1:["Cody Mauch",71], rg2:["Nick Leverett",60], rg3:["Justin Skule",74],
+    rt1:["Tristan Wirfs",78], rt2:["Graham Barton",65], rt3:["Justin Skule",74],
+    de1a:["Shaquil Barrett",58], de1b:["Joe Tryon-Shoyinka",9], de1c:["Jose Ramirez",97],
+    de2a:["Anthony Nelson",98], de2b:["Joe Tryon-Shoyinka",9], de2c:["Jose Ramirez",97],
+    dt1a:["Vita Vea",50], dt1b:["Calijah Kancey",93], dt1c:["Greg Gaines",91],
+    dt2a:["Calijah Kancey",93], dt2b:["William Gholston",92], dt2c:["Greg Gaines",91],
+    lb1a:["Lavonte David",54], lb1b:["SirVocea Dennis",59], lb1c:["J.J. Russell",46],
+    lb2a:["Devin White",45], lb2b:["SirVocea Dennis",59], lb2c:["J.J. Russell",46],
+    lb3a:["SirVocea Dennis",59], lb3b:["K.J. Britt",52], lb3c:["J.J. Russell",46],
+    cb1a:["Carlton Davis III",24], cb1b:["Jamel Dean",35], cb1c:["Josh Hayes",26],
+    cb2a:["Jamel Dean",35], cb2b:["Sean Murphy-Bunting",21], cb2c:["Josh Hayes",26],
+    ss1:["Antoine Winfield Jr.",31], ss2:["Ryan Neal",27], ss3:["Nolan Turner",38],
+    fs1:["Jordan Whitehead",3], fs2:["Ryan Neal",27], fs3:["Nolan Turner",38],
+    k1:["Chase McLaughlin",44], k2:["Jake Camarda",5], k3:["Chase McLaughlin",44],
+    p1:["Jake Camarda",5], p2:["Chase McLaughlin",44], p3:["Jake Camarda",5],
+    kr1:["Chase Edmonds",2], kr2:["Trey Palmer",10], kr3:["Sean Tucker",44],
+    pr1:["Trey Palmer",10], pr2:["Chase Edmonds",2], pr3:["Sean Tucker",44],
+    ls1:["Zach Triner",97], ls2:["Robert Hainsey",70], ls3:["Nick Leverett",60],
+  });
 
-  addTeamRoster("ARI",
-    ["Kyler Murray",1],["Clayton Tune",12],
-    ["James Conner",6],["Emari Demercado",36],
-    ["Marquise Brown",2],["Michael Wilson",14],["Rondale Moore",4],
-    ["Trey McBride",85],["Geoff Swaim",87],
-    ["Matt Prater",5],["Andy Lee",4]);
+  addTeamRoster("ARI", {
+    qb1:["Kyler Murray",1], qb2:["Clayton Tune",12], qb3:["Jeff Driskel",16],
+    rb1:["James Conner",6], rb2:["Emari Demercado",36], rb3:["Keaontay Ingram",28],
+    wr1:["Marquise Brown",2], wr2:["Michael Wilson",14], wr3:["Rondale Moore",4],
+    wr4:["Greg Dortch",83], wr5:["Zach Pascal",0], wr6:["Andy Isabella",17],
+    te1:["Trey McBride",85], te2:["Geoff Swaim",87], te3:["Elijah Higgins",89],
+    lt1:["D.J. Humphries",74], lt2:["Kelvin Beachum",68], lt3:["Josh Jones",78],
+    lg1:["Evan Brown",63], lg2:["Lecitus Smith",62], lg3:["Josh Jones",78],
+    c1:["Hjalte Froholdt",56], c2:["Evan Brown",63], c3:["Lecitus Smith",62],
+    rg1:["Will Hernandez",76], rg2:["Lecitus Smith",62], rg3:["Josh Jones",78],
+    rt1:["Paris Johnson Jr.",70], rt2:["Kelvin Beachum",68], rt3:["Josh Jones",78],
+    de1a:["Zaven Collins",25], de1b:["Victor Dimukeje",52], de1c:["Cameron Thomas",97],
+    de2a:["Dennis Gardeck",45], de2b:["Victor Dimukeje",52], de2c:["Cameron Thomas",97],
+    dt1a:["Bilal Nichols",91], dt1b:["Leki Fotu",95], dt1c:["Dante Stills",92],
+    dt2a:["Leki Fotu",95], dt2b:["Michael Dogbe",99], dt2c:["Dante Stills",92],
+    lb1a:["Kyzir White",7], lb1b:["Owen Pappoe",48], lb1c:["Jesse Luketa",55],
+    lb2a:["Owen Pappoe",48], lb2b:["Jesse Luketa",55], lb2c:["Ben Niemann",57],
+    lb3a:["Jesse Luketa",55], lb3b:["Ben Niemann",57], lb3c:["Tanner Vallejo",46],
+    cb1a:["Sean Murphy-Bunting",21], cb1b:["Garrett Williams",24], cb1c:["Starling Thomas V",31],
+    cb2a:["Garrett Williams",24], cb2b:["Antonio Hamilton",33], cb2c:["Starling Thomas V",31],
+    ss1:["Budda Baker",3], ss2:["Jalen Thompson",34], ss3:["Andre Ward",38],
+    fs1:["Jalen Thompson",34], fs2:["Andre Ward",38], fs3:["Budda Baker",3],
+    k1:["Matt Prater",5], k2:["Andy Lee",4], k3:["Matt Prater",5],
+    p1:["Andy Lee",4], p2:["Matt Prater",5], p3:["Andy Lee",4],
+    kr1:["Emari Demercado",36], kr2:["Rondale Moore",4], kr3:["Keaontay Ingram",28],
+    pr1:["Rondale Moore",4], pr2:["Emari Demercado",36], pr3:["Greg Dortch",83],
+    ls1:["Aaron Brewer",46], ls2:["Hjalte Froholdt",56], ls3:["Evan Brown",63],
+  });
 
-  addTeamRoster("LAR",
-    ["Matthew Stafford",9],["Jimmy Garoppolo",10],
-    ["Kyren Williams",23],["Zach Evans",26],
-    ["Puka Nacua",17],["Cooper Kupp",10],["Tutu Atwell",5],
-    ["Tyler Higbee",89],["Colby Parkinson",84],
-    ["Joshua Karty",6],["Ethan Evans",3]);
+  addTeamRoster("LAR", {
+    qb1:["Matthew Stafford",9], qb2:["Jimmy Garoppolo",10], qb3:["Stetson Bennett",13],
+    rb1:["Kyren Williams",23], rb2:["Zach Evans",26], rb3:["Ronnie Rivers",34],
+    wr1:["Puka Nacua",17], wr2:["Cooper Kupp",10], wr3:["Tutu Atwell",5],
+    wr4:["Tyler Johnson",18], wr5:["Ben Skowronek",18], wr6:["Lance McCutcheon",80],
+    te1:["Tyler Higbee",89], te2:["Colby Parkinson",84], te3:["Davis Allen",85],
+    lt1:["Alaric Jackson",72], lt2:["Rob Havenstein",79], lt3:["AJ Arcuri",76],
+    lg1:["Steve Avila",60], lg2:["Jonah Jackson",73], lg3:["AJ Arcuri",76],
+    c1:["Brian Allen",55], c2:["Jonah Jackson",73], c3:["AJ Arcuri",76],
+    rg1:["Kevin Dotson",76], rg2:["Jonah Jackson",73], rg3:["AJ Arcuri",76],
+    rt1:["Rob Havenstein",79], rt2:["Alaric Jackson",72], rt3:["AJ Arcuri",76],
+    de1a:["Byron Young",0], de1b:["Ochaun Mathis",51], de1c:["Desjuan Johnson",92],
+    de2a:["Michael Hoecht",96], de2b:["Ochaun Mathis",51], de2c:["Desjuan Johnson",92],
+    dt1a:["Aaron Donald",99], dt1b:["Kobie Turner",91], dt1c:["Jonah Williams",93],
+    dt2a:["Kobie Turner",91], dt2b:["Bobby Brown III",95], dt2c:["Jonah Williams",93],
+    lb1a:["Ernest Jones IV",53], lb1b:["Christian Rozeboom",43], lb1c:["Jake Hummel",44],
+    lb2a:["Christian Rozeboom",43], lb2b:["Jake Hummel",44], lb2c:["Travin Howard",32],
+    lb3a:["Jake Hummel",44], lb3b:["Travin Howard",32], lb3c:["Olakunle Fatukasi",58],
+    cb1a:["Tre'Davious White",21], cb1b:["Cobie Durant",14], cb1c:["Derion Kendrick",6],
+    cb2a:["Cobie Durant",14], cb2b:["Derion Kendrick",6], cb2c:["Robert Rochell",31],
+    ss1:["Jordan Fuller",4], ss2:["Quentin Lake",37], ss3:["Russ Yeast",34],
+    fs1:["Quentin Lake",37], fs2:["Russ Yeast",34], fs3:["Jordan Fuller",4],
+    k1:["Joshua Karty",6], k2:["Ethan Evans",3], k3:["Joshua Karty",6],
+    p1:["Ethan Evans",3], p2:["Joshua Karty",6], p3:["Ethan Evans",3],
+    kr1:["Zach Evans",26], kr2:["Tutu Atwell",5], kr3:["Ronnie Rivers",34],
+    pr1:["Tutu Atwell",5], pr2:["Zach Evans",26], pr3:["Ronnie Rivers",34],
+    ls1:["Matt Orzech",42], ls2:["Brian Allen",55], ls3:["Jonah Jackson",73],
+  });
 
-  addTeamRoster("SEA",
-    ["Geno Smith",7],["Drew Lock",2],
-    ["Kenneth Walker III",9],["Zach Charbonnet",26],
-    ["DK Metcalf",14],["Tyler Lockett",16],["Jaxon Smith-Njigba",11],
-    ["Noah Fant",87],["Will Dissly",89],
-    ["Jason Myers",5],["Michael Dickson",4]);
+  addTeamRoster("SEA", {
+    qb1:["Geno Smith",7], qb2:["Drew Lock",2], qb3:["P.J. Walker",11],
+    rb1:["Kenneth Walker III",9], rb2:["Zach Charbonnet",26], rb3:["Kenny McIntosh",22],
+    wr1:["DK Metcalf",14], wr2:["Tyler Lockett",16], wr3:["Jaxon Smith-Njigba",11],
+    wr4:["Jake Bobo",19], wr5:["Dareke Young",17], wr6:["Cade Johnson",15],
+    te1:["Noah Fant",87], te2:["Will Dissly",89], te3:["Colby Parkinson",84],
+    lt1:["Charles Cross",67], lt2:["Stone Forsythe",72], lt3:["Jake Curhan",78],
+    lg1:["Laken Tomlinson",78], lg2:["Phil Haynes",60], lg3:["Jake Curhan",78],
+    c1:["Olu Oluwatimi",65], c2:["Evan Brown",63], c3:["Phil Haynes",60],
+    rg1:["Phil Haynes",60], rg2:["Evan Brown",63], rg3:["Jake Curhan",78],
+    rt1:["Abraham Lucas",72], rt2:["Stone Forsythe",72], rt3:["Jake Curhan",78],
+    de1a:["Uchenna Nwosu",10], de1b:["Dre'Mont Jones",93], de1c:["Tyreke Smith",92],
+    de2a:["Dre'Mont Jones",93], de2b:["Boye Mafe",53], de2c:["Tyreke Smith",92],
+    dt1a:["Jarran Reed",90], dt1b:["Bryan Mone",90], dt1c:["Myles Adams",99],
+    dt2a:["Bryan Mone",90], dt2b:["Cameron Young",96], dt2c:["Myles Adams",99],
+    lb1a:["Jordyn Brooks",56], lb1b:["Bobby Wagner",54], lb1c:["Vi Jones",50],
+    lb2a:["Bobby Wagner",54], lb2b:["Devin Bush",55], lb2c:["Vi Jones",50],
+    lb3a:["Devin Bush",55], lb3b:["Vi Jones",50], lb3c:["Jon Rhattigan",44],
+    cb1a:["Devon Witherspoon",21], cb1b:["Riq Woolen",27], cb1c:["Tre Brown",22],
+    cb2a:["Riq Woolen",27], cb2b:["Artie Burns",20], cb2c:["Tre Brown",22],
+    ss1:["Jamal Adams",33], ss2:["Rayshawn Jenkins",2], ss3:["Coby Bryant",8],
+    fs1:["Rayshawn Jenkins",2], fs2:["Coby Bryant",8], fs3:["Jamal Adams",33],
+    k1:["Jason Myers",5], k2:["Michael Dickson",4], k3:["Jason Myers",5],
+    p1:["Michael Dickson",4], p2:["Jason Myers",5], p3:["Michael Dickson",4],
+    kr1:["Zach Charbonnet",26], kr2:["Jaxon Smith-Njigba",11], kr3:["Kenny McIntosh",22],
+    pr1:["Jaxon Smith-Njigba",11], pr2:["Zach Charbonnet",26], pr3:["Kenny McIntosh",22],
+    ls1:["Tyler Ott",69], ls2:["Olu Oluwatimi",65], ls3:["Evan Brown",63],
+  });
 
   // === 3rd-string players for manually-defined teams ===
 
