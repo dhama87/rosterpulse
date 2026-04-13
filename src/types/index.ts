@@ -66,6 +66,7 @@ export interface NewsItem {
   description: string;
   source?: string;
   sourceUrl?: string;
+  confidence?: "reported" | "official";
   timestamp: string;
 }
 
