@@ -247,6 +247,22 @@ function createRemainingTeamRosters(): Player[] {
   const prB = { prYds: 0, prAvg: 0, prTD: 0, prLong: 0 };
   const lsB = { gamesPlayed: 0, badSnaps: 0 };
 
+  // 3rd-string stats (minimal/zero)
+  const qbT = { passYds: 0, passTD: 0, int: 0, qbr: 0 };
+  const rbT = { rushYds: 30, rushTD: 0, ypc: 3.5, rec: 2 };
+  const wrT = { recYds: 20, recTD: 0, rec: 2, targets: 5 };
+  const teT = { recYds: 10, recTD: 0, rec: 2, targets: 4 };
+  const olT = { gamesStarted: 0, sacks: 0 };
+  const dlT = { tackles: 5, sacks: 0, tfl: 1, ff: 0 };
+  const lbT = { tackles: 8, sacks: 0, tfl: 1, int: 0 };
+  const cbT = { tackles: 5, int: 0, pd: 1, ff: 0 };
+  const sT = { tackles: 5, int: 0, pd: 0, ff: 0 };
+  const kT = { fgMade: 0, fgAtt: 0, xpMade: 0, longFG: 0 };
+  const pT = { punts: 0, puntAvg: 0, inside20: 0, longPunt: 0 };
+  const krT = { krYds: 0, krAvg: 0, krTD: 0, krLong: 0 };
+  const prT = { prYds: 0, prAvg: 0, prTD: 0, prLong: 0 };
+  const lsT = { gamesPlayed: 0, badSnaps: 0 };
+
   // CLE
   add("CLE","QB",1,"Deshaun Watson",4,"6-2","215",29,"Clemson",7,{passYds:1100,passTD:7,int:4,qbr:72.0},"IR","Shoulder — placed on IR");
   add("CLE","QB",2,"Joe Flacco",15,"6-6","236",39,"Delaware",16,{passYds:1600,passTD:13,int:4,qbr:85.0});
@@ -487,6 +503,34 @@ function createRemainingTeamRosters(): Player[] {
     add(team,"PR",2,rb2[0],rb2[1],"5-10","210",25,"College",3,prB);
     add(team,"LS",1,"Starting LS",45,"6-2","240",30,"College",8,{gamesPlayed:17,badSnaps:0});
     add(team,"LS",2,"Backup LS",49,"6-1","235",25,"College",2,lsB);
+    // Depth 3
+    add(team,"QB",3,"Third QB",9,"6-1","210",24,"College",1,qbT);
+    add(team,"RB",3,"Third RB",39,"5-10","205",23,"College",1,rbT);
+    add(team,"WR1",3,"Third WR1",15,"6-0","190",23,"College",1,wrT);
+    add(team,"WR2",3,"Third WR2",16,"5-11","185",23,"College",1,wrT);
+    add(team,"WR3",3,"Third WR3",17,"5-10","180",22,"College",1,wrT);
+    add(team,"TE",3,"Third TE",84,"6-4","248",24,"College",1,teT);
+    add(team,"LT",3,"Third LT",79,"6-5","310",23,"College",1,olT);
+    add(team,"LG",3,"Third LG",61,"6-4","305",23,"College",1,olT);
+    add(team,"C",3,"Third C",69,"6-3","300",23,"College",1,olT);
+    add(team,"RG",3,"Third RG",60,"6-4","308",23,"College",1,olT);
+    add(team,"RT",3,"Third RT",71,"6-5","312",23,"College",1,olT);
+    add(team,"DE1",3,"Third DE1",46,"6-3","260",23,"College",1,dlT);
+    add(team,"DE2",3,"Third DE2",47,"6-4","265",23,"College",1,dlT);
+    add(team,"DT1",3,"Third DT1",62,"6-2","305",23,"College",1,dlT);
+    add(team,"DT2",3,"Third DT2",64,"6-3","310",23,"College",1,dlT);
+    add(team,"LB1",3,"Third LB1",42,"6-1","230",23,"College",1,lbT);
+    add(team,"LB2",3,"Third LB2",43,"6-0","228",23,"College",1,lbT);
+    add(team,"LB3",3,"Third LB3",57,"6-1","225",22,"College",1,lbT);
+    add(team,"CB1",3,"Third CB1",31,"5-11","185",23,"College",1,cbT);
+    add(team,"CB2",3,"Third CB2",34,"5-10","182",23,"College",1,cbT);
+    add(team,"SS",3,"Third SS",41,"6-0","205",23,"College",1,sT);
+    add(team,"FS",3,"Third FS",40,"5-11","200",23,"College",1,sT);
+    add(team,"K",3,"Third K",10,"5-10","185",23,"College",1,kT);
+    add(team,"P",3,"Third P",11,"6-1","200",23,"College",1,pT);
+    add(team,"KR",3,"Third KR",33,"5-10","190",23,"College",1,krT);
+    add(team,"PR",3,"Third PR",35,"5-9","185",23,"College",1,prT);
+    add(team,"LS",3,"Third LS",59,"6-1","235",24,"College",1,lsT);
   }
 
   // Process simple team data already added (HOU, IND)
@@ -735,6 +779,182 @@ function createRemainingTeamRosters(): Player[] {
     ["DK Metcalf",14],["Tyler Lockett",16],["Jaxon Smith-Njigba",11],
     ["Noah Fant",87],["Will Dissly",89],
     ["Jason Myers",5],["Michael Dickson",4]);
+
+  // === 3rd-string players for manually-defined teams ===
+
+  // BAL 3rd-string
+  add("BAL","QB",3,"Josh Johnson",17,"6-1","210",38,"San Diego",12,qbT);
+  add("BAL","RB",3,"Keaton Mitchell",30,"5-8","191",23,"East Carolina",2,rbT);
+  add("BAL","WR1",3,"Laquon Treadwell",1,"6-2","215",29,"Ole Miss",8,wrT);
+  add("BAL","WR2",3,"Tylan Wallace",16,"6-0","194",26,"Oklahoma State",4,wrT);
+  add("BAL","WR3",3,"Tylan Wallace",16,"6-0","194",26,"Oklahoma State",4,wrT);
+  add("BAL","TE",3,"Charlie Kolar",88,"6-6","252",26,"Iowa State",3,teT);
+  add("BAL","LT",3,"Daniel Faalele",77,"6-8","384",25,"Minnesota",3,olT);
+  add("BAL","LG",3,"Daniel Faalele",77,"6-8","384",25,"Minnesota",3,olT);
+  add("BAL","C",3,"Trystan Colon",65,"6-3","308",27,"Kansas",4,olT);
+  add("BAL","RG",3,"Daniel Faalele",77,"6-8","384",25,"Minnesota",3,olT);
+  add("BAL","RT",3,"Daniel Faalele",77,"6-8","384",25,"Minnesota",3,olT);
+  add("BAL","DE1",3,"Brent Urban",62,"6-7","296",33,"Virginia",10,dlT);
+  add("BAL","DE2",3,"Brent Urban",62,"6-7","296",33,"Virginia",10,dlT);
+  add("BAL","DT1",3,"Travis Jones",97,"6-4","325",25,"UConn",3,dlT);
+  add("BAL","DT2",3,"Nnamdi Madubuike",91,"6-3","300",24,"Texas A&M",1,dlT);
+  add("BAL","LB1",3,"Malik Harrison",40,"6-3","247",26,"Ohio State",5,lbT);
+  add("BAL","LB2",3,"Malik Harrison",40,"6-3","247",26,"Ohio State",5,lbT);
+  add("BAL","LB3",3,"Josh Ross",56,"6-0","227",25,"Michigan",2,lbT);
+  add("BAL","CB1",3,"Jalyn Armour-Davis",27,"6-0","197",25,"Alabama",3,cbT);
+  add("BAL","CB2",3,"Jalyn Armour-Davis",27,"6-0","197",25,"Alabama",3,cbT);
+  add("BAL","SS",3,"Ar'Darius Washington",29,"5-8","178",24,"TCU",3,sT);
+  add("BAL","FS",3,"Daryl Worley",31,"6-1","205",29,"West Virginia",8,sT);
+  add("BAL","K",3,"Matt Ammendola",19,"5-11","190",27,"Oklahoma State",3,kT);
+  add("BAL","P",3,"Matt Ammendola",19,"5-11","190",27,"Oklahoma State",3,pT);
+  add("BAL","KR",3,"Keaton Mitchell",30,"5-8","191",23,"East Carolina",2,krT);
+  add("BAL","PR",3,"Tylan Wallace",16,"6-0","194",26,"Oklahoma State",4,prT);
+  add("BAL","LS",3,"Trystan Colon",65,"6-3","308",27,"Kansas",4,lsT);
+
+  // CIN 3rd-string
+  add("CIN","QB",3,"Logan Woodside",5,"6-1","213",30,"Toledo",5,qbT);
+  add("CIN","RB",3,"Trayveon Williams",32,"5-9","206",27,"Texas A&M",6,rbT);
+  add("CIN","WR1",3,"Charlie Jones",16,"5-10","175",25,"Purdue",2,wrT);
+  add("CIN","WR2",3,"Charlie Jones",16,"5-10","175",25,"Purdue",2,wrT);
+  add("CIN","WR3",3,"Kwamie Lassiter II",18,"6-0","200",26,"Kansas",3,wrT);
+  add("CIN","TE",3,"Tanner Hudson",86,"6-5","245",29,"Southern Arkansas",5,teT);
+  add("CIN","LT",3,"Devin Cochran",77,"6-6","308",27,"Georgia Tech",3,olT);
+  add("CIN","LG",3,"Devin Cochran",77,"6-6","308",27,"Georgia Tech",3,olT);
+  add("CIN","C",3,"Devin Cochran",77,"6-6","308",27,"Georgia Tech",3,olT);
+  add("CIN","RG",3,"Devin Cochran",77,"6-6","308",27,"Georgia Tech",3,olT);
+  add("CIN","RT",3,"Devin Cochran",77,"6-6","308",27,"Georgia Tech",3,olT);
+  add("CIN","DE1",3,"Cedric Johnson",48,"6-5","255",24,"Florida",2,dlT);
+  add("CIN","DE2",3,"Cedric Johnson",48,"6-5","255",24,"Florida",2,dlT);
+  add("CIN","DT1",3,"Sheldon Rankins",98,"6-1","305",30,"Louisville",9,dlT);
+  add("CIN","DT2",3,"Tyler Shelvin",99,"6-3","346",26,"LSU",4,dlT);
+  add("CIN","LB1",3,"Joe Bachie",34,"6-1","233",27,"Michigan State",4,lbT);
+  add("CIN","LB2",3,"Joe Bachie",34,"6-1","233",27,"Michigan State",4,lbT);
+  add("CIN","LB3",3,"Maema Njongmeta",53,"6-0","230",24,"Iowa State",1,lbT);
+  add("CIN","CB1",3,"Allan George",35,"6-1","192",23,"Vanderbilt",1,cbT);
+  add("CIN","CB2",3,"Marvell Tell III",28,"6-2","200",28,"USC",5,cbT);
+  add("CIN","SS",3,"Tycen Anderson",30,"6-2","210",25,"Toledo",3,sT);
+  add("CIN","FS",3,"Tycen Anderson",30,"6-2","210",25,"Toledo",3,sT);
+  add("CIN","K",3,"Brooks Panhans",8,"5-10","185",24,"Iowa",1,kT);
+  add("CIN","P",3,"Brooks Panhans",8,"5-10","185",24,"Iowa",1,pT);
+  add("CIN","KR",3,"Trayveon Williams",32,"5-9","206",27,"Texas A&M",6,krT);
+  add("CIN","PR",3,"Charlie Jones",16,"5-10","175",25,"Purdue",2,prT);
+  add("CIN","LS",3,"Trey Hill",63,"6-3","305",25,"Georgia",3,lsT);
+
+  // CLE 3rd-string
+  add("CLE","QB",3,"Dorian Thompson-Robinson",17,"6-1","203",25,"UCLA",2,qbT);
+  add("CLE","RB",3,"John Kelly Jr.",38,"5-10","213",28,"Tennessee",6,rbT);
+  add("CLE","WR1",3,"Jaelon Darden",89,"5-9","174",26,"North Texas",4,wrT);
+  add("CLE","WR2",3,"Jaelon Darden",89,"5-9","174",26,"North Texas",4,wrT);
+  add("CLE","WR3",3,"James Proche II",12,"5-11","190",28,"SMU",4,wrT);
+  add("CLE","TE",3,"Jordan Akins",88,"6-4","243",32,"UCF",7,teT);
+  add("CLE","LT",3,"Jedrick Wills Jr.",71,"6-4","312",25,"Alabama",5,olT);
+  add("CLE","LG",3,"Hjalte Froholdt",69,"6-5","310",28,"Arkansas",5,olT);
+  add("CLE","C",3,"Hjalte Froholdt",69,"6-5","310",28,"Arkansas",5,olT);
+  add("CLE","RG",3,"Hjalte Froholdt",69,"6-5","310",28,"Arkansas",5,olT);
+  add("CLE","RT",3,"Dawand Jones",79,"6-8","374",24,"Ohio State",2,olT);
+  add("CLE","DE1",3,"Isaiah Thomas",58,"6-5","266",27,"Oklahoma",5,dlT);
+  add("CLE","DE2",3,"Isaiah Thomas",58,"6-5","266",27,"Oklahoma",5,dlT);
+  add("CLE","DT1",3,"Maurice Hurst",73,"6-1","290",29,"Michigan",7,dlT);
+  add("CLE","DT2",3,"Siaki Ika",92,"6-3","358",24,"Baylor",1,dlT);
+  add("CLE","LB1",3,"Jordan Hicks",48,"6-1","236",32,"Texas",10,lbT);
+  add("CLE","LB2",3,"Jordan Hicks",48,"6-1","236",32,"Texas",10,lbT);
+  add("CLE","LB3",3,"Tony Fields II",42,"6-0","220",26,"West Virginia",4,lbT);
+  add("CLE","CB1",3,"Martin Emerson Jr.",23,"6-2","205",24,"Mississippi State",3,cbT);
+  add("CLE","CB2",3,"Cameron Mitchell",37,"5-11","190",24,"Northwestern",1,cbT);
+  add("CLE","SS",3,"D'Anthony Bell",36,"6-0","208",26,"West Florida",3,sT);
+  add("CLE","FS",3,"D'Anthony Bell",36,"6-0","208",26,"West Florida",3,sT);
+  add("CLE","K",3,"Cade York",3,"6-0","193",24,"LSU",3,kT);
+  add("CLE","P",3,"Cade York",3,"6-0","193",24,"LSU",3,pT);
+  add("CLE","KR",3,"Jaelon Darden",89,"5-9","174",26,"North Texas",4,krT);
+  add("CLE","PR",3,"Jaelon Darden",89,"5-9","174",26,"North Texas",4,prT);
+  add("CLE","LS",3,"Nick Harris",53,"6-1","302",26,"Washington",4,lsT);
+
+  // PIT 3rd-string
+  add("PIT","QB",3,"Mason Rudolph",2,"6-5","235",29,"Oklahoma State",7,qbT);
+  add("PIT","RB",3,"Cordarrelle Patterson",84,"6-2","238",33,"Tennessee",12,rbT);
+  add("PIT","WR1",3,"Miles Boykin",80,"6-4","220",28,"Notre Dame",6,wrT);
+  add("PIT","WR2",3,"Miles Boykin",80,"6-4","220",28,"Notre Dame",6,wrT);
+  add("PIT","WR3",3,"Dez Fitzpatrick",81,"6-2","208",26,"Louisville",4,wrT);
+  add("PIT","TE",3,"Connor Heyward",83,"6-0","233",25,"Michigan State",3,teT);
+  add("PIT","LT",3,"Spencer Anderson",66,"6-4","305",24,"Maryland",2,olT);
+  add("PIT","LG",3,"Spencer Anderson",66,"6-4","305",24,"Maryland",2,olT);
+  add("PIT","C",3,"Spencer Anderson",66,"6-4","305",24,"Maryland",2,olT);
+  add("PIT","RG",3,"Nate Herbig",63,"6-4","334",26,"Stanford",5,olT);
+  add("PIT","RT",3,"Broderick Jones",77,"6-5","311",23,"Georgia",2,olT);
+  add("PIT","DE1",3,"DeMarvin Leal",98,"6-4","283",24,"Texas A&M",3,dlT);
+  add("PIT","DE2",3,"DeMarvin Leal",98,"6-4","283",24,"Texas A&M",3,dlT);
+  add("PIT","DT1",3,"Montravius Adams",90,"6-4","304",29,"Auburn",8,dlT);
+  add("PIT","DT2",3,"Montravius Adams",90,"6-4","304",29,"Auburn",8,dlT);
+  add("PIT","LB1",3,"Tyler Matakevich",44,"6-1","235",32,"Temple",9,lbT);
+  add("PIT","LB2",3,"Tyler Matakevich",44,"6-1","235",32,"Temple",9,lbT);
+  add("PIT","LB3",3,"Buddy Johnson",52,"6-2","232",26,"Texas A&M",4,lbT);
+  add("PIT","CB1",3,"Cory Trice Jr.",28,"6-3","206",25,"Purdue",2,cbT);
+  add("PIT","CB2",3,"Chancel Bathily",32,"6-1","195",24,"Boston College",1,cbT);
+  add("PIT","SS",3,"Miles Killebrew",28,"6-2","222",30,"Southern Utah",9,sT);
+  add("PIT","FS",3,"Trenton Thompson",35,"6-0","200",24,"San Diego State",2,sT);
+  add("PIT","K",3,"Matthew Wright",15,"5-11","195",28,"UCF",4,kT);
+  add("PIT","P",3,"Matthew Wright",15,"5-11","195",28,"UCF",4,pT);
+  add("PIT","KR",3,"Cordarrelle Patterson",84,"6-2","238",33,"Tennessee",12,krT);
+  add("PIT","PR",3,"Cordarrelle Patterson",84,"6-2","238",33,"Tennessee",12,prT);
+  add("PIT","LS",3,"Mason McCormick",64,"6-4","309",24,"South Dakota State",1,lsT);
+
+  // HOU 3rd-string
+  add("HOU","QB",3,"Case Keenum",7,"6-1","215",36,"Houston",12,qbT);
+  add("HOU","RB",3,"Dare Ogunbowale",33,"6-0","206",29,"Wisconsin",7,rbT);
+  add("HOU","WR1",3,"Steven Sims",14,"5-10","176",27,"Kansas",5,wrT);
+  add("HOU","WR2",3,"Steven Sims",14,"5-10","176",27,"Kansas",5,wrT);
+  add("HOU","WR3",3,"Ben Skowronek",15,"6-3","224",27,"Notre Dame",4,wrT);
+  add("HOU","TE",3,"Teagan Quitoriano",84,"6-6","265",25,"Oregon State",3,teT);
+  add("HOU","LT",3,"Jarrett Patterson",68,"6-3","306",25,"Notre Dame",2,olT);
+  add("HOU","LG",3,"Jarrett Patterson",68,"6-3","306",25,"Notre Dame",2,olT);
+  add("HOU","C",3,"Jarrett Patterson",68,"6-3","306",25,"Notre Dame",2,olT);
+  add("HOU","RG",3,"Jarrett Patterson",68,"6-3","306",25,"Notre Dame",2,olT);
+  add("HOU","RT",3,"Jarrett Patterson",68,"6-3","306",25,"Notre Dame",2,olT);
+  add("HOU","DE1",3,"Derek Barnett",42,"6-3","259",28,"Tennessee",8,dlT);
+  add("HOU","DE2",3,"Derek Barnett",42,"6-3","259",28,"Tennessee",8,dlT);
+  add("HOU","DT1",3,"Kurt Hinish",93,"6-1","310",26,"Notre Dame",3,dlT);
+  add("HOU","DT2",3,"Tommy Togiai",72,"6-2","300",26,"Ohio State",4,dlT);
+  add("HOU","LB1",3,"Jake Hansen",49,"6-1","230",26,"Illinois",3,lbT);
+  add("HOU","LB2",3,"Jake Hansen",49,"6-1","230",26,"Illinois",3,lbT);
+  add("HOU","LB3",3,"Neville Hewitt",46,"6-2","234",31,"Marshall",9,lbT);
+  add("HOU","CB1",3,"Jeff Okudah",1,"6-1","205",25,"Ohio State",5,cbT);
+  add("HOU","CB2",3,"Jeff Okudah",1,"6-1","205",25,"Ohio State",5,cbT);
+  add("HOU","SS",3,"M.J. Stewart",36,"5-11","202",29,"North Carolina",7,sT);
+  add("HOU","FS",3,"Grayland Arnold",37,"5-9","182",27,"Baylor",3,sT);
+  add("HOU","K",3,"Matt Ammendola",19,"5-11","190",27,"Oklahoma State",3,kT);
+  add("HOU","P",3,"Matt Ammendola",19,"5-11","190",27,"Oklahoma State",3,pT);
+  add("HOU","KR",3,"Steven Sims",14,"5-10","176",27,"Kansas",5,krT);
+  add("HOU","PR",3,"Steven Sims",14,"5-10","176",27,"Kansas",5,prT);
+  add("HOU","LS",3,"Juice Scruggs",60,"6-3","307",25,"Penn State",2,lsT);
+
+  // IND 3rd-string
+  add("IND","QB",3,"Sam Ehlinger",4,"6-0","218",26,"Texas",4,qbT);
+  add("IND","RB",3,"Evan Hull",26,"5-11","210",23,"Northwestern",2,rbT);
+  add("IND","WR1",3,"Ashton Dulin",16,"6-1","210",28,"Malone",5,wrT);
+  add("IND","WR2",3,"Ashton Dulin",16,"6-1","210",28,"Malone",5,wrT);
+  add("IND","WR3",3,"D.J. Montgomery",18,"6-2","210",27,"Austin Peay",4,wrT);
+  add("IND","TE",3,"Drew Ogletree",85,"6-4","250",25,"Youngstown State",3,teT);
+  add("IND","LT",3,"Danny Pinter",63,"6-4","305",28,"Ball State",5,olT);
+  add("IND","LG",3,"Danny Pinter",63,"6-4","305",28,"Ball State",5,olT);
+  add("IND","C",3,"Danny Pinter",63,"6-4","305",28,"Ball State",5,olT);
+  add("IND","RG",3,"Blake Freeland",76,"6-8","302",24,"BYU",2,olT);
+  add("IND","RT",3,"Danny Pinter",63,"6-4","305",28,"Ball State",5,olT);
+  add("IND","DE1",3,"Dayo Odeyingbo",54,"6-6","285",25,"Vanderbilt",4,dlT);
+  add("IND","DE2",3,"Dayo Odeyingbo",54,"6-6","285",25,"Vanderbilt",4,dlT);
+  add("IND","DT1",3,"Adetomiwa Adebawore",95,"6-2","282",23,"Northwestern",2,dlT);
+  add("IND","DT2",3,"Eric Johnson II",98,"6-4","300",24,"Missouri State",2,dlT);
+  add("IND","LB1",3,"Segun Olabi",53,"6-2","240",24,"UCLA",1,lbT);
+  add("IND","LB2",3,"Segun Olabi",53,"6-2","240",24,"UCLA",1,lbT);
+  add("IND","LB3",3,"Cameron McGrone",56,"6-1","230",24,"Michigan",3,lbT);
+  add("IND","CB1",3,"Dallis Flowers",33,"5-11","185",24,"Pittsburg State",2,cbT);
+  add("IND","CB2",3,"Darius Rush",34,"6-2","198",24,"South Carolina",2,cbT);
+  add("IND","SS",3,"Ronnie Harrison Jr.",25,"6-0","203",25,"Yale",3,sT);
+  add("IND","FS",3,"Trevor Denbow",37,"5-10","195",24,"Pacific",1,sT);
+  add("IND","K",3,"Spencer Shrader",3,"5-10","190",23,"Notre Dame",1,kT);
+  add("IND","P",3,"Spencer Shrader",3,"5-10","190",23,"Notre Dame",1,pT);
+  add("IND","KR",3,"Evan Hull",26,"5-11","210",23,"Northwestern",2,krT);
+  add("IND","PR",3,"Evan Hull",26,"5-11","210",23,"Northwestern",2,prT);
+  add("IND","LS",3,"Danny Pinter",63,"6-4","305",28,"Ball State",5,lsT);
 
   return result;
 }
