@@ -88,8 +88,17 @@ export function NewsCard({ item }: NewsCardProps) {
         {item.description}
       </p>
       {item.source && (
-        <p className="mt-1 font-mono text-[10px] text-text-muted">
-          {item.source}
+        <p className="mt-1 flex items-center gap-1.5 font-mono text-[10px] text-text-muted">
+          {item.confidence === "official" ? (
+            <span className="rounded bg-status-green-bg px-1 py-0.5 text-status-green">
+              Official
+            </span>
+          ) : item.confidence === "reported" ? (
+            <span className="rounded bg-status-amber-bg px-1 py-0.5 text-status-amber">
+              Reported
+            </span>
+          ) : null}
+          <span>via {item.source}</span>
         </p>
       )}
     </div>
