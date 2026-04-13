@@ -136,16 +136,28 @@ describe("enrichNewsItems", () => {
     expect(result[0].rawData.team).toBe("PHI");
   });
 
-  it("matches team names in headlines", () => {
+  it("matches team names in headlines with roster-affecting keyword", () => {
     const item = makeNewsItem(
-      "Cowboys safety Bell arrested on misdemeanor charge",
-      "A Dallas Cowboys player was involved in an incident."
+      "Cowboys safety Bell suspended for conduct violation",
+      "A Dallas Cowboys player was handed a suspension."
     );
 
     const result = enrichNewsItems([item], db);
 
     expect(result).toHaveLength(1);
     expect(result[0].rawData.team).toBe("DAL");
+    expect(result[0].rawData.category).toBe("SUSPENSION");
+  });
+
+  it("drops team-only matches without roster-affecting keywords", () => {
+    const item = makeNewsItem(
+      "Cowboys unveil new stadium renovation plans",
+      "Dallas ownership announced a major upgrade project."
+    );
+
+    const result = enrichNewsItems([item], db);
+
+    expect(result).toHaveLength(0);
   });
 
   it("returns multiple enriched items when multiple match", () => {

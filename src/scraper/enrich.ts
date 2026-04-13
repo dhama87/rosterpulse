@@ -58,12 +58,9 @@ const CATEGORY_RULES: Array<{ category: NewsCategory; keywords: string[] }> = [
     keywords: [
       "trade",
       "traded",
-      "deal",
       "swap",
       "acquire",
       "acquired",
-      "send",
-      "sends",
     ],
   },
   {
@@ -73,7 +70,6 @@ const CATEGORY_RULES: Array<{ category: NewsCategory; keywords: string[] }> = [
       "signed",
       "signing",
       "contract",
-      "deal",
       "free agent",
       "agree",
     ],
@@ -81,11 +77,13 @@ const CATEGORY_RULES: Array<{ category: NewsCategory; keywords: string[] }> = [
   {
     category: "RETURN",
     keywords: [
-      "return",
       "activated",
-      "cleared",
+      "cleared to play",
       "reinstated",
       "back from",
+      "return from",
+      "returns to practice",
+      "returns to lineup",
     ],
   },
   {
@@ -115,29 +113,51 @@ function detectCategory(text: string): NewsCategory | null {
   return null;
 }
 
-function buildTeamMaps(): Map<string, string> {
-  // Maps lowercase key → team id
-  const map = new Map<string, string>();
+function buildTeamLookups(): {
+  nameMap: Map<string, string>;
+  patterns: Array<{ regex: RegExp; teamId: string }>;
+} {
+  const nameMap = new Map<string, string>();
+  const patterns: Array<{ regex: RegExp; teamId: string }> = [];
+
   for (const team of teams) {
-    // team name (e.g., "chiefs" → "KC")
-    map.set(team.name.toLowerCase(), team.id);
-    // full name (e.g., "kansas city chiefs" → "KC")
-    map.set(team.fullName.toLowerCase(), team.id);
-    // team id lowercase (e.g., "kc" → "KC")
-    map.set(team.id.toLowerCase(), team.id);
+    // Full name and team name — safe for substring match (long enough)
+    nameMap.set(team.fullName.toLowerCase(), team.id);
+    nameMap.set(team.name.toLowerCase(), team.id);
+
+    // Short IDs (2-3 chars) need word boundary matching to avoid false positives
+    // e.g., "NE" shouldn't match "one", "NO" shouldn't match "no"
+    patterns.push({
+      regex: new RegExp(`\\b${team.id}\\b`, "i"),
+      teamId: team.id,
+    });
   }
-  return map;
+
+  return { nameMap, patterns };
 }
 
-function findTeamInText(text: string, teamMap: Map<string, string>): string | null {
+function findTeamInText(
+  text: string,
+  nameMap: Map<string, string>,
+  patterns: Array<{ regex: RegExp; teamId: string }>
+): string | null {
   const lower = text.toLowerCase();
-  // Sort keys by length descending to prefer longer matches
-  const sortedKeys = [...teamMap.keys()].sort((a, b) => b.length - a.length);
+
+  // Try longer names first (full name, then team name)
+  const sortedKeys = [...nameMap.keys()].sort((a, b) => b.length - a.length);
   for (const key of sortedKeys) {
     if (lower.includes(key)) {
-      return teamMap.get(key)!;
+      return nameMap.get(key)!;
     }
   }
+
+  // Try short ID patterns with word boundaries
+  for (const { regex, teamId } of patterns) {
+    if (regex.test(text)) {
+      return teamId;
+    }
+  }
+
   return null;
 }
 
@@ -156,8 +176,8 @@ export function enrichNewsItems(
     playerMap.set(row.name.toLowerCase(), row);
   }
 
-  // Build team map
-  const teamMap = buildTeamMaps();
+  // Build team lookups
+  const { nameMap, patterns } = buildTeamLookups();
 
   // Sort player names by length descending so we match longer names first
   const sortedPlayerNames = [...playerMap.keys()].sort(
@@ -191,6 +211,9 @@ export function enrichNewsItems(
       continue;
     }
 
+    // Category detection (needed before deciding whether to keep team-only matches)
+    const category = detectCategory(searchText);
+
     let foundPlayer: PlayerRecord | null = null;
     let foundTeam: string | null = null;
 
@@ -205,17 +228,20 @@ export function enrichNewsItems(
     if (foundPlayer) {
       foundTeam = foundPlayer.team;
     } else {
-      // Team matching — check headline only (as specified)
-      foundTeam = findTeamInText(headline, teamMap);
+      // Team matching — check headline only
+      foundTeam = findTeamInText(headline, nameMap, patterns);
+
+      // Team-only matches MUST also have a roster-affecting keyword.
+      // Otherwise it's a general article that happens to mention a team.
+      if (foundTeam && category === null) {
+        continue; // Drop: team mentioned but no roster-affecting keywords
+      }
     }
 
     // Drop items with no player or team match
     if (!foundPlayer && !foundTeam) {
       continue;
     }
-
-    // Category detection
-    const category = detectCategory(searchText);
 
     // Build enriched item
     const newRawData: Record<string, unknown> = { ...rd };
