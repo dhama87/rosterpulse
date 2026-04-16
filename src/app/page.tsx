@@ -1,10 +1,7 @@
 import { createRosterService } from "@/services/createRosterService";
-import { TeamCard } from "@/components/TeamCard";
+import { TeamGrid } from "@/components/TeamGrid";
 import { NewsFeed } from "@/components/NewsFeed";
-import { Conference, Division } from "@/types";
-
-const divisions: Division[] = ["East", "North", "South", "West"];
-const conferences: Conference[] = ["AFC", "NFC"];
+import { MobileNewsToggle } from "@/components/MobileNewsToggle";
 
 export default function Home() {
   const service = createRosterService();
@@ -13,58 +10,27 @@ export default function Home() {
 
   // Count news per team (last 24 hours for alert badges)
   const oneDayAgo = Date.now() - 24 * 60 * 60 * 1000;
-  const recentNewsCount = new Map<string, number>();
+  const newsCountMap: Record<string, number> = {};
   for (const item of allNews) {
     if (new Date(item.timestamp).getTime() > oneDayAgo) {
-      recentNewsCount.set(
-        item.team,
-        (recentNewsCount.get(item.team) || 0) + 1
-      );
+      newsCountMap[item.team] = (newsCountMap[item.team] || 0) + 1;
     }
   }
 
   return (
-    <div className="flex h-[calc(100vh-49px)]">
+    <div className="flex flex-col lg:flex-row lg:h-[calc(100vh-49px)]">
       {/* Team Grid — Left */}
-      <div className="flex-1 overflow-y-auto p-6">
-        <div className="grid grid-cols-2 gap-8">
-          {conferences.map((conf) => (
-            <div key={conf}>
-              <h2 className="mb-4 text-xs font-semibold uppercase tracking-widest text-text-muted">
-                {conf}
-              </h2>
-              <div className="space-y-5">
-                {divisions.map((div) => {
-                  const divTeams = allTeams.filter(
-                    (t) => t.conference === conf && t.division === div
-                  );
-                  return (
-                    <div key={div}>
-                      <h3 className="mb-2 text-[11px] font-medium uppercase tracking-wider text-text-secondary">
-                        {conf} {div}
-                      </h3>
-                      <div className="grid grid-cols-2 gap-2">
-                        {divTeams.map((team) => (
-                          <TeamCard
-                            key={team.id}
-                            team={team}
-                            newsCount={recentNewsCount.get(team.id) || 0}
-                          />
-                        ))}
-                      </div>
-                    </div>
-                  );
-                })}
-              </div>
-            </div>
-          ))}
-        </div>
+      <div className="flex-1 overflow-y-auto p-4 sm:p-6">
+        <TeamGrid teams={allTeams} newsCountMap={newsCountMap} />
       </div>
 
-      {/* News Feed — Right */}
-      <div className="w-[380px] border-l border-border bg-bg-card">
+      {/* News Feed — Right (hidden on mobile, shown on lg+) */}
+      <div className="hidden lg:block w-[380px] border-l border-border bg-bg-card">
         <NewsFeed items={allNews} />
       </div>
+
+      {/* Mobile News */}
+      <MobileNewsToggle items={allNews} />
     </div>
   );
 }

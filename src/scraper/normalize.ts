@@ -26,6 +26,7 @@ export function normalizeToPlayer(item: ScrapedItem): Player {
     injuryStatus: (d.injuryStatus as InjuryStatus) || "Active",
     injuryDetail:
       d.injuryDetail !== undefined ? (d.injuryDetail as string) : undefined,
+    ...(d.espnId !== undefined ? { espnId: d.espnId as string } : {}),
     stats:
       d.stats !== undefined
         ? (d.stats as Record<string, number>)

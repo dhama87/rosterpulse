@@ -33,6 +33,7 @@ interface PlayerRow {
   irDesignation: string | null;
   practiceStatus: string | null;
   depthChange: string | null;
+  espnId: string | null;
   stats: string;
   source: string | null;
   sourceUrl: string | null;
@@ -78,6 +79,7 @@ const positionOrder: Record<string, { group: PositionGroup; order: number }> = {
   LB3: { group: "defense", order: 18 },
   CB1: { group: "defense", order: 19 },
   CB2: { group: "defense", order: 20 },
+  CB3: { group: "defense", order: 20.5 },
   SS: { group: "defense", order: 21 },
   FS: { group: "defense", order: 22 },
   K: { group: "specialTeams", order: 23 },
@@ -108,6 +110,7 @@ function rowToPlayer(row: PlayerRow): Player {
     ...(row.irDesignation != null ? { irDesignation: row.irDesignation as "4-game" | "8-game" | "season" } : {}),
     ...(row.practiceStatus != null ? { practiceStatus: row.practiceStatus as "DNP" | "Limited" | "Full" } : {}),
     ...(row.depthChange != null ? { depthChange: row.depthChange as "up" | "down" } : {}),
+    ...(row.espnId != null ? { espnId: row.espnId } : {}),
     stats: JSON.parse(row.stats) as Record<string, number>,
   };
 }
@@ -135,6 +138,8 @@ function buildDepthChart(playerRows: PlayerRow[]): DepthChartEntry[] {
   const positionMap = new Map<string, PlayerRow[]>();
 
   for (const row of playerRows) {
+    // Skip players not on the depth chart (depthOrder 0 = roster-only)
+    if (row.depthOrder === 0) continue;
     const existing = positionMap.get(row.position) || [];
     existing.push(row);
     positionMap.set(row.position, existing);

@@ -20,12 +20,12 @@ export function seedFromMock(db: InstanceType<typeof Database>): SeedResult {
     INSERT OR REPLACE INTO players (
       id, name, team, position, positionGroup, depthOrder, jerseyNumber,
       height, weight, age, college, experience, injuryStatus, injuryDetail,
-      injuryDate, estimatedReturn, irDesignation, practiceStatus, depthChange,
+      injuryDate, estimatedReturn, irDesignation, practiceStatus, depthChange, espnId,
       stats, source, sourceUrl, updatedAt
     ) VALUES (
       @id, @name, @team, @position, @positionGroup, @depthOrder, @jerseyNumber,
       @height, @weight, @age, @college, @experience, @injuryStatus, @injuryDetail,
-      @injuryDate, @estimatedReturn, @irDesignation, @practiceStatus, @depthChange,
+      @injuryDate, @estimatedReturn, @irDesignation, @practiceStatus, @depthChange, @espnId,
       @stats, @source, @sourceUrl, @updatedAt
     )
   `);
@@ -62,6 +62,7 @@ export function seedFromMock(db: InstanceType<typeof Database>): SeedResult {
         irDesignation: player.irDesignation ?? null,
         practiceStatus: player.practiceStatus ?? null,
         depthChange: player.depthChange ?? null,
+        espnId: player.espnId ?? null,
         stats: JSON.stringify(player.stats),
         source: "mock",
         sourceUrl: null,

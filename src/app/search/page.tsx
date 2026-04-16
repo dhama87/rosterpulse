@@ -1,16 +1,13 @@
-"use client";
-
-import { use } from "react";
 import Link from "next/link";
 import { createRosterService } from "@/services/createRosterService";
 import { StatusBadge } from "@/components/StatusBadge";
 
-export default function SearchPage({
+export default async function SearchPage({
   searchParams,
 }: {
   searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
 }) {
-  const { q } = use(searchParams);
+  const { q } = await searchParams;
   const query = typeof q === "string" ? q : "";
 
   const service = createRosterService();

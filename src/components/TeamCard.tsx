@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { Team } from "@/types";
 
 interface TeamCardProps {
@@ -18,13 +19,14 @@ export function TeamCard({ team, newsCount }: TeamCardProps) {
           : "border-border"
       }`}
     >
-      <span className="text-xl">{team.logo}</span>
+      <Image src={team.logo} alt={team.name} width={32} height={32} className="h-8 w-8 object-contain" />
       <div className="min-w-0 flex-1">
         <div className="truncate text-sm font-medium text-text-primary group-hover:text-white">
           {team.name}
         </div>
-        <div className="font-mono text-[11px] text-text-muted">
-          {team.record}
+        <div className="flex items-center gap-2 font-mono text-[11px] text-text-muted">
+          <span>{team.record}</span>
+          <span className="text-text-muted/60">BYE {team.byeWeek}</span>
         </div>
       </div>
       {hasBreakingNews && (

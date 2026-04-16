@@ -1,7 +1,9 @@
 import { notFound } from "next/navigation";
+import Image from "next/image";
 import { createRosterService } from "@/services/createRosterService";
 import { DepthChartGrid } from "@/components/DepthChartGrid";
 import { NewsFeed } from "@/components/NewsFeed";
+import { MobileNewsToggle } from "@/components/MobileNewsToggle";
 
 function formatLastUpdated(iso: string): string {
   return new Date(iso).toLocaleDateString("en-US", {
@@ -58,13 +60,13 @@ export default async function TeamPage({
     });
 
   return (
-    <div className="flex h-[calc(100vh-49px)]">
+    <div className="flex flex-col lg:flex-row lg:h-[calc(100vh-49px)]">
       {/* Depth Chart — Left */}
-      <div className="flex-1 overflow-y-auto p-6">
+      <div className="flex-1 overflow-x-auto overflow-y-auto p-4 sm:p-6">
         {/* Team Header */}
         <div className="mb-6">
           <div className="flex items-center gap-4">
-            <img src={team.logo} alt={team.name} className="h-12 w-12 object-contain" />
+            <Image src={team.logo} alt={team.name} width={48} height={48} className="h-12 w-12 object-contain" />
             <div>
               <h1 className="text-2xl font-bold text-text-primary">
                 {team.fullName}
@@ -94,7 +96,7 @@ export default async function TeamPage({
         </div>
 
         {/* Division Standings */}
-        <div className="mb-6 flex items-center gap-3 text-[11px]">
+        <div className="mb-6 flex flex-wrap items-center gap-2 sm:gap-3 text-[11px]">
           <span className="font-semibold uppercase tracking-wider text-text-muted">
             {team.conference} {team.division}
           </span>
@@ -112,14 +114,17 @@ export default async function TeamPage({
         <DepthChartGrid depthChart={depthChart} />
       </div>
 
-      {/* Team News — Right */}
-      <div className="w-[380px] border-l border-border bg-bg-card">
+      {/* Team News — Right (hidden on mobile) */}
+      <div className="hidden lg:block w-[380px] border-l border-border bg-bg-card">
         <NewsFeed
           items={news}
           title={`${team.name} News`}
           showFilters={false}
         />
       </div>
+
+      {/* Mobile News */}
+      <MobileNewsToggle items={news} title={`${team.name} News`} showFilters={false} />
     </div>
   );
 }

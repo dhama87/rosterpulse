@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { DepthChartEntry, PositionGroup } from "@/types";
 import { DepthChartRow } from "./DepthChartRow";
+import { useFavoritePlayers } from "@/hooks/useFavorites";
 
 type FilterTab = "all" | PositionGroup;
 
@@ -19,6 +20,7 @@ interface DepthChartGridProps {
 
 export function DepthChartGrid({ depthChart }: DepthChartGridProps) {
   const [activeTab, setActiveTab] = useState<FilterTab>("all");
+  const { favs: favPlayers, toggle: togglePlayer } = useFavoritePlayers();
 
   const filtered =
     activeTab === "all"
@@ -27,12 +29,12 @@ export function DepthChartGrid({ depthChart }: DepthChartGridProps) {
 
   return (
     <div>
-      <div className="mb-4 flex gap-1.5">
+      <div className="mb-4 flex flex-wrap gap-1.5">
         {tabs.map((tab) => (
           <button
             key={tab.value}
             onClick={() => setActiveTab(tab.value)}
-            className={`rounded-lg px-3 py-1.5 text-xs font-medium transition-colors ${
+            className={`rounded-lg px-3 py-2.5 sm:py-1.5 text-xs font-medium transition-colors ${
               activeTab === tab.value
                 ? "bg-text-primary text-bg"
                 : "bg-bg-card text-text-secondary hover:text-text-primary"
@@ -55,10 +57,10 @@ export function DepthChartGrid({ depthChart }: DepthChartGridProps) {
               <th className="px-3 py-2 text-left text-[10px] font-semibold uppercase tracking-wider text-text-muted">
                 2nd
               </th>
-              <th className="px-3 py-2 text-left text-[10px] font-semibold uppercase tracking-wider text-text-muted">
+              <th className="hidden sm:table-cell px-3 py-2 text-left text-[10px] font-semibold uppercase tracking-wider text-text-muted">
                 3rd
               </th>
-              <th className="px-3 py-2 text-right text-[10px] font-semibold uppercase tracking-wider text-text-muted">Stats</th>
+              <th className="hidden sm:table-cell px-3 py-2 text-right text-[10px] font-semibold uppercase tracking-wider text-text-muted">Stats</th>
             </tr>
           </thead>
           <tbody>
@@ -67,6 +69,8 @@ export function DepthChartGrid({ depthChart }: DepthChartGridProps) {
                 key={entry.position}
                 position={entry.position}
                 players={entry.players}
+                favPlayers={favPlayers}
+                onToggleFav={togglePlayer}
               />
             ))}
           </tbody>

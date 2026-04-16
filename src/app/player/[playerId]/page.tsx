@@ -32,7 +32,7 @@ export default async function PlayerPage({
   const lastVerified = service.getLastVerified();
 
   return (
-    <div className="p-6">
+    <div className="p-4 sm:p-6">
       {/* Breadcrumb */}
       <nav className="mb-5 flex items-center gap-1.5 text-xs text-text-muted">
         <Link href="/" className="hover:text-text-secondary">
@@ -49,7 +49,7 @@ export default async function PlayerPage({
         <span className="text-text-secondary">{player.name}</span>
       </nav>
 
-      <div className="flex gap-8">
+      <div className="flex flex-col lg:flex-row gap-8">
         {/* Left Column */}
         <div className="flex-1 space-y-6">
           <PlayerHeader player={player} />
@@ -63,7 +63,7 @@ export default async function PlayerPage({
         </div>
 
         {/* Right Column */}
-        <div className="w-[320px]">
+        <div className="w-full lg:w-[320px]">
           <PlayerSidebar
             player={player}
             team={team}

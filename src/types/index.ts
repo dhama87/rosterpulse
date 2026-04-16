@@ -58,6 +58,7 @@ export interface Player {
   irDesignation?: "4-game" | "8-game" | "season";
   practiceStatus?: "DNP" | "Limited" | "Full";
   depthChange?: "up" | "down";
+  espnId?: string;
   stats: Record<string, number>;
 }
 

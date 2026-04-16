@@ -96,12 +96,12 @@ export async function runScrape(
     INSERT OR REPLACE INTO players
       (id, name, team, position, positionGroup, depthOrder, jerseyNumber,
        height, weight, age, college, experience, injuryStatus, injuryDetail,
-       injuryDate, estimatedReturn, irDesignation, practiceStatus, depthChange,
+       injuryDate, estimatedReturn, irDesignation, practiceStatus, depthChange, espnId,
        stats, source, sourceUrl, updatedAt)
     VALUES
       (@id, @name, @team, @position, @positionGroup, @depthOrder, @jerseyNumber,
        @height, @weight, @age, @college, @experience, @injuryStatus, @injuryDetail,
-       @injuryDate, @estimatedReturn, @irDesignation, @practiceStatus, @depthChange,
+       @injuryDate, @estimatedReturn, @irDesignation, @practiceStatus, @depthChange, @espnId,
        @stats, @source, @sourceUrl, @updatedAt)
   `);
 
@@ -119,6 +119,9 @@ export async function runScrape(
 
   // Process all items in a single transaction
   const processAll = db.transaction(() => {
+    // Clear stale player data before inserting fresh rosters
+    db.prepare("DELETE FROM players").run();
+
     let totalItems = 0;
 
     for (const adapterResult of adapterResults) {
@@ -138,6 +141,7 @@ export async function runScrape(
             irDesignation: player.irDesignation ?? null,
             practiceStatus: player.practiceStatus ?? null,
             depthChange: player.depthChange ?? null,
+            espnId: player.espnId ?? null,
             stats: JSON.stringify(player.stats ?? {}),
             source: item.source,
             sourceUrl: item.sourceUrl,

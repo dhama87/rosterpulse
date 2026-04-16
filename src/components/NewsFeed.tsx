@@ -49,7 +49,7 @@ export function NewsFeed({
               <button
                 key={opt.value}
                 onClick={() => setActiveFilter(opt.value)}
-                className={`rounded-full px-2.5 py-1 text-[11px] font-medium transition-colors ${
+                className={`rounded-full px-2.5 py-2 sm:py-1 text-[11px] font-medium transition-colors ${
                   activeFilter === opt.value
                     ? "bg-text-primary text-bg"
                     : "bg-bg-card-hover text-text-secondary hover:text-text-primary"

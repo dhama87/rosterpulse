@@ -34,6 +34,46 @@ export function PlayerStatusCard({
           {player.injuryDetail}
         </p>
       )}
+      {player.injuryStatus !== "Active" && (
+        <div className="mt-3 space-y-1.5 border-t border-border pt-3">
+          {player.injuryDate && (
+            <div className="flex items-center justify-between">
+              <span className="text-[11px] text-text-muted">Injured</span>
+              <span className="text-[11px] font-medium text-text-secondary">
+                {new Date(player.injuryDate).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" })}
+              </span>
+            </div>
+          )}
+          {player.irDesignation && (
+            <div className="flex items-center justify-between">
+              <span className="text-[11px] text-text-muted">IR Window</span>
+              <span className="text-[11px] font-medium text-text-secondary">
+                {player.irDesignation === "season" ? "Season-ending" : `${player.irDesignation} return`}
+              </span>
+            </div>
+          )}
+          {player.estimatedReturn && (
+            <div className="flex items-center justify-between">
+              <span className="text-[11px] text-text-muted">Est. Return</span>
+              <span className="text-[11px] font-semibold text-status-blue">
+                {player.estimatedReturn}
+              </span>
+            </div>
+          )}
+          {player.practiceStatus && (
+            <div className="flex items-center justify-between">
+              <span className="text-[11px] text-text-muted">Practice</span>
+              <span className={`text-[11px] font-semibold ${
+                player.practiceStatus === "Full" ? "text-status-green" :
+                player.practiceStatus === "Limited" ? "text-status-amber" :
+                "text-status-red"
+              }`}>
+                {player.practiceStatus === "DNP" ? "Did Not Participate" : `${player.practiceStatus} Participant`}
+              </span>
+            </div>
+          )}
+        </div>
+      )}
       <p className="mt-2 font-mono text-[10px] text-text-muted">
         Verified{" "}
         {new Date(lastVerified).toLocaleTimeString("en-US", {

@@ -28,6 +28,7 @@ export function createTables(db: InstanceType<typeof Database>): void {
       irDesignation TEXT,
       practiceStatus TEXT,
       depthChange TEXT,
+      espnId TEXT,
       stats TEXT NOT NULL DEFAULT '{}',
       source TEXT,
       sourceUrl TEXT,

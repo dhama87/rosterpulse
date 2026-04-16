@@ -1,14 +1,17 @@
 import Link from "next/link";
 import { Player } from "@/types";
 import { StatusBadge } from "./StatusBadge";
+import { FavStar } from "./FavStar";
 import { getStatLine } from "@/utils/statLine";
 
 interface DepthChartRowProps {
   position: string;
   players: Player[];
+  favPlayers?: Set<string>;
+  onToggleFav?: (playerId: string) => void;
 }
 
-export function DepthChartRow({ position, players }: DepthChartRowProps) {
+export function DepthChartRow({ position, players, favPlayers, onToggleFav }: DepthChartRowProps) {
   // Clean position display (remove trailing numbers like DE1 -> DE)
   const displayPos = position.replace(/\d+$/, "");
 
@@ -34,15 +37,25 @@ export function DepthChartRow({ position, players }: DepthChartRowProps) {
         {displayPos}
       </td>
       <td className="px-3 py-2">
-        {starter && <PlayerCell player={starter} showDetail />}
+        {starter && (
+          <div className="flex items-center gap-1">
+            {onToggleFav && (
+              <FavStar
+                active={favPlayers?.has(starter.id) ?? false}
+                onClick={() => onToggleFav(starter.id)}
+              />
+            )}
+            <PlayerCell player={starter} showDetail />
+          </div>
+        )}
       </td>
       <td className="px-3 py-2">
         {second && <PlayerCell player={second} />}
       </td>
-      <td className="px-3 py-2">
+      <td className="hidden sm:table-cell px-3 py-2">
         {third && <PlayerCell player={third} />}
       </td>
-      <td className="px-3 py-2 text-right">
+      <td className="hidden sm:table-cell px-3 py-2 text-right">
         {starter && (
           <span className="font-mono text-[11px] text-text-muted">
             {getStatLine(starter)}
