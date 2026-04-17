@@ -11,8 +11,10 @@ export default async function SearchPage({
   const query = typeof q === "string" ? q : "";
 
   const service = createRosterService();
-  const matchingPlayers = query ? service.searchPlayers(query) : [];
-  const matchingTeams = query ? service.searchTeams(query) : [];
+  const [matchingPlayers, matchingTeams] = await Promise.all([
+    query ? service.searchPlayers(query) : Promise.resolve([]),
+    Promise.resolve(query ? service.searchTeams(query) : []),
+  ]);
 
   return (
     <div className="mx-auto max-w-3xl p-6">

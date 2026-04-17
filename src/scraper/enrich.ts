@@ -1,4 +1,4 @@
-import Database from "better-sqlite3";
+import type { Client } from "@libsql/client";
 import { teams } from "@/data/teams";
 import type { ScrapedItem } from "./types";
 
@@ -121,12 +121,9 @@ function buildTeamLookups(): {
   const patterns: Array<{ regex: RegExp; teamId: string }> = [];
 
   for (const team of teams) {
-    // Full name and team name — safe for substring match (long enough)
     nameMap.set(team.fullName.toLowerCase(), team.id);
     nameMap.set(team.name.toLowerCase(), team.id);
 
-    // Short IDs (2-3 chars) need word boundary matching to avoid false positives
-    // e.g., "NE" shouldn't match "one", "NO" shouldn't match "no"
     patterns.push({
       regex: new RegExp(`\\b${team.id}\\b`, "i"),
       teamId: team.id,
@@ -143,7 +140,6 @@ function findTeamInText(
 ): string | null {
   const lower = text.toLowerCase();
 
-  // Try longer names first (full name, then team name)
   const sortedKeys = [...nameMap.keys()].sort((a, b) => b.length - a.length);
   for (const key of sortedKeys) {
     if (lower.includes(key)) {
@@ -151,7 +147,6 @@ function findTeamInText(
     }
   }
 
-  // Try short ID patterns with word boundaries
   for (const { regex, teamId } of patterns) {
     if (regex.test(text)) {
       return teamId;
@@ -161,25 +156,28 @@ function findTeamInText(
   return null;
 }
 
-export function enrichNewsItems(
+export async function enrichNewsItems(
   items: ScrapedItem[],
-  db: InstanceType<typeof Database>
-): ScrapedItem[] {
+  db: Client
+): Promise<ScrapedItem[]> {
   // Step 1: Load lookup data
-  const playerRows = db
-    .prepare("SELECT id, name, team, position FROM players")
-    .all() as PlayerRecord[];
+  const result = await db.execute(
+    "SELECT id, name, team, position FROM players"
+  );
 
-  // Build player map: lowercase name → record (prefer longer names on collision)
   const playerMap = new Map<string, PlayerRecord>();
-  for (const row of playerRows) {
-    playerMap.set(row.name.toLowerCase(), row);
+  for (const row of result.rows) {
+    const record: PlayerRecord = {
+      id: row.id as string,
+      name: row.name as string,
+      team: row.team as string,
+      position: row.position as string,
+    };
+    playerMap.set(record.name.toLowerCase(), record);
   }
 
-  // Build team lookups
   const { nameMap, patterns } = buildTeamLookups();
 
-  // Sort player names by length descending so we match longer names first
   const sortedPlayerNames = [...playerMap.keys()].sort(
     (a, b) => b.length - a.length
   );
@@ -194,8 +192,6 @@ export function enrichNewsItems(
     const searchText = `${headline} ${description}`;
     const lowerSearch = searchText.toLowerCase();
 
-    // If rawData already has a team or playerId (set by a structured adapter),
-    // the item is already meaningful — pass it through without re-filtering.
     const alreadyHasTeam =
       typeof rd.team === "string" && rd.team.length > 0;
     const alreadyHasPlayer =
@@ -211,13 +207,11 @@ export function enrichNewsItems(
       continue;
     }
 
-    // Category detection (needed before deciding whether to keep team-only matches)
     const category = detectCategory(searchText);
 
     let foundPlayer: PlayerRecord | null = null;
     let foundTeam: string | null = null;
 
-    // Player matching — try longest names first
     for (const lowerName of sortedPlayerNames) {
       if (lowerSearch.includes(lowerName)) {
         foundPlayer = playerMap.get(lowerName)!;
@@ -228,22 +222,17 @@ export function enrichNewsItems(
     if (foundPlayer) {
       foundTeam = foundPlayer.team;
     } else {
-      // Team matching — check headline only
       foundTeam = findTeamInText(headline, nameMap, patterns);
 
-      // Team-only matches MUST also have a roster-affecting keyword.
-      // Otherwise it's a general article that happens to mention a team.
       if (foundTeam && category === null) {
-        continue; // Drop: team mentioned but no roster-affecting keywords
+        continue;
       }
     }
 
-    // Drop items with no player or team match
     if (!foundPlayer && !foundTeam) {
       continue;
     }
 
-    // Build enriched item
     const newRawData: Record<string, unknown> = { ...rd };
 
     if (foundPlayer) {

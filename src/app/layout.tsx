@@ -16,13 +16,13 @@ export const metadata: Metadata = {
     "Real-time NFL roster and depth chart dashboard. Every team, every starter, every status change.",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
   const service = createRosterService();
-  const lastVerified = service.getLastVerified();
+  const lastVerified = await service.getLastVerified();
 
   return (
     <html lang="en">

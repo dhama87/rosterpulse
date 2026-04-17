@@ -1,4 +1,4 @@
-import type Database from "better-sqlite3";
+import type { Client } from "@libsql/client";
 
 export const TABLE_NAMES = {
   PLAYERS: "players",
@@ -6,8 +6,8 @@ export const TABLE_NAMES = {
   SCRAPE_LOG: "scrape_log",
 } as const;
 
-export function createTables(db: InstanceType<typeof Database>): void {
-  db.exec(`
+export async function createTables(db: Client): Promise<void> {
+  await db.executeMultiple(`
     CREATE TABLE IF NOT EXISTS players (
       id TEXT PRIMARY KEY,
       name TEXT NOT NULL,

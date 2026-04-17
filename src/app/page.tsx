@@ -3,10 +3,10 @@ import { TeamGrid } from "@/components/TeamGrid";
 import { NewsFeed } from "@/components/NewsFeed";
 import { MobileNewsToggle } from "@/components/MobileNewsToggle";
 
-export default function Home() {
+export default async function Home() {
   const service = createRosterService();
   const allTeams = service.getAllTeams();
-  const allNews = service.getAllNews();
+  const allNews = await service.getAllNews();
 
   // Count news per team (last 24 hours for alert badges)
   const oneDayAgo = Date.now() - 24 * 60 * 60 * 1000;

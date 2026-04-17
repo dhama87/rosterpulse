@@ -14,7 +14,7 @@ export default async function PlayerPage({
   const { playerId } = await params;
   const service = createRosterService();
 
-  const player = service.getPlayer(playerId);
+  const player = await service.getPlayer(playerId);
   if (!player) {
     notFound();
   }
@@ -24,12 +24,15 @@ export default async function PlayerPage({
     notFound();
   }
 
-  const playerNews = service.getPlayerNews(playerId);
-  const roster = service.getTeamRoster(player.team);
+  const [playerNews, roster, lastVerified] = await Promise.all([
+    service.getPlayerNews(playerId),
+    service.getTeamRoster(player.team),
+    service.getLastVerified(),
+  ]);
+
   const depthChartEntry = roster?.depthChart.find(
     (e) => e.position === player.position
   );
-  const lastVerified = service.getLastVerified();
 
   return (
     <div className="p-4 sm:p-6">

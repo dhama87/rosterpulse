@@ -91,7 +91,7 @@ export function createMockRosterService(): RosterService {
       return teams.find((t) => t.id === teamId);
     },
 
-    getTeamRoster(teamId: string): TeamRoster | undefined {
+    async getTeamRoster(teamId: string): Promise<TeamRoster | undefined> {
       const team = teams.find((t) => t.id === teamId);
       if (!team) return undefined;
 
@@ -102,22 +102,22 @@ export function createMockRosterService(): RosterService {
       return { team, depthChart, news };
     },
 
-    getPlayer(playerId: string): Player | undefined {
+    async getPlayer(playerId: string): Promise<Player | undefined> {
       return players.find((p) => p.id === playerId);
     },
 
-    getPlayerNews(playerId: string): NewsItem[] {
+    async getPlayerNews(playerId: string): Promise<NewsItem[]> {
       return sortedNews.filter((n) => n.playerId === playerId);
     },
 
-    getTeamNews(teamId: string): NewsItem[] {
+    async getTeamNews(teamId: string): Promise<NewsItem[]> {
       return sortedNews.filter((n) => n.team === teamId);
     },
 
-    getAllNews(options?: {
+    async getAllNews(options?: {
       category?: NewsCategory;
       limit?: number;
-    }): NewsItem[] {
+    }): Promise<NewsItem[]> {
       let result = sortedNews;
 
       if (options?.category) {
@@ -131,7 +131,7 @@ export function createMockRosterService(): RosterService {
       return result;
     },
 
-    searchPlayers(query: string): Player[] {
+    async searchPlayers(query: string): Promise<Player[]> {
       const lower = query.toLowerCase();
       return players.filter((p) => p.name.toLowerCase().includes(lower));
     },
@@ -145,7 +145,7 @@ export function createMockRosterService(): RosterService {
       );
     },
 
-    getLastVerified(): string {
+    async getLastVerified(): Promise<string> {
       return new Date().toISOString();
     },
   };

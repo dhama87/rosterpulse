@@ -22,7 +22,7 @@ export default async function TeamPage({
 }) {
   const { teamId } = await params;
   const service = createRosterService();
-  const roster = service.getTeamRoster(teamId);
+  const roster = await service.getTeamRoster(teamId);
 
   if (!roster) {
     notFound();

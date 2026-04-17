@@ -1,4 +1,4 @@
-import Database from "better-sqlite3";
+import type { Client } from "@libsql/client";
 import { SourceAdapter, AdapterResult, ScrapedItem } from "./types";
 import { normalizeToPlayer, normalizeToNewsItem } from "./normalize";
 import { makeDedupKey, shouldUpgradeConfidence } from "./dedup";
@@ -37,7 +37,7 @@ async function runAdapter(adapter: SourceAdapter): Promise<AdapterResult> {
 }
 
 export async function runScrape(
-  db: InstanceType<typeof Database>,
+  db: Client,
   adapters: SourceAdapter[]
 ): Promise<ScrapeResult> {
   const startedAt = new Date().toISOString();
@@ -46,7 +46,6 @@ export async function runScrape(
   const settled = await Promise.allSettled(adapters.map(runAdapter));
 
   const adapterResults: AdapterResult[] = settled.map((result) => {
-    // runAdapter never rejects — it catches internally — but handle just in case
     if (result.status === "fulfilled") {
       return result.value;
     }
@@ -69,60 +68,28 @@ export async function runScrape(
     const nonNewsItems = adapterResult.items.filter((i) => i.type !== "news");
 
     if (newsItems.length > 0) {
-      const enriched = enrichNewsItems(newsItems, db);
+      const enriched = await enrichNewsItems(newsItems, db);
       adapterResult.items = [...nonNewsItems, ...enriched];
       adapterResult.itemsFound = adapterResult.items.length;
     }
   }
 
   // Load existing dedup keys from DB
+  const dedupResult = await db.execute("SELECT dedupKey FROM news");
   const existingKeys = new Set<string>(
-    (db.prepare("SELECT dedupKey FROM news").all() as Array<{ dedupKey: string }>)
-      .map((r) => r.dedupKey)
+    dedupResult.rows
+      .map((r) => r.dedupKey as string)
       .filter(Boolean)
   );
 
-  // Prepare statements
-  const insertNews = db.prepare(`
-    INSERT OR IGNORE INTO news
-      (id, dedupKey, playerId, playerName, team, position, category, headline,
-       description, source, sourceUrl, confidence, timestamp, fetchedAt)
-    VALUES
-      (@id, @dedupKey, @playerId, @playerName, @team, @position, @category, @headline,
-       @description, @source, @sourceUrl, @confidence, @timestamp, @fetchedAt)
-  `);
+  // Process all items in a transaction
+  const tx = await db.transaction("write");
 
-  const insertPlayer = db.prepare(`
-    INSERT OR REPLACE INTO players
-      (id, name, team, position, positionGroup, depthOrder, jerseyNumber,
-       height, weight, age, college, experience, injuryStatus, injuryDetail,
-       injuryDate, estimatedReturn, irDesignation, practiceStatus, depthChange, espnId,
-       stats, source, sourceUrl, updatedAt)
-    VALUES
-      (@id, @name, @team, @position, @positionGroup, @depthOrder, @jerseyNumber,
-       @height, @weight, @age, @college, @experience, @injuryStatus, @injuryDetail,
-       @injuryDate, @estimatedReturn, @irDesignation, @practiceStatus, @depthChange, @espnId,
-       @stats, @source, @sourceUrl, @updatedAt)
-  `);
+  let totalItems = 0;
 
-  const upgradeConfidence = db.prepare(`
-    UPDATE news SET confidence = 'official'
-    WHERE dedupKey = ? AND confidence = 'reported'
-  `);
-
-  const insertLog = db.prepare(`
-    INSERT INTO scrape_log
-      (adapter, status, itemsFound, itemsNew, itemsUpdated, errorMessage, startedAt, completedAt)
-    VALUES
-      (@adapter, @status, @itemsFound, @itemsNew, @itemsUpdated, @errorMessage, @startedAt, @completedAt)
-  `);
-
-  // Process all items in a single transaction
-  const processAll = db.transaction(() => {
+  try {
     // Clear stale player data before inserting fresh rosters
-    db.prepare("DELETE FROM players").run();
-
-    let totalItems = 0;
+    await tx.execute("DELETE FROM players");
 
     for (const adapterResult of adapterResults) {
       let itemsNew = 0;
@@ -133,19 +100,25 @@ export async function runScrape(
 
         if (item.type === "player") {
           const player = normalizeToPlayer(item);
-          insertPlayer.run({
-            ...player,
-            injuryDetail: player.injuryDetail ?? null,
-            injuryDate: player.injuryDate ?? null,
-            estimatedReturn: player.estimatedReturn ?? null,
-            irDesignation: player.irDesignation ?? null,
-            practiceStatus: player.practiceStatus ?? null,
-            depthChange: player.depthChange ?? null,
-            espnId: player.espnId ?? null,
-            stats: JSON.stringify(player.stats ?? {}),
-            source: item.source,
-            sourceUrl: item.sourceUrl,
-            updatedAt: item.fetchedAt,
+          await tx.execute({
+            sql: `INSERT OR REPLACE INTO players
+              (id, name, team, position, positionGroup, depthOrder, jerseyNumber,
+               height, weight, age, college, experience, injuryStatus, injuryDetail,
+               injuryDate, estimatedReturn, irDesignation, practiceStatus, depthChange, espnId,
+               stats, source, sourceUrl, updatedAt)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+            args: [
+              player.id, player.name, player.team, player.position,
+              player.positionGroup, player.depthOrder, player.jerseyNumber,
+              player.height, player.weight, player.age, player.college,
+              player.experience, player.injuryStatus,
+              player.injuryDetail ?? null, player.injuryDate ?? null,
+              player.estimatedReturn ?? null, player.irDesignation ?? null,
+              player.practiceStatus ?? null, player.depthChange ?? null,
+              player.espnId ?? null,
+              JSON.stringify(player.stats ?? {}),
+              item.source, item.sourceUrl, item.fetchedAt,
+            ],
           });
           itemsNew++;
         } else if (item.type === "news") {
@@ -153,30 +126,27 @@ export async function runScrape(
           const dedupKey = makeDedupKey(item.source, news.headline);
 
           if (existingKeys.has(dedupKey)) {
-            // Duplicate — check for confidence upgrade
             if (shouldUpgradeConfidence("reported", item.confidence)) {
-              const info = upgradeConfidence.run(dedupKey) as { changes: number };
-              if (info.changes > 0) {
+              const result = await tx.execute({
+                sql: "UPDATE news SET confidence = 'official' WHERE dedupKey = ? AND confidence = 'reported'",
+                args: [dedupKey],
+              });
+              if (result.rowsAffected > 0) {
                 itemsUpdated++;
               }
             }
           } else {
-            // New item
-            insertNews.run({
-              id: news.id,
-              dedupKey,
-              playerId: news.playerId ?? null,
-              playerName: news.playerName,
-              team: news.team,
-              position: news.position,
-              category: news.category,
-              headline: news.headline,
-              description: news.description,
-              source: news.source,
-              sourceUrl: news.sourceUrl,
-              confidence: news.confidence,
-              timestamp: news.timestamp,
-              fetchedAt: item.fetchedAt,
+            await tx.execute({
+              sql: `INSERT OR IGNORE INTO news
+                (id, dedupKey, playerId, playerName, team, position, category, headline,
+                 description, source, sourceUrl, confidence, timestamp, fetchedAt)
+              VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+              args: [
+                news.id, dedupKey, news.playerId ?? null, news.playerName,
+                news.team, news.position, news.category, news.headline,
+                news.description, news.source ?? null, news.sourceUrl ?? null,
+                news.confidence ?? null, news.timestamp, item.fetchedAt,
+              ],
             });
             existingKeys.add(dedupKey);
             itemsNew++;
@@ -185,22 +155,24 @@ export async function runScrape(
       }
 
       // Log this adapter's results
-      insertLog.run({
-        adapter: adapterResult.adapter,
-        status: adapterResult.status,
-        itemsFound: adapterResult.itemsFound,
-        itemsNew,
-        itemsUpdated,
-        errorMessage: adapterResult.errorMessage ?? null,
-        startedAt: adapterResult.startedAt,
-        completedAt: adapterResult.completedAt,
+      await tx.execute({
+        sql: `INSERT INTO scrape_log
+          (adapter, status, itemsFound, itemsNew, itemsUpdated, errorMessage, startedAt, completedAt)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?)`,
+        args: [
+          adapterResult.adapter, adapterResult.status, adapterResult.itemsFound,
+          itemsNew, itemsUpdated, adapterResult.errorMessage ?? null,
+          adapterResult.startedAt, adapterResult.completedAt,
+        ],
       });
     }
 
-    return totalItems;
-  });
+    await tx.commit();
+  } catch (err) {
+    await tx.rollback();
+    throw err;
+  }
 
-  const totalItems = processAll() as number;
   const completedAt = new Date().toISOString();
 
   return {

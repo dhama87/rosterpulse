@@ -1,4 +1,4 @@
-import Database from "better-sqlite3";
+import type { Client, Row } from "@libsql/client";
 import {
   RosterService,
   Team,
@@ -11,51 +11,6 @@ import {
   InjuryStatus,
 } from "@/types";
 import { teams } from "@/data/teams";
-
-// Internal DB row types
-interface PlayerRow {
-  id: string;
-  name: string;
-  team: string;
-  position: string;
-  positionGroup: string;
-  depthOrder: number;
-  jerseyNumber: number;
-  height: string;
-  weight: string;
-  age: number;
-  college: string;
-  experience: number;
-  injuryStatus: string;
-  injuryDetail: string | null;
-  injuryDate: string | null;
-  estimatedReturn: string | null;
-  irDesignation: string | null;
-  practiceStatus: string | null;
-  depthChange: string | null;
-  espnId: string | null;
-  stats: string;
-  source: string | null;
-  sourceUrl: string | null;
-  updatedAt: string;
-}
-
-interface NewsRow {
-  id: string;
-  dedupKey: string | null;
-  playerId: string | null;
-  playerName: string;
-  team: string;
-  position: string;
-  category: string;
-  headline: string;
-  description: string;
-  source: string | null;
-  sourceUrl: string | null;
-  confidence: string | null;
-  timestamp: string;
-  fetchedAt: string;
-}
 
 // Position ordering for depth chart display
 const positionOrder: Record<string, { group: PositionGroup; order: number }> = {
@@ -89,66 +44,68 @@ const positionOrder: Record<string, { group: PositionGroup; order: number }> = {
   LS: { group: "specialTeams", order: 27 },
 };
 
-function rowToPlayer(row: PlayerRow): Player {
+function rowToPlayer(row: Row): Player {
   return {
-    id: row.id,
-    name: row.name,
-    team: row.team,
-    position: row.position,
+    id: row.id as string,
+    name: row.name as string,
+    team: row.team as string,
+    position: row.position as string,
     positionGroup: row.positionGroup as PositionGroup,
-    depthOrder: row.depthOrder,
-    jerseyNumber: row.jerseyNumber,
-    height: row.height,
-    weight: row.weight,
-    age: row.age,
-    college: row.college,
-    experience: row.experience,
+    depthOrder: row.depthOrder as number,
+    jerseyNumber: row.jerseyNumber as number,
+    height: row.height as string,
+    weight: row.weight as string,
+    age: row.age as number,
+    college: row.college as string,
+    experience: row.experience as number,
     injuryStatus: row.injuryStatus as InjuryStatus,
-    ...(row.injuryDetail != null ? { injuryDetail: row.injuryDetail } : {}),
-    ...(row.injuryDate != null ? { injuryDate: row.injuryDate } : {}),
-    ...(row.estimatedReturn != null ? { estimatedReturn: row.estimatedReturn } : {}),
+    ...(row.injuryDetail != null ? { injuryDetail: row.injuryDetail as string } : {}),
+    ...(row.injuryDate != null ? { injuryDate: row.injuryDate as string } : {}),
+    ...(row.estimatedReturn != null ? { estimatedReturn: row.estimatedReturn as string } : {}),
     ...(row.irDesignation != null ? { irDesignation: row.irDesignation as "4-game" | "8-game" | "season" } : {}),
     ...(row.practiceStatus != null ? { practiceStatus: row.practiceStatus as "DNP" | "Limited" | "Full" } : {}),
     ...(row.depthChange != null ? { depthChange: row.depthChange as "up" | "down" } : {}),
-    ...(row.espnId != null ? { espnId: row.espnId } : {}),
-    stats: JSON.parse(row.stats) as Record<string, number>,
+    ...(row.espnId != null ? { espnId: row.espnId as string } : {}),
+    stats: JSON.parse((row.stats as string) || "{}") as Record<string, number>,
   };
 }
 
-function rowToNewsItem(row: NewsRow): NewsItem {
+function rowToNewsItem(row: Row): NewsItem {
   return {
-    id: row.id,
-    playerId: row.playerId ?? "",
-    playerName: row.playerName,
-    team: row.team,
-    position: row.position,
+    id: row.id as string,
+    playerId: (row.playerId as string) ?? "",
+    playerName: row.playerName as string,
+    team: row.team as string,
+    position: row.position as string,
     category: row.category as NewsCategory,
-    headline: row.headline,
-    description: row.description,
-    ...(row.source != null ? { source: row.source } : {}),
-    ...(row.sourceUrl != null ? { sourceUrl: row.sourceUrl } : {}),
+    headline: row.headline as string,
+    description: row.description as string,
+    ...(row.source != null ? { source: row.source as string } : {}),
+    ...(row.sourceUrl != null ? { sourceUrl: row.sourceUrl as string } : {}),
     ...(row.confidence != null
       ? { confidence: row.confidence as "reported" | "official" }
       : {}),
-    timestamp: row.timestamp,
+    timestamp: row.timestamp as string,
   };
 }
 
-function buildDepthChart(playerRows: PlayerRow[]): DepthChartEntry[] {
-  const positionMap = new Map<string, PlayerRow[]>();
+function buildDepthChart(rows: Row[]): DepthChartEntry[] {
+  const positionMap = new Map<string, Row[]>();
 
-  for (const row of playerRows) {
-    // Skip players not on the depth chart (depthOrder 0 = roster-only)
-    if (row.depthOrder === 0) continue;
-    const existing = positionMap.get(row.position) || [];
+  for (const row of rows) {
+    if ((row.depthOrder as number) === 0) continue;
+    const pos = row.position as string;
+    const existing = positionMap.get(pos) || [];
     existing.push(row);
-    positionMap.set(row.position, existing);
+    positionMap.set(pos, existing);
   }
 
   const entries: DepthChartEntry[] = [];
 
-  for (const [position, rows] of positionMap.entries()) {
-    const sorted = [...rows].sort((a, b) => a.depthOrder - b.depthOrder);
+  for (const [position, posRows] of positionMap.entries()) {
+    const sorted = [...posRows].sort(
+      (a, b) => (a.depthOrder as number) - (b.depthOrder as number)
+    );
     const info = positionOrder[position] || {
       group: "offense" as PositionGroup,
       order: 99,
@@ -169,7 +126,7 @@ function buildDepthChart(playerRows: PlayerRow[]): DepthChartEntry[] {
   return entries;
 }
 
-export function createLiveRosterService(db: Database.Database): RosterService {
+export function createLiveRosterService(db: Client): RosterService {
   return {
     getAllTeams(): Team[] {
       return teams;
@@ -179,79 +136,77 @@ export function createLiveRosterService(db: Database.Database): RosterService {
       return teams.find((t) => t.id === teamId);
     },
 
-    getTeamRoster(teamId: string): TeamRoster | undefined {
+    async getTeamRoster(teamId: string): Promise<TeamRoster | undefined> {
       const team = teams.find((t) => t.id === teamId);
       if (!team) return undefined;
 
-      const playerRows = db
-        .prepare("SELECT * FROM players WHERE team = ?")
-        .all(teamId) as PlayerRow[];
+      const playerResult = await db.execute({
+        sql: "SELECT * FROM players WHERE team = ?",
+        args: [teamId],
+      });
 
-      const depthChart = buildDepthChart(playerRows);
+      const depthChart = buildDepthChart(playerResult.rows);
 
-      const newsRows = db
-        .prepare(
-          "SELECT * FROM news WHERE team = ? ORDER BY timestamp DESC"
-        )
-        .all(teamId) as NewsRow[];
+      const newsResult = await db.execute({
+        sql: "SELECT * FROM news WHERE team = ? ORDER BY timestamp DESC",
+        args: [teamId],
+      });
 
-      const news = newsRows.map(rowToNewsItem);
+      const news = newsResult.rows.map(rowToNewsItem);
 
       return { team, depthChart, news };
     },
 
-    getPlayer(playerId: string): Player | undefined {
-      const row = db
-        .prepare("SELECT * FROM players WHERE id = ?")
-        .get(playerId) as PlayerRow | undefined;
-      return row ? rowToPlayer(row) : undefined;
+    async getPlayer(playerId: string): Promise<Player | undefined> {
+      const result = await db.execute({
+        sql: "SELECT * FROM players WHERE id = ?",
+        args: [playerId],
+      });
+      return result.rows.length > 0 ? rowToPlayer(result.rows[0]) : undefined;
     },
 
-    getPlayerNews(playerId: string): NewsItem[] {
-      const rows = db
-        .prepare(
-          "SELECT * FROM news WHERE playerId = ? ORDER BY timestamp DESC"
-        )
-        .all(playerId) as NewsRow[];
-      return rows.map(rowToNewsItem);
+    async getPlayerNews(playerId: string): Promise<NewsItem[]> {
+      const result = await db.execute({
+        sql: "SELECT * FROM news WHERE playerId = ? ORDER BY timestamp DESC",
+        args: [playerId],
+      });
+      return result.rows.map(rowToNewsItem);
     },
 
-    getTeamNews(teamId: string): NewsItem[] {
-      const rows = db
-        .prepare(
-          "SELECT * FROM news WHERE team = ? ORDER BY timestamp DESC"
-        )
-        .all(teamId) as NewsRow[];
-      return rows.map(rowToNewsItem);
+    async getTeamNews(teamId: string): Promise<NewsItem[]> {
+      const result = await db.execute({
+        sql: "SELECT * FROM news WHERE team = ? ORDER BY timestamp DESC",
+        args: [teamId],
+      });
+      return result.rows.map(rowToNewsItem);
     },
 
-    getAllNews(options?: { category?: NewsCategory; limit?: number }): NewsItem[] {
+    async getAllNews(options?: { category?: NewsCategory; limit?: number }): Promise<NewsItem[]> {
       let sql = "SELECT * FROM news";
-      const params: (string | number)[] = [];
+      const args: (string | number)[] = [];
 
       if (options?.category) {
         sql += " WHERE category = ?";
-        params.push(options.category);
+        args.push(options.category);
       }
 
       sql += " ORDER BY timestamp DESC";
 
       if (options?.limit) {
         sql += " LIMIT ?";
-        params.push(options.limit);
+        args.push(options.limit);
       }
 
-      const rows = db.prepare(sql).all(...params) as NewsRow[];
-      return rows.map(rowToNewsItem);
+      const result = await db.execute({ sql, args });
+      return result.rows.map(rowToNewsItem);
     },
 
-    searchPlayers(query: string): Player[] {
-      const rows = db
-        .prepare(
-          "SELECT * FROM players WHERE LOWER(name) LIKE LOWER(?)"
-        )
-        .all(`%${query}%`) as PlayerRow[];
-      return rows.map(rowToPlayer);
+    async searchPlayers(query: string): Promise<Player[]> {
+      const result = await db.execute({
+        sql: "SELECT * FROM players WHERE LOWER(name) LIKE LOWER(?)",
+        args: [`%${query}%`],
+      });
+      return result.rows.map(rowToPlayer);
     },
 
     searchTeams(query: string): Team[] {
@@ -263,13 +218,13 @@ export function createLiveRosterService(db: Database.Database): RosterService {
       );
     },
 
-    getLastVerified(): string {
-      const row = db
-        .prepare(
-          "SELECT completedAt FROM scrape_log WHERE status = 'success' ORDER BY completedAt DESC LIMIT 1"
-        )
-        .get() as { completedAt: string } | undefined;
-      return row ? row.completedAt : new Date().toISOString();
+    async getLastVerified(): Promise<string> {
+      const result = await db.execute(
+        "SELECT completedAt FROM scrape_log WHERE status = 'success' ORDER BY completedAt DESC LIMIT 1"
+      );
+      return result.rows.length > 0
+        ? (result.rows[0].completedAt as string)
+        : new Date().toISOString();
     },
   };
 }

@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { getDb, closeDb } from "@/db/client";
+import { createTables } from "@/db/schema";
 import { seedFromMock } from "@/db/seed";
 import { runScrape } from "@/scraper/orchestrator";
 import { EspnRssAdapter } from "@/scraper/adapters/espn-rss";
@@ -7,7 +8,16 @@ import { NflTransactionsAdapter } from "@/scraper/adapters/nfl-transactions";
 import { EspnRosterAdapter } from "@/scraper/adapters/espn-roster";
 import { RotoworldRssAdapter } from "@/scraper/adapters/rotoworld-rss";
 
+// Vercel crons use GET requests
+export async function GET(request: Request) {
+  return handleScrape(request);
+}
+
 export async function POST(request: Request) {
+  return handleScrape(request);
+}
+
+async function handleScrape(request: Request) {
   // Auth check
   const secret = process.env.SCRAPE_SECRET;
   if (secret) {
@@ -20,14 +30,16 @@ export async function POST(request: Request) {
   try {
     const db = getDb();
 
+    // Ensure tables exist
+    await createTables(db);
+
     // Seed if empty
-    const playerCount = (
-      db.prepare("SELECT COUNT(*) as count FROM players").get() as {
-        count: number;
-      }
-    ).count;
+    const countResult = await db.execute(
+      "SELECT COUNT(*) as count FROM players"
+    );
+    const playerCount = countResult.rows[0].count as number;
     if (playerCount === 0) {
-      seedFromMock(db);
+      await seedFromMock(db);
     }
 
     // Create adapters and run scrape

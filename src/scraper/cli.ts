@@ -1,4 +1,5 @@
 import { getDb, closeDb } from "../db/client";
+import { createTables } from "../db/schema";
 import { seedFromMock } from "../db/seed";
 import { runScrape } from "./orchestrator";
 import { EspnRssAdapter } from "./adapters/espn-rss";
@@ -11,13 +12,17 @@ async function main(): Promise<void> {
 
   const db = getDb();
 
+  // Ensure tables exist
+  await createTables(db);
+
   // Seed from mock data if DB is empty
-  const { count } = db
-    .prepare("SELECT COUNT(*) as count FROM players")
-    .get() as { count: number };
+  const countResult = await db.execute(
+    "SELECT COUNT(*) as count FROM players"
+  );
+  const count = countResult.rows[0].count as number;
 
   if (count === 0) {
-    const seedResult = seedFromMock(db);
+    const seedResult = await seedFromMock(db);
     console.log(
       `DB empty — seeded ${seedResult.playersSeeded} players and ${seedResult.newsSeeded} news items from mock data.`
     );

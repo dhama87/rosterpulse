@@ -94,12 +94,12 @@ export interface TeamRoster {
 export interface RosterService {
   getAllTeams(): Team[];
   getTeam(teamId: string): Team | undefined;
-  getTeamRoster(teamId: string): TeamRoster | undefined;
-  getPlayer(playerId: string): Player | undefined;
-  getPlayerNews(playerId: string): NewsItem[];
-  getTeamNews(teamId: string): NewsItem[];
-  getAllNews(options?: { category?: NewsCategory; limit?: number }): NewsItem[];
-  searchPlayers(query: string): Player[];
+  getTeamRoster(teamId: string): Promise<TeamRoster | undefined>;
+  getPlayer(playerId: string): Promise<Player | undefined>;
+  getPlayerNews(playerId: string): Promise<NewsItem[]>;
+  getTeamNews(teamId: string): Promise<NewsItem[]>;
+  getAllNews(options?: { category?: NewsCategory; limit?: number }): Promise<NewsItem[]>;
+  searchPlayers(query: string): Promise<Player[]>;
   searchTeams(query: string): Team[];
-  getLastVerified(): string;
+  getLastVerified(): Promise<string>;
 }

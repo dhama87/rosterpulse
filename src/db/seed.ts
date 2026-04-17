@@ -1,5 +1,5 @@
 import { createHash } from "crypto";
-import type Database from "better-sqlite3";
+import type { Client } from "@libsql/client";
 import { players } from "@/data/players";
 import { newsItems } from "@/data/news";
 
@@ -13,90 +13,54 @@ export interface SeedResult {
   newsSeeded: number;
 }
 
-export function seedFromMock(db: InstanceType<typeof Database>): SeedResult {
+export async function seedFromMock(db: Client): Promise<SeedResult> {
   const now = new Date().toISOString();
 
-  const insertPlayer = db.prepare(`
-    INSERT OR REPLACE INTO players (
-      id, name, team, position, positionGroup, depthOrder, jerseyNumber,
-      height, weight, age, college, experience, injuryStatus, injuryDetail,
-      injuryDate, estimatedReturn, irDesignation, practiceStatus, depthChange, espnId,
-      stats, source, sourceUrl, updatedAt
-    ) VALUES (
-      @id, @name, @team, @position, @positionGroup, @depthOrder, @jerseyNumber,
-      @height, @weight, @age, @college, @experience, @injuryStatus, @injuryDetail,
-      @injuryDate, @estimatedReturn, @irDesignation, @practiceStatus, @depthChange, @espnId,
-      @stats, @source, @sourceUrl, @updatedAt
-    )
-  `);
+  const tx = await db.transaction("write");
 
-  const insertNews = db.prepare(`
-    INSERT OR REPLACE INTO news (
-      id, dedupKey, playerId, playerName, team, position, category,
-      headline, description, source, sourceUrl, confidence, timestamp, fetchedAt
-    ) VALUES (
-      @id, @dedupKey, @playerId, @playerName, @team, @position, @category,
-      @headline, @description, @source, @sourceUrl, @confidence, @timestamp, @fetchedAt
-    )
-  `);
-
-  const seedPlayers = db.transaction(() => {
+  try {
     for (const player of players) {
-      insertPlayer.run({
-        id: player.id,
-        name: player.name,
-        team: player.team,
-        position: player.position,
-        positionGroup: player.positionGroup,
-        depthOrder: player.depthOrder,
-        jerseyNumber: player.jerseyNumber,
-        height: player.height,
-        weight: player.weight,
-        age: player.age,
-        college: player.college,
-        experience: player.experience,
-        injuryStatus: player.injuryStatus,
-        injuryDetail: player.injuryDetail ?? null,
-        injuryDate: player.injuryDate ?? null,
-        estimatedReturn: player.estimatedReturn ?? null,
-        irDesignation: player.irDesignation ?? null,
-        practiceStatus: player.practiceStatus ?? null,
-        depthChange: player.depthChange ?? null,
-        espnId: player.espnId ?? null,
-        stats: JSON.stringify(player.stats),
-        source: "mock",
-        sourceUrl: null,
-        updatedAt: now,
+      await tx.execute({
+        sql: `INSERT OR REPLACE INTO players (
+          id, name, team, position, positionGroup, depthOrder, jerseyNumber,
+          height, weight, age, college, experience, injuryStatus, injuryDetail,
+          injuryDate, estimatedReturn, irDesignation, practiceStatus, depthChange, espnId,
+          stats, source, sourceUrl, updatedAt
+        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+        args: [
+          player.id, player.name, player.team, player.position,
+          player.positionGroup, player.depthOrder, player.jerseyNumber,
+          player.height, player.weight, player.age, player.college,
+          player.experience, player.injuryStatus, player.injuryDetail ?? null,
+          player.injuryDate ?? null, player.estimatedReturn ?? null,
+          player.irDesignation ?? null, player.practiceStatus ?? null,
+          player.depthChange ?? null, player.espnId ?? null,
+          JSON.stringify(player.stats), "mock", null, now,
+        ],
       });
     }
-    return players.length;
-  });
 
-  const seedNews = db.transaction(() => {
     for (const item of newsItems) {
       const source = item.source ?? "mock";
-      insertNews.run({
-        id: item.id,
-        dedupKey: dedupKey(source, item.headline),
-        playerId: item.playerId,
-        playerName: item.playerName,
-        team: item.team,
-        position: item.position,
-        category: item.category,
-        headline: item.headline,
-        description: item.description,
-        source,
-        sourceUrl: item.sourceUrl ?? null,
-        confidence: "official",
-        timestamp: item.timestamp,
-        fetchedAt: now,
+      await tx.execute({
+        sql: `INSERT OR REPLACE INTO news (
+          id, dedupKey, playerId, playerName, team, position, category,
+          headline, description, source, sourceUrl, confidence, timestamp, fetchedAt
+        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+        args: [
+          item.id, dedupKey(source, item.headline), item.playerId,
+          item.playerName, item.team, item.position, item.category,
+          item.headline, item.description, source, item.sourceUrl ?? null,
+          "official", item.timestamp, now,
+        ],
       });
     }
-    return newsItems.length;
-  });
 
-  const playersSeeded = seedPlayers() as number;
-  const newsSeeded = seedNews() as number;
+    await tx.commit();
+  } catch (err) {
+    await tx.rollback();
+    throw err;
+  }
 
-  return { playersSeeded, newsSeeded };
+  return { playersSeeded: players.length, newsSeeded: newsItems.length };
 }
