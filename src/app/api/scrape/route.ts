@@ -27,22 +27,25 @@ async function handleScrape(request: Request) {
     }
   }
 
+  let step = "init";
   try {
+    step = "getDb";
     const db = getDb();
 
-    // Ensure tables exist
+    step = "createTables";
     await createTables(db);
 
-    // Seed if empty
+    step = "countPlayers";
     const countResult = await db.execute(
       "SELECT COUNT(*) as count FROM players"
     );
     const playerCount = countResult.rows[0].count as number;
     if (playerCount === 0) {
+      step = "seedFromMock";
       await seedFromMock(db);
     }
 
-    // Create adapters and run scrape
+    step = "runScrape";
     const adapters = [
       new EspnRssAdapter(),
       new NflTransactionsAdapter(),
@@ -52,7 +55,6 @@ async function handleScrape(request: Request) {
 
     const result = await runScrape(db, adapters);
 
-    // Build summary
     const summary = {
       totalItems: result.totalItems,
       adapters: result.adapterResults.map((ar) => ({
@@ -70,7 +72,11 @@ async function handleScrape(request: Request) {
     return NextResponse.json({ success: true, summary });
   } catch (err) {
     const message = err instanceof Error ? err.message : String(err);
-    return NextResponse.json({ success: false, error: message }, { status: 500 });
+    const stack = err instanceof Error ? err.stack : undefined;
+    return NextResponse.json(
+      { success: false, error: message, step, stack },
+      { status: 500 }
+    );
   } finally {
     closeDb();
   }
