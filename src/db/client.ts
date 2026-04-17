@@ -14,7 +14,10 @@ export function getDb(): Client {
     throw new Error("TURSO_DATABASE_URL is not set");
   }
 
-  instance = createClient({ url, authToken });
+  // Turso URLs use libsql:// but HTTP transport needs https://
+  const normalizedUrl = url.replace(/^libsql:\/\//, "https://");
+
+  instance = createClient({ url: normalizedUrl, authToken });
   return instance;
 }
 
