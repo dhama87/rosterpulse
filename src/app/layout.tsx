@@ -16,6 +16,8 @@ export const metadata: Metadata = {
     "Real-time NFL roster and depth chart dashboard. Every team, every starter, every status change.",
 };
 
+export const dynamic = "force-dynamic";
+
 export default async function RootLayout({
   children,
 }: {

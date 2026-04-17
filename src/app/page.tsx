@@ -3,6 +3,8 @@ import { TeamGrid } from "@/components/TeamGrid";
 import { NewsFeed } from "@/components/NewsFeed";
 import { MobileNewsToggle } from "@/components/MobileNewsToggle";
 
+export const dynamic = "force-dynamic";
+
 export default async function Home() {
   const service = createRosterService();
   const allTeams = service.getAllTeams();
