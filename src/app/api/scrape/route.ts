@@ -27,25 +27,22 @@ async function handleScrape(request: Request) {
     }
   }
 
-  let step = "init";
   try {
-    step = "getDb";
     const db = getDb();
 
-    step = "createTables";
+    // Ensure tables exist
     await createTables(db);
 
-    step = "countPlayers";
+    // Seed if empty
     const countResult = await db.execute(
       "SELECT COUNT(*) as count FROM players"
     );
     const playerCount = countResult.rows[0].count as number;
     if (playerCount === 0) {
-      step = "seedFromMock";
       await seedFromMock(db);
     }
 
-    step = "runScrape";
+    // Create adapters and run scrape
     const adapters = [
       new EspnRssAdapter(),
       new NflTransactionsAdapter(),
@@ -72,11 +69,7 @@ async function handleScrape(request: Request) {
     return NextResponse.json({ success: true, summary });
   } catch (err) {
     const message = err instanceof Error ? err.message : String(err);
-    const stack = err instanceof Error ? err.stack : undefined;
-    return NextResponse.json(
-      { success: false, error: message, step, stack },
-      { status: 500 }
-    );
+    return NextResponse.json({ success: false, error: message }, { status: 500 });
   } finally {
     closeDb();
   }
