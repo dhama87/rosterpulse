@@ -29,6 +29,12 @@ export function TopBar({ lastVerified }: TopBarProps) {
             LIVE
           </span>
         </Link>
+        <Link
+          href="/schedule"
+          className="hidden sm:inline text-sm text-text-muted hover:text-text-secondary transition-colors"
+        >
+          Schedule
+        </Link>
         <div className="flex items-center gap-2 sm:gap-4">
           <span className="hidden sm:block"><SeasonCountdown /></span>
           <span className="hidden sm:inline font-mono text-[11px] text-text-muted">
