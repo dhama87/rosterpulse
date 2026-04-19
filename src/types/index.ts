@@ -89,6 +89,30 @@ export interface TeamRoster {
   news: NewsItem[];
 }
 
+export type GameStatus = "scheduled" | "in_progress" | "final";
+
+export interface Game {
+  id: string;
+  week: number;
+  seasonType: "regular" | "postseason";
+  awayTeam: Team;
+  homeTeam: Team;
+  gameTime: string;
+  tvNetwork?: string;
+  awayScore?: number;
+  homeScore?: number;
+  status: GameStatus;
+}
+
+export interface PlayoffScenario {
+  teamId: string;
+  status: "clinched_division" | "clinched_playoff" | "in_hunt" | "eliminated";
+  seed?: number;
+  scenarioText: string;
+  mustWin: boolean;
+  relevantGames?: string[];
+}
+
 // === Service Interface ===
 
 export interface RosterService {
@@ -102,4 +126,6 @@ export interface RosterService {
   searchPlayers(query: string): Promise<Player[]>;
   searchTeams(query: string): Team[];
   getLastVerified(): Promise<string>;
+  getWeekGames(week: number): Promise<Game[]>;
+  getCurrentWeek(): Promise<number>;
 }
