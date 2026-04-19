@@ -7,6 +7,7 @@ import {
   DepthChartEntry,
   TeamRoster,
   PositionGroup,
+  Game,
 } from "@/types";
 import { teams } from "@/data/teams";
 import { players } from "@/data/players";
@@ -147,6 +148,14 @@ export function createMockRosterService(): RosterService {
 
     async getLastVerified(): Promise<string> {
       return new Date().toISOString();
+    },
+
+    async getWeekGames(_week: number): Promise<Game[]> {
+      return [];
+    },
+
+    async getCurrentWeek(): Promise<number> {
+      return 1;
     },
   };
 }

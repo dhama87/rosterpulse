@@ -9,6 +9,8 @@ import {
   DepthChartEntry,
   PositionGroup,
   InjuryStatus,
+  Game,
+  GameStatus,
 } from "@/types";
 import { teams } from "@/data/teams";
 
@@ -225,6 +227,42 @@ export function createLiveRosterService(db: Client): RosterService {
       return result.rows.length > 0
         ? (result.rows[0].completedAt as string)
         : new Date().toISOString();
+    },
+
+    async getWeekGames(week: number): Promise<Game[]> {
+      const result = await db.execute({
+        sql: "SELECT * FROM games WHERE week = ? ORDER BY gameTime ASC",
+        args: [week],
+      });
+
+      return result.rows.map((row) => {
+        const awayTeam = teams.find((t) => t.id === (row.awayTeam as string));
+        const homeTeam = teams.find((t) => t.id === (row.homeTeam as string));
+        if (!awayTeam || !homeTeam) return null;
+
+        return {
+          id: row.id as string,
+          week: row.week as number,
+          seasonType: (row.seasonType as string) as "regular" | "postseason",
+          awayTeam,
+          homeTeam,
+          gameTime: row.gameTime as string,
+          ...(row.tvNetwork != null ? { tvNetwork: row.tvNetwork as string } : {}),
+          ...(row.awayScore != null ? { awayScore: row.awayScore as number } : {}),
+          ...(row.homeScore != null ? { homeScore: row.homeScore as number } : {}),
+          status: row.status as GameStatus,
+        } satisfies Game;
+      }).filter((g): g is Game => g !== null);
+    },
+
+    async getCurrentWeek(): Promise<number> {
+      // Find the latest week that has games with a gameTime in the past or today
+      const result = await db.execute(
+        "SELECT MAX(week) as week FROM games WHERE gameTime <= datetime('now') AND seasonType = 'regular'"
+      );
+      const week = result.rows[0]?.week as number | null;
+      // Default to week 1 if no games found, cap at 18
+      return Math.min(Math.max(week ?? 1, 1), 18);
     },
   };
 }
