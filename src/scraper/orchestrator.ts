@@ -98,7 +98,23 @@ export async function runScrape(
       for (const item of adapterResult.items) {
         totalItems++;
 
-        if (item.type === "player") {
+        if (item.type === "player" && item.rawData._gameData) {
+          const g = item.rawData;
+          await tx.execute({
+            sql: `INSERT OR REPLACE INTO games
+              (id, week, seasonType, awayTeam, homeTeam, gameTime, tvNetwork,
+               awayScore, homeScore, status, updatedAt)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+            args: [
+              g.id as string, g.week as number, g.seasonType as string,
+              g.awayTeam as string, g.homeTeam as string, g.gameTime as string,
+              (g.tvNetwork as string) ?? null,
+              (g.awayScore as number) ?? null, (g.homeScore as number) ?? null,
+              g.status as string, item.fetchedAt,
+            ],
+          });
+          itemsNew++;
+        } else if (item.type === "player") {
           const player = normalizeToPlayer(item);
           await tx.execute({
             sql: `INSERT OR REPLACE INTO players
