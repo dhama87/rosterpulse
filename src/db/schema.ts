@@ -4,6 +4,7 @@ export const TABLE_NAMES = {
   PLAYERS: "players",
   NEWS: "news",
   SCRAPE_LOG: "scrape_log",
+  GAMES: "games",
 } as const;
 
 export async function createTables(db: Client): Promise<void> {
@@ -69,5 +70,23 @@ export async function createTables(db: Client): Promise<void> {
     CREATE INDEX IF NOT EXISTS idx_news_playerId ON news(playerId);
     CREATE INDEX IF NOT EXISTS idx_news_timestamp ON news(timestamp);
     CREATE INDEX IF NOT EXISTS idx_scrape_log_adapter ON scrape_log(adapter);
+
+    CREATE TABLE IF NOT EXISTS games (
+      id TEXT PRIMARY KEY,
+      week INTEGER NOT NULL,
+      seasonType TEXT NOT NULL DEFAULT 'regular',
+      awayTeam TEXT NOT NULL,
+      homeTeam TEXT NOT NULL,
+      gameTime TEXT NOT NULL,
+      tvNetwork TEXT,
+      awayScore INTEGER,
+      homeScore INTEGER,
+      status TEXT NOT NULL DEFAULT 'scheduled',
+      updatedAt TEXT NOT NULL
+    );
+
+    CREATE INDEX IF NOT EXISTS idx_games_week ON games(week);
+    CREATE INDEX IF NOT EXISTS idx_games_away ON games(awayTeam);
+    CREATE INDEX IF NOT EXISTS idx_games_home ON games(homeTeam);
   `);
 }
