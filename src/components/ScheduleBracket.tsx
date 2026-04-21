@@ -39,6 +39,10 @@ export function ScheduleBracket({
   const isFavAway = favTeams?.has(game.awayTeam.id) ?? false;
   const isFavHome = favTeams?.has(game.homeTeam.id) ?? false;
 
+  const isFinal = game.status === "final" && game.awayScore != null && game.homeScore != null;
+  const awayWon = isFinal && (game.awayScore ?? 0) > (game.homeScore ?? 0);
+  const homeWon = isFinal && (game.homeScore ?? 0) > (game.awayScore ?? 0);
+
   const borderClass =
     primetime === "snf"
       ? "border-status-blue/20 shadow-[0_0_12px_rgba(59,130,246,0.06)]"
@@ -61,12 +65,18 @@ export function ScheduleBracket({
             height={26}
             className="h-[26px] w-[26px] object-contain"
           />
-          <span className="flex-1 text-[13px] font-semibold text-text-primary">
+          <span className={`flex-1 text-[13px] font-semibold ${isFinal && !awayWon ? "text-text-muted" : "text-text-primary"}`}>
             {game.awayTeam.name}
           </span>
-          <span className="font-mono text-[11px] text-text-muted">
-            {game.awayTeam.record}
-          </span>
+          {isFinal ? (
+            <span className={`font-mono text-[13px] ${awayWon ? "font-bold text-text-primary" : "text-text-muted"}`}>
+              {game.awayScore}
+            </span>
+          ) : (
+            <span className="font-mono text-[11px] text-text-muted">
+              {game.awayTeam.record}
+            </span>
+          )}
         </Link>
 
         {/* Home team (bottom) */}
@@ -81,12 +91,18 @@ export function ScheduleBracket({
             height={26}
             className="h-[26px] w-[26px] object-contain"
           />
-          <span className="flex-1 text-[13px] font-semibold text-text-primary">
+          <span className={`flex-1 text-[13px] font-semibold ${isFinal && !homeWon ? "text-text-muted" : "text-text-primary"}`}>
             {game.homeTeam.name}
           </span>
-          <span className="font-mono text-[11px] text-text-muted">
-            {game.homeTeam.record}
-          </span>
+          {isFinal ? (
+            <span className={`font-mono text-[13px] ${homeWon ? "font-bold text-text-primary" : "text-text-muted"}`}>
+              {game.homeScore}
+            </span>
+          ) : (
+            <span className="font-mono text-[11px] text-text-muted">
+              {game.homeTeam.record}
+            </span>
+          )}
         </Link>
       </div>
 
@@ -94,7 +110,7 @@ export function ScheduleBracket({
       <div className="mt-1 flex items-center justify-between px-1">
         <span className="text-[10px] text-text-muted">
           {game.status === "final"
-            ? `Final ${game.awayScore}–${game.homeScore}`
+            ? "Final"
             : formatGameTime(game.gameTime)}
         </span>
         <div className="flex items-center gap-1.5">

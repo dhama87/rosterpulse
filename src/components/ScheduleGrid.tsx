@@ -10,10 +10,19 @@ interface TimeSlot {
   games: Game[];
 }
 
+// Postseason week labels (must match adapter mapping)
+const POSTSEASON_WEEK_NAMES: Record<number, string> = {
+  19: "Wild Card Round",
+  20: "Divisional Round",
+  21: "Conference Championships",
+  23: "Super Bowl",
+};
+
 interface ScheduleGridProps {
   games: Game[];
   week: number;
   maxWeek: number;
+  seasonYear: number;
   byeTeams: string[];
   injuryMap: Record<string, { out: number; questionable: number }>;
   playoffScenarios?: PlayoffScenario[];
@@ -114,6 +123,7 @@ export function ScheduleGrid({
   games,
   week,
   maxWeek,
+  seasonYear,
   byeTeams,
   injuryMap,
   playoffScenarios,
@@ -125,7 +135,13 @@ export function ScheduleGrid({
   const favSet = new Set<string>();
   const slots = groupByTimeSlot(games);
 
-  function navigateWeek(newWeek: number) {
+  const isPostseason = week > 18;
+  const weekLabel = POSTSEASON_WEEK_NAMES[week] ?? `WEEK ${week}`;
+
+  function navigateWeek(direction: -1 | 1) {
+    let newWeek = week + direction;
+    // Skip week 22 (Pro Bowl — not fetched)
+    if (newWeek === 22) newWeek += direction;
     if (newWeek < 1 || newWeek > maxWeek) return;
     const params = new URLSearchParams(searchParams.toString());
     params.set("week", String(newWeek));
@@ -135,19 +151,24 @@ export function ScheduleGrid({
   return (
     <div>
       {/* Week Navigator */}
-      <div className="mb-6 flex items-center gap-3">
+      <div className="mb-6 flex items-center gap-4">
         <button
-          onClick={() => navigateWeek(week - 1)}
+          onClick={() => navigateWeek(-1)}
           disabled={week <= 1}
           className="rounded bg-bg-card px-2.5 py-1 text-sm text-text-muted hover:bg-bg-card-hover disabled:opacity-30"
         >
           ‹
         </button>
-        <span className="text-base font-bold text-text-primary tracking-wide">
-          WEEK {week}
-        </span>
+        <div className="text-center">
+          <div className="text-[9px] font-bold uppercase tracking-[2px] text-text-muted">
+            {seasonYear}–{seasonYear + 1} NFL Season
+          </div>
+          <span className="text-base font-bold text-text-primary tracking-wide">
+            {weekLabel}
+          </span>
+        </div>
         <button
-          onClick={() => navigateWeek(week + 1)}
+          onClick={() => navigateWeek(1)}
           disabled={week >= maxWeek}
           className="rounded bg-bg-card px-2.5 py-1 text-sm text-text-muted hover:bg-bg-card-hover disabled:opacity-30"
         >

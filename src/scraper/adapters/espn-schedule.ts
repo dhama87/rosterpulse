@@ -71,26 +71,47 @@ function mapStatus(espnStatus: string): "scheduled" | "in_progress" | "final" {
   }
 }
 
+// Postseason ESPN weeks mapped to our internal week numbers (19-23)
+// ESPN postseason: week 1=Wild Card, 2=Divisional, 3=Conf Championship, 4=Pro Bowl, 5=Super Bowl
+const POSTSEASON_WEEK_OFFSET = 18; // ESPN week 1 → our week 19
+
+export const POSTSEASON_WEEK_NAMES: Record<number, string> = {
+  19: "Wild Card Round",
+  20: "Divisional Round",
+  21: "Conference Championships",
+  22: "Pro Bowl",
+  23: "Super Bowl",
+};
+
 export class EspnScheduleAdapter implements SourceAdapter {
   name = "espn-schedule";
   private weeks: number[];
+  private includePostseason: boolean;
 
   /**
-   * @param weeks - Which weeks to fetch. Defaults to all 18 regular season weeks.
+   * @param weeks - Which regular season weeks to fetch. Defaults to all 18.
+   * @param includePostseason - Whether to also fetch postseason weeks. Defaults to true.
    */
-  constructor(weeks?: number[]) {
+  constructor(weeks?: number[], includePostseason = true) {
     this.weeks = weeks ?? Array.from({ length: 18 }, (_, i) => i + 1);
+    this.includePostseason = includePostseason;
   }
 
-  async fetch(): Promise<ScrapedItem[]> {
+  private async fetchWeeks(
+    espnWeeks: number[],
+    seasonType: number,
+    seasonTypeName: "regular" | "postseason",
+    weekOffset: number
+  ): Promise<ScrapedItem[]> {
     const items: ScrapedItem[] = [];
     const now = new Date().toISOString();
 
-    // Fetch each week's scoreboard
-    for (const week of this.weeks) {
-      const url = `https://site.api.espn.com/apis/site/v2/sports/football/nfl/scoreboard?week=${week}&seasontype=2`;
+    for (const espnWeek of espnWeeks) {
+      const url = `https://site.api.espn.com/apis/site/v2/sports/football/nfl/scoreboard?week=${espnWeek}&seasontype=${seasonType}`;
       const data = await fetchJson<EspnScoreboardResponse>(url);
       if (!data?.events) continue;
+
+      const ourWeek = espnWeek + weekOffset;
 
       for (const event of data.events) {
         const comp = event.competitions[0];
@@ -109,18 +130,19 @@ export class EspnScheduleAdapter implements SourceAdapter {
         const awayScore = away.score != null ? parseInt(away.score, 10) : null;
         const homeScore = home.score != null ? parseInt(home.score, 10) : null;
 
+        const prefix = seasonTypeName === "postseason" ? "P" : "W";
         items.push({
-          type: "player", // reuse "player" type for DB insertion via orchestrator
+          type: "player",
           sourceAdapter: this.name,
           source: "espn",
           sourceUrl: `https://www.espn.com/nfl/game/_/gameId/${event.id}`,
           confidence: "official",
           fetchedAt: now,
           rawData: {
-            _gameData: true, // flag to distinguish from player items
-            id: `2026-W${String(week).padStart(2, "0")}-${awayAbbrev}-${homeAbbrev}`,
-            week,
-            seasonType: "regular",
+            _gameData: true,
+            id: `2025-${prefix}${String(ourWeek).padStart(2, "0")}-${awayAbbrev}-${homeAbbrev}`,
+            week: ourWeek,
+            seasonType: seasonTypeName,
             awayTeam: awayAbbrev,
             homeTeam: homeAbbrev,
             gameTime: comp.date,
@@ -134,5 +156,23 @@ export class EspnScheduleAdapter implements SourceAdapter {
     }
 
     return items;
+  }
+
+  async fetch(): Promise<ScrapedItem[]> {
+    // Fetch regular season
+    const regular = await this.fetchWeeks(this.weeks, 2, "regular", 0);
+
+    // Fetch postseason (weeks 1-5 from ESPN, skip week 4 = Pro Bowl)
+    let postseason: ScrapedItem[] = [];
+    if (this.includePostseason) {
+      postseason = await this.fetchWeeks(
+        [1, 2, 3, 5], // skip Pro Bowl (week 4)
+        3,
+        "postseason",
+        POSTSEASON_WEEK_OFFSET
+      );
+    }
+
+    return [...regular, ...postseason];
   }
 }

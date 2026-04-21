@@ -17,8 +17,14 @@ export default async function SchedulePage({
   const service = createRosterService();
 
   const currentWeek = await service.getCurrentWeek();
+  const maxWeek = 23; // 18 regular + 5 postseason (22=Pro Bowl skipped in UI)
   const week =
-    typeof weekParam === "string" ? Math.max(1, Math.min(18, parseInt(weekParam, 10) || currentWeek)) : currentWeek;
+    typeof weekParam === "string" ? Math.max(1, Math.min(maxWeek, parseInt(weekParam, 10) || currentWeek)) : currentWeek;
+
+  // Determine season year from game dates (September start = that year's season)
+  // Default to current year - 1 for offseason (NFL season spans two calendar years)
+  const now = new Date();
+  const seasonYear = now.getMonth() >= 8 ? now.getFullYear() : now.getFullYear() - 1;
 
   const [games, allNews] = await Promise.all([
     service.getWeekGames(week),
@@ -80,7 +86,8 @@ export default async function SchedulePage({
         <ScheduleGrid
           games={games}
           week={week}
-          maxWeek={18}
+          maxWeek={maxWeek}
+          seasonYear={seasonYear}
           byeTeams={byeTeams}
           injuryMap={injuryMap}
           playoffScenarios={playoffScenarios}

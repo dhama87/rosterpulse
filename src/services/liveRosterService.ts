@@ -258,11 +258,11 @@ export function createLiveRosterService(db: Client): RosterService {
     async getCurrentWeek(): Promise<number> {
       // Find the latest week that has games with a gameTime in the past or today
       const result = await db.execute(
-        "SELECT MAX(week) as week FROM games WHERE gameTime <= datetime('now') AND seasonType = 'regular'"
+        "SELECT MAX(week) as week FROM games WHERE gameTime <= datetime('now')"
       );
       const week = result.rows[0]?.week as number | null;
-      // Default to week 1 if no games found, cap at 18
-      return Math.min(Math.max(week ?? 1, 1), 18);
+      // Default to week 1 if no games found, cap at 23 (Super Bowl)
+      return Math.min(Math.max(week ?? 1, 1), 23);
     },
   };
 }
