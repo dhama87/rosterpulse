@@ -113,6 +113,48 @@ export interface PlayoffScenario {
   relevantGames?: string[];
 }
 
+// === Draft Types ===
+
+export type DraftMode = "pre" | "live" | "results";
+
+export interface DraftPick {
+  id: string;
+  year: number;
+  round: number;
+  pickNumber: number;
+  teamId: string;
+  playerName: string;
+  position: string;
+  college: string;
+  isTradeUp: boolean;
+  tradeNote: string | null;
+  timestamp: string | null;
+}
+
+export interface DraftProspect {
+  id: string;
+  name: string;
+  position: string;
+  college: string;
+  rank: number;
+  projectedRound: number;
+  projectedPick: number | null;
+}
+
+export interface TeamNeed {
+  teamId: string;
+  position: string;
+  priority: 1 | 2 | 3; // 1=critical, 2=moderate, 3=depth
+}
+
+export interface DraftLiveResponse {
+  currentPick: number;
+  onTheClock: { teamId: string; timeRemaining: number } | null;
+  picks: DraftPick[];
+  lastUpdated: string;
+  isActive: boolean;
+}
+
 // === Service Interface ===
 
 export interface RosterService {
@@ -128,4 +170,8 @@ export interface RosterService {
   getLastVerified(): Promise<string>;
   getWeekGames(week: number): Promise<Game[]>;
   getCurrentWeek(): Promise<number>;
+  getDraftPicks(year: number): Promise<DraftPick[]>;
+  getDraftProspects(): Promise<DraftProspect[]>;
+  getTeamNeeds(teamId?: string): Promise<TeamNeed[]>;
+  getDraftMeta(): Promise<Record<string, string>>;
 }
