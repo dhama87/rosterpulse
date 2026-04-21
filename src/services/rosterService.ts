@@ -8,6 +8,9 @@ import {
   TeamRoster,
   PositionGroup,
   Game,
+  DraftPick,
+  DraftProspect,
+  TeamNeed,
 } from "@/types";
 import { teams } from "@/data/teams";
 import { players } from "@/data/players";
@@ -156,6 +159,22 @@ export function createMockRosterService(): RosterService {
 
     async getCurrentWeek(): Promise<number> {
       return 1;
+    },
+
+    async getDraftPicks(_year: number): Promise<DraftPick[]> {
+      return [];
+    },
+
+    async getDraftProspects(): Promise<DraftProspect[]> {
+      return [];
+    },
+
+    async getTeamNeeds(_teamId?: string): Promise<TeamNeed[]> {
+      return [];
+    },
+
+    async getDraftMeta(): Promise<Record<string, string>> {
+      return {};
     },
   };
 }

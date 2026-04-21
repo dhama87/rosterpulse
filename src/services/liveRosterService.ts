@@ -11,6 +11,9 @@ import {
   InjuryStatus,
   Game,
   GameStatus,
+  DraftPick,
+  DraftProspect,
+  TeamNeed,
 } from "@/types";
 import { teams } from "@/data/teams";
 
@@ -263,6 +266,72 @@ export function createLiveRosterService(db: Client): RosterService {
       const week = result.rows[0]?.week as number | null;
       // Default to week 1 if no games found, cap at 23 (Super Bowl)
       return Math.min(Math.max(week ?? 1, 1), 23);
+    },
+
+    async getDraftPicks(year: number): Promise<DraftPick[]> {
+      const result = await db.execute({
+        sql: "SELECT * FROM draft_picks WHERE year = ? ORDER BY pickNumber ASC",
+        args: [year],
+      });
+      return result.rows.map((row) => ({
+        id: row.id as string,
+        year: row.year as number,
+        round: row.round as number,
+        pickNumber: row.pickNumber as number,
+        teamId: row.teamId as string,
+        playerName: row.playerName as string,
+        position: row.position as string,
+        college: row.college as string,
+        isTradeUp: (row.isTradeUp as number) === 1,
+        tradeNote: (row.tradeNote as string) ?? null,
+        timestamp: (row.timestamp as string) ?? null,
+      }));
+    },
+
+    async getDraftProspects(): Promise<DraftProspect[]> {
+      const result = await db.execute(
+        "SELECT * FROM draft_prospects ORDER BY rank ASC"
+      );
+      return result.rows.map((row) => ({
+        id: row.id as string,
+        name: row.name as string,
+        position: row.position as string,
+        college: row.college as string,
+        rank: row.rank as number,
+        projectedRound: row.projectedRound as number,
+        projectedPick: (row.projectedPick as number) ?? null,
+      }));
+    },
+
+    async getTeamNeeds(teamId?: string): Promise<TeamNeed[]> {
+      if (teamId) {
+        const result = await db.execute({
+          sql: "SELECT * FROM draft_team_needs WHERE teamId = ? ORDER BY priority ASC",
+          args: [teamId],
+        });
+        return result.rows.map((row) => ({
+          teamId: row.teamId as string,
+          position: row.position as string,
+          priority: row.priority as 1 | 2 | 3,
+        }));
+      }
+      const result = await db.execute(
+        "SELECT * FROM draft_team_needs ORDER BY teamId ASC, priority ASC"
+      );
+      return result.rows.map((row) => ({
+        teamId: row.teamId as string,
+        position: row.position as string,
+        priority: row.priority as 1 | 2 | 3,
+      }));
+    },
+
+    async getDraftMeta(): Promise<Record<string, string>> {
+      const result = await db.execute("SELECT key, value FROM draft_meta");
+      const meta: Record<string, string> = {};
+      for (const row of result.rows) {
+        meta[row.key as string] = row.value as string;
+      }
+      return meta;
     },
   };
 }
