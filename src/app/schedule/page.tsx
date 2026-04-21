@@ -1,7 +1,10 @@
 import { createRosterService } from "@/services/createRosterService";
 import { ScheduleGrid } from "@/components/ScheduleGrid";
+import { PlayoffPicture } from "@/components/PlayoffPicture";
 import { NewsFeed } from "@/components/NewsFeed";
 import { MobileNewsToggle } from "@/components/MobileNewsToggle";
+import { computePlayoffScenarios } from "@/services/playoffEngine";
+import type { Game, PlayoffScenario } from "@/types";
 
 export const dynamic = "force-dynamic";
 
@@ -54,16 +57,33 @@ export default async function SchedulePage({
     }
   }
 
+  // Compute playoff scenarios (only meaningful from week 12+)
+  let playoffScenarios: PlayoffScenario[] = [];
+  if (week >= 12) {
+    const allSeasonGames: Game[] = [];
+    for (let w = 1; w <= 18; w++) {
+      const weekGames = w === week ? games : await service.getWeekGames(w);
+      allSeasonGames.push(...weekGames);
+    }
+    playoffScenarios = computePlayoffScenarios(allTeams, allSeasonGames);
+  }
+
   return (
     <div className="flex flex-col lg:flex-row lg:h-[calc(100vh-49px)]">
       {/* Schedule Brackets — Left */}
       <div className="flex-1 overflow-y-auto p-4 sm:p-6">
+        <PlayoffPicture
+          scenarios={playoffScenarios}
+          teams={allTeams}
+          currentWeek={week}
+        />
         <ScheduleGrid
           games={games}
           week={week}
           maxWeek={18}
           byeTeams={byeTeams}
           injuryMap={injuryMap}
+          playoffScenarios={playoffScenarios}
         />
       </div>
 
