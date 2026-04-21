@@ -5,6 +5,10 @@ export const TABLE_NAMES = {
   NEWS: "news",
   SCRAPE_LOG: "scrape_log",
   GAMES: "games",
+  DRAFT_PICKS: "draft_picks",
+  DRAFT_PROSPECTS: "draft_prospects",
+  DRAFT_TEAM_NEEDS: "draft_team_needs",
+  DRAFT_META: "draft_meta",
 } as const;
 
 export async function createTables(db: Client): Promise<void> {
@@ -88,5 +92,51 @@ export async function createTables(db: Client): Promise<void> {
     CREATE INDEX IF NOT EXISTS idx_games_week ON games(week);
     CREATE INDEX IF NOT EXISTS idx_games_away ON games(awayTeam);
     CREATE INDEX IF NOT EXISTS idx_games_home ON games(homeTeam);
+
+    CREATE TABLE IF NOT EXISTS draft_picks (
+      id TEXT PRIMARY KEY,
+      year INTEGER NOT NULL,
+      round INTEGER NOT NULL,
+      pickNumber INTEGER NOT NULL,
+      teamId TEXT NOT NULL,
+      playerName TEXT NOT NULL DEFAULT '',
+      position TEXT NOT NULL DEFAULT '',
+      college TEXT NOT NULL DEFAULT '',
+      isTradeUp INTEGER NOT NULL DEFAULT 0,
+      tradeNote TEXT,
+      timestamp TEXT,
+      updatedAt TEXT NOT NULL
+    );
+
+    CREATE INDEX IF NOT EXISTS idx_draft_picks_year ON draft_picks(year);
+    CREATE INDEX IF NOT EXISTS idx_draft_picks_team ON draft_picks(teamId);
+    CREATE INDEX IF NOT EXISTS idx_draft_picks_round ON draft_picks(round);
+
+    CREATE TABLE IF NOT EXISTS draft_prospects (
+      id TEXT PRIMARY KEY,
+      name TEXT NOT NULL,
+      position TEXT NOT NULL,
+      college TEXT NOT NULL,
+      rank INTEGER NOT NULL,
+      projectedRound INTEGER NOT NULL,
+      projectedPick INTEGER,
+      updatedAt TEXT NOT NULL
+    );
+
+    CREATE TABLE IF NOT EXISTS draft_team_needs (
+      id TEXT PRIMARY KEY,
+      teamId TEXT NOT NULL,
+      position TEXT NOT NULL,
+      priority INTEGER NOT NULL DEFAULT 2,
+      updatedAt TEXT NOT NULL
+    );
+
+    CREATE INDEX IF NOT EXISTS idx_draft_team_needs_team ON draft_team_needs(teamId);
+
+    CREATE TABLE IF NOT EXISTS draft_meta (
+      key TEXT PRIMARY KEY,
+      value TEXT NOT NULL,
+      updatedAt TEXT NOT NULL
+    );
   `);
 }
