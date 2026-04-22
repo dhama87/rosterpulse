@@ -139,4 +139,16 @@ export async function createTables(db: Client): Promise<void> {
       updatedAt TEXT NOT NULL
     );
   `);
+
+  // Add source columns (idempotent — ignore error if column already exists)
+  for (const stmt of [
+    "ALTER TABLE draft_prospects ADD COLUMN source TEXT",
+    "ALTER TABLE draft_team_needs ADD COLUMN source TEXT",
+  ]) {
+    try {
+      await db.execute(stmt);
+    } catch {
+      // Column already exists — ignore
+    }
+  }
 }
