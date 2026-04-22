@@ -7,6 +7,7 @@ import { NflTransactionsAdapter } from "./adapters/nfl-transactions";
 import { EspnRosterAdapter } from "./adapters/espn-roster";
 import { RotoworldRssAdapter } from "./adapters/rotoworld-rss";
 import { EspnScheduleAdapter } from "./adapters/espn-schedule";
+import { EspnDraftAdapter } from "./adapters/espn-draft";
 
 async function main(): Promise<void> {
   console.log("RosterPulse Scraper — starting...");
@@ -35,6 +36,7 @@ async function main(): Promise<void> {
     new EspnRosterAdapter(),
     new RotoworldRssAdapter(),
     new EspnScheduleAdapter(),
+    new EspnDraftAdapter(),
   ];
 
   console.log(`Running ${adapters.length} adapters...`);
