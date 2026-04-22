@@ -35,6 +35,12 @@ export function TopBar({ lastVerified }: TopBarProps) {
         >
           Schedule
         </Link>
+        <Link
+          href="/draft"
+          className="hidden sm:inline text-sm text-text-muted hover:text-text-secondary transition-colors"
+        >
+          Draft
+        </Link>
         <div className="flex items-center gap-2 sm:gap-4">
           <span className="hidden sm:block"><SeasonCountdown /></span>
           <span className="hidden sm:inline font-mono text-[11px] text-text-muted">
