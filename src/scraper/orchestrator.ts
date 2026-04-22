@@ -36,6 +36,51 @@ async function runAdapter(adapter: SourceAdapter): Promise<AdapterResult> {
   }
 }
 
+async function seedDraftDataIfEmpty(tx: import("@libsql/client").Transaction): Promise<void> {
+  const countResult = await tx.execute("SELECT COUNT(*) as count FROM draft_picks");
+  const count = countResult.rows[0].count as number;
+  if (count > 0) return;
+
+  const { draftOrder, topProspects, teamNeeds } = await import("@/data/draft-prospects");
+  const now = new Date().toISOString();
+
+  for (const pick of draftOrder) {
+    await tx.execute({
+      sql: `INSERT OR IGNORE INTO draft_picks
+        (id, year, round, pickNumber, teamId, playerName, position, college, isTradeUp, tradeNote, timestamp, updatedAt)
+      VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+      args: [pick.id, pick.year, pick.round, pick.pickNumber, pick.teamId, pick.playerName, pick.position, pick.college, pick.isTradeUp ? 1 : 0, pick.tradeNote, pick.timestamp, now],
+    });
+  }
+
+  for (const prospect of topProspects) {
+    await tx.execute({
+      sql: `INSERT OR IGNORE INTO draft_prospects
+        (id, name, position, college, rank, projectedRound, projectedPick, updatedAt)
+      VALUES (?, ?, ?, ?, ?, ?, ?, ?)`,
+      args: [prospect.id, prospect.name, prospect.position, prospect.college, prospect.rank, prospect.projectedRound, prospect.projectedPick, now],
+    });
+  }
+
+  for (const need of teamNeeds) {
+    await tx.execute({
+      sql: `INSERT OR IGNORE INTO draft_team_needs
+        (id, teamId, position, priority, updatedAt)
+      VALUES (?, ?, ?, ?, ?)`,
+      args: [`${need.teamId}-${need.position}`, need.teamId, need.position, need.priority, now],
+    });
+  }
+
+  await tx.execute({
+    sql: `INSERT OR IGNORE INTO draft_meta (key, value, updatedAt) VALUES (?, ?, ?)`,
+    args: ["draftYear", "2026", now],
+  });
+  await tx.execute({
+    sql: `INSERT OR IGNORE INTO draft_meta (key, value, updatedAt) VALUES (?, ?, ?)`,
+    args: ["draftDates", JSON.stringify(["2026-04-23T20:00:00-04:00", "2026-04-24T19:00:00-04:00", "2026-04-25T12:00:00-04:00"]), now],
+  });
+}
+
 export async function runScrape(
   db: Client,
   adapters: SourceAdapter[]
@@ -90,6 +135,7 @@ export async function runScrape(
   try {
     // Clear stale player data before inserting fresh rosters
     await tx.execute("DELETE FROM players");
+    await seedDraftDataIfEmpty(tx);
 
     for (const adapterResult of adapterResults) {
       let itemsNew = 0;
