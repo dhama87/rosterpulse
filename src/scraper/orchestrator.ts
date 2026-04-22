@@ -144,7 +144,91 @@ export async function runScrape(
       for (const item of adapterResult.items) {
         totalItems++;
 
-        if (item.type === "player" && item.rawData._gameData) {
+        if (item.type === "player" && item.rawData._draftOrderData) {
+          const picks = item.rawData.picks as Array<{
+            pickNumber: number;
+            teamId: string;
+            round: number;
+            tradeNote: string | null;
+          }>;
+          const year = item.rawData.year as number;
+          // Clear unfilled picks (preserve filled picks from ESPN draft adapter)
+          await tx.execute("DELETE FROM draft_picks WHERE playerName = ''");
+          for (const pick of picks) {
+            await tx.execute({
+              sql: `INSERT OR IGNORE INTO draft_picks
+                (id, year, round, pickNumber, teamId, playerName, position, college,
+                 isTradeUp, tradeNote, timestamp, updatedAt)
+              VALUES (?, ?, ?, ?, ?, '', '', '', ?, ?, NULL, ?)`,
+              args: [
+                `${year}-R${pick.round}-P${pick.pickNumber}`,
+                year, pick.round, pick.pickNumber, pick.teamId,
+                pick.tradeNote ? 1 : 0, pick.tradeNote, item.fetchedAt,
+              ],
+            });
+          }
+          await tx.execute({
+            sql: `INSERT OR REPLACE INTO draft_meta (key, value, updatedAt) VALUES ('draftYear', ?, ?)`,
+            args: [String(year), item.fetchedAt],
+          });
+          await tx.execute({
+            sql: `INSERT OR REPLACE INTO draft_meta (key, value, updatedAt) VALUES ('lastUpdated', ?, ?)`,
+            args: [item.fetchedAt, item.fetchedAt],
+          });
+          itemsNew += picks.length;
+        } else if (item.type === "player" && item.rawData._prospectData) {
+          const prospects = item.rawData.prospects as Array<{
+            rank: number;
+            name: string;
+            position: string;
+            college: string;
+          }>;
+          const source = item.rawData.source as string;
+          await tx.execute("DELETE FROM draft_prospects");
+          for (const p of prospects) {
+            const id = p.name.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
+            await tx.execute({
+              sql: `INSERT INTO draft_prospects
+                (id, name, position, college, rank, projectedRound, projectedPick, source, updatedAt)
+              VALUES (?, ?, ?, ?, ?, 1, NULL, ?, ?)`,
+              args: [id, p.name, p.position, p.college, p.rank, source, item.fetchedAt],
+            });
+          }
+          await tx.execute({
+            sql: `INSERT OR REPLACE INTO draft_meta (key, value, updatedAt) VALUES ('prospectsSource', ?, ?)`,
+            args: [source, item.fetchedAt],
+          });
+          await tx.execute({
+            sql: `INSERT OR REPLACE INTO draft_meta (key, value, updatedAt) VALUES ('lastUpdated', ?, ?)`,
+            args: [item.fetchedAt, item.fetchedAt],
+          });
+          itemsNew += prospects.length;
+        } else if (item.type === "player" && item.rawData._teamNeedsData) {
+          const needs = item.rawData.needs as Array<{
+            teamId: string;
+            position: string;
+            priority: number;
+          }>;
+          const source = item.rawData.source as string;
+          await tx.execute("DELETE FROM draft_team_needs");
+          for (const n of needs) {
+            await tx.execute({
+              sql: `INSERT INTO draft_team_needs
+                (id, teamId, position, priority, source, updatedAt)
+              VALUES (?, ?, ?, ?, ?, ?)`,
+              args: [`${n.teamId}-${n.position}`, n.teamId, n.position, n.priority, source, item.fetchedAt],
+            });
+          }
+          await tx.execute({
+            sql: `INSERT OR REPLACE INTO draft_meta (key, value, updatedAt) VALUES ('needsSource', ?, ?)`,
+            args: [source, item.fetchedAt],
+          });
+          await tx.execute({
+            sql: `INSERT OR REPLACE INTO draft_meta (key, value, updatedAt) VALUES ('lastUpdated', ?, ?)`,
+            args: [item.fetchedAt, item.fetchedAt],
+          });
+          itemsNew += needs.length;
+        } else if (item.type === "player" && item.rawData._gameData) {
           const g = item.rawData;
           await tx.execute({
             sql: `INSERT OR REPLACE INTO games
