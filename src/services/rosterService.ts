@@ -13,6 +13,7 @@ import {
   TeamNeed,
 } from "@/types";
 import { teams } from "@/data/teams";
+import { draftOrder, topProspects, teamNeeds as staticTeamNeeds } from "@/data/draft-prospects";
 import { players } from "@/data/players";
 import { newsItems } from "@/data/news";
 
@@ -162,19 +163,23 @@ export function createMockRosterService(): RosterService {
     },
 
     async getDraftPicks(_year: number): Promise<DraftPick[]> {
-      return [];
+      return draftOrder;
     },
 
     async getDraftProspects(): Promise<DraftProspect[]> {
-      return [];
+      return topProspects;
     },
 
-    async getTeamNeeds(_teamId?: string): Promise<TeamNeed[]> {
-      return [];
+    async getTeamNeeds(teamId?: string): Promise<TeamNeed[]> {
+      if (teamId) return staticTeamNeeds.filter((n) => n.teamId === teamId);
+      return staticTeamNeeds;
     },
 
     async getDraftMeta(): Promise<Record<string, string>> {
-      return {};
+      return {
+        draftYear: "2026",
+        draftDates: JSON.stringify(["2026-04-23T20:00:00-04:00", "2026-04-24T19:00:00-04:00", "2026-04-25T12:00:00-04:00"]),
+      };
     },
   };
 }

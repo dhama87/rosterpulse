@@ -8,12 +8,11 @@ import { DraftPickCard } from "./DraftPickCard";
 interface LiveDraftTrackerProps {
   initialPicks: DraftPick[];
   teams: Team[];
-  draftYear: number;
 }
 
 const POLL_INTERVAL_MS = 5_000;
 
-export function LiveDraftTracker({ initialPicks, teams, draftYear }: LiveDraftTrackerProps) {
+export function LiveDraftTracker({ initialPicks, teams }: LiveDraftTrackerProps) {
   const [picks, setPicks] = useState<DraftPick[]>(initialPicks.filter((p) => p.playerName !== ""));
   const [newPickIds, setNewPickIds] = useState<Set<string>>(new Set());
   const [onTheClock, setOnTheClock] = useState<{ teamId: string; timeRemaining: number } | null>(null);
@@ -41,7 +40,9 @@ export function LiveDraftTracker({ initialPicks, teams, draftYear }: LiveDraftTr
 
         setPicks((prev) => {
           const existing = new Set(prev.map((p) => p.id));
-          const fresh = data.picks.filter((p) => !existing.has(p.id));
+          const fresh = data.picks
+            .filter((p) => !existing.has(p.id))
+            .sort((a, b) => b.pickNumber - a.pickNumber); // newest first
           return [...fresh, ...prev];
         });
 
@@ -68,10 +69,11 @@ export function LiveDraftTracker({ initialPicks, teams, draftYear }: LiveDraftTr
     return () => clearInterval(interval);
   }, [poll]);
 
-  const currentRound = picks.length > 0
-    ? picks[0].round
+  // Determine current round from the highest pick number
+  const maxRound = picks.length > 0
+    ? Math.max(...picks.map((p) => p.round))
     : 1;
-  const picksInRound = picks.filter((p) => p.round === currentRound);
+  const picksInRound = picks.filter((p) => p.round === maxRound);
 
   const clockTeam = onTheClock ? teamMap.get(onTheClock.teamId) : null;
 
@@ -105,7 +107,7 @@ export function LiveDraftTracker({ initialPicks, teams, draftYear }: LiveDraftTr
 
       <div className="mb-4 flex items-center justify-between">
         <h2 className="text-sm font-semibold text-text-secondary">
-          Round {currentRound} — {picksInRound.length}/32 picks
+          Round {maxRound} — {picksInRound.length}/32 picks
         </h2>
         {!isActive && (
           <span className="text-xs text-text-muted">Between rounds</span>

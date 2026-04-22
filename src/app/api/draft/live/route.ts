@@ -30,7 +30,7 @@ export async function GET(request: Request) {
   const now = new Date();
   const isActive = draftDates.some((dateStr) => {
     const start = new Date(dateStr);
-    const end = new Date(start.getTime() + 6 * 60 * 60 * 1000); // 6 hour window
+    const end = new Date(start.getTime() + 12 * 60 * 60 * 1000); // 12 hour window (aligned with page mode)
     return now >= start && now <= end;
   });
 

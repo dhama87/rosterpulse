@@ -176,6 +176,11 @@ export async function runScrape(
               (d.timestamp as string) ?? null, item.fetchedAt,
             ],
           });
+          // Update lastUpdated in draft_meta
+          await tx.execute({
+            sql: `INSERT OR REPLACE INTO draft_meta (key, value, updatedAt) VALUES ('lastUpdated', ?, ?)`,
+            args: [item.fetchedAt, item.fetchedAt],
+          });
           itemsNew++;
         } else if (item.type === "player") {
           const player = normalizeToPlayer(item);

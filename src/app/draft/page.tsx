@@ -56,7 +56,6 @@ export default async function DraftPage() {
           <LiveDraftTracker
             initialPicks={picks}
             teams={teams}
-            draftYear={year}
           />
         )}
 
