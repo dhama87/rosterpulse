@@ -114,6 +114,23 @@ export async function runScrape(
             ],
           });
           itemsNew++;
+        } else if (item.type === "player" && item.rawData._draftData) {
+          const d = item.rawData;
+          await tx.execute({
+            sql: `INSERT OR REPLACE INTO draft_picks
+              (id, year, round, pickNumber, teamId, playerName, position, college,
+               isTradeUp, tradeNote, timestamp, updatedAt)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+            args: [
+              d.id as string, d.year as number, d.round as number,
+              d.pickNumber as number, d.teamId as string,
+              d.playerName as string, d.position as string,
+              d.college as string, d.isTradeUp as number,
+              (d.tradeNote as string) ?? null,
+              (d.timestamp as string) ?? null, item.fetchedAt,
+            ],
+          });
+          itemsNew++;
         } else if (item.type === "player") {
           const player = normalizeToPlayer(item);
           await tx.execute({
