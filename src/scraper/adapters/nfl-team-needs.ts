@@ -41,7 +41,7 @@ function parseTeamNeeds(html: string): ParsedNeed[] {
       needs.push({
         teamId,
         position: positions[i],
-        priority: i + 1,
+        priority: Math.min(i + 1, 3),
       });
     }
   }

@@ -186,7 +186,7 @@ export async function runScrape(
           const source = item.rawData.source as string;
           await tx.execute("DELETE FROM draft_prospects");
           for (const p of prospects) {
-            const id = p.name.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
+            const id = `${p.rank}-${p.name.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "")}`;
             await tx.execute({
               sql: `INSERT INTO draft_prospects
                 (id, name, position, college, rank, projectedRound, projectedPick, source, updatedAt)
