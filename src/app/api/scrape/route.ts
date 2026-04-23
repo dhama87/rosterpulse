@@ -9,6 +9,9 @@ import { EspnRosterAdapter } from "@/scraper/adapters/espn-roster";
 import { RotoworldRssAdapter } from "@/scraper/adapters/rotoworld-rss";
 import { EspnScheduleAdapter } from "@/scraper/adapters/espn-schedule";
 import { EspnDraftAdapter } from "@/scraper/adapters/espn-draft";
+import { TankathonDraftOrderAdapter } from "@/scraper/adapters/tankathon-draft-order";
+import { TankathonProspectsAdapter } from "@/scraper/adapters/tankathon-prospects";
+import { NflTeamNeedsAdapter } from "@/scraper/adapters/nfl-team-needs";
 
 // Vercel crons use GET requests
 export async function GET(request: Request) {
@@ -52,6 +55,9 @@ async function handleScrape(request: Request) {
       new RotoworldRssAdapter(),
       new EspnScheduleAdapter(),
       new EspnDraftAdapter(),
+      new TankathonDraftOrderAdapter(),
+      new TankathonProspectsAdapter(),
+      new NflTeamNeedsAdapter(),
     ];
 
     const result = await runScrape(db, adapters);

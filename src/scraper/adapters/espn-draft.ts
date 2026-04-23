@@ -1,4 +1,5 @@
 import { SourceAdapter, ScrapedItem } from "../types";
+import { getDraftYear } from "../utils/draft-year";
 
 const ESPN_ID_TO_ABBREV: Record<string, string> = {
   "22": "ARI", "1": "ATL", "33": "BAL", "2": "BUF", "29": "CAR", "3": "CHI",
@@ -35,7 +36,7 @@ export class EspnDraftAdapter implements SourceAdapter {
   name = "espn-draft";
   private year: number;
 
-  constructor(year: number = 2026) {
+  constructor(year: number = getDraftYear()) {
     this.year = year;
   }
 
