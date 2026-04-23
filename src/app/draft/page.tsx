@@ -49,6 +49,8 @@ export default async function DraftPage() {
             teamNeeds={teamNeeds}
             teams={teams}
             draftStartDate={draftStartDate}
+            prospectsSource={meta.prospectsSource}
+            needsSource={meta.needsSource}
           />
         )}
 

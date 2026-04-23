@@ -13,6 +13,8 @@ interface PreDraftHubProps {
   teamNeeds: TeamNeed[];
   teams: Team[];
   draftStartDate: string;
+  prospectsSource?: string;
+  needsSource?: string;
 }
 
 type Tab = "order" | "needs" | "prospects";
@@ -29,6 +31,8 @@ export function PreDraftHub({
   teamNeeds,
   teams,
   draftStartDate,
+  prospectsSource,
+  needsSource,
 }: PreDraftHubProps) {
   const [tab, setTab] = useState<Tab>("order");
   const teamMap = new Map(teams.map((t) => [t.id, t]));
@@ -113,6 +117,11 @@ export function PreDraftHub({
               </Link>
             );
           })}
+          {needsSource && (
+            <p className="mt-3 text-xs text-text-muted text-center">
+              Source: {needsSource}
+            </p>
+          )}
         </div>
       )}
 
@@ -140,6 +149,11 @@ export function PreDraftHub({
               )}
             </div>
           ))}
+          {prospectsSource && (
+            <p className="mt-3 text-xs text-text-muted text-center">
+              Rankings: {prospectsSource}
+            </p>
+          )}
         </div>
       )}
     </div>
