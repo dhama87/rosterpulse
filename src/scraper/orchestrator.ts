@@ -188,7 +188,7 @@ export async function runScrape(
           for (const p of prospects) {
             const id = `${p.rank}-${p.name.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "")}`;
             await tx.execute({
-              sql: `INSERT INTO draft_prospects
+              sql: `INSERT OR REPLACE INTO draft_prospects
                 (id, name, position, college, rank, projectedRound, projectedPick, source, updatedAt)
               VALUES (?, ?, ?, ?, ?, 1, NULL, ?, ?)`,
               args: [id, p.name, p.position, p.college, p.rank, source, item.fetchedAt],
