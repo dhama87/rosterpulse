@@ -4,6 +4,16 @@ import { StatusBadge } from "./StatusBadge";
 import { FavStar } from "./FavStar";
 import { getStatLine } from "@/utils/statLine";
 
+/** Show DRAFT badge until 1 week before the regular season opener (~first Thursday of September). */
+function isRookieBadgeActive(): boolean {
+  const now = new Date();
+  const year = now.getMonth() >= 8 ? now.getFullYear() : now.getFullYear();
+  // NFL season typically starts first Thursday after Labor Day (Sep 4-10 range).
+  // Use Sep 1 as cutoff — badge disappears 1 week before earliest possible opener.
+  const cutoff = new Date(year, 7, 25); // Aug 25
+  return now < cutoff;
+}
+
 interface DepthChartRowProps {
   position: string;
   players: Player[];
@@ -96,6 +106,11 @@ function PlayerCell({
       )}
       {player.depthChange === "down" && (
         <span className="text-[10px] text-status-red">▼</span>
+      )}
+      {player.experience === 0 && isRookieBadgeActive() && (
+        <span className="inline-flex items-center rounded-full bg-status-blue-bg px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-status-blue">
+          Draft
+        </span>
       )}
       <StatusBadge status={player.injuryStatus} showOnlyIfNotActive />
       {showDetail && player.injuryDetail && (

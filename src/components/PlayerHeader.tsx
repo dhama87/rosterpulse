@@ -36,6 +36,11 @@ export function PlayerHeader({ player }: PlayerHeaderProps) {
             {player.name}
           </h1>
           <StatusBadge status={player.injuryStatus} />
+          {player.experience === 0 && (
+            <span className="inline-flex items-center rounded-full bg-status-blue-bg px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-status-blue">
+              Draft &apos;{new Date().getFullYear().toString().slice(-2)}
+            </span>
+          )}
         </div>
         <div className="mt-1 flex items-center gap-2 text-sm text-text-secondary">
           <span className="font-semibold">
