@@ -1,4 +1,24 @@
+import type { Metadata } from "next";
 import { createRosterService } from "@/services/createRosterService";
+
+export const metadata: Metadata = {
+  title: "NFL Draft Tracker",
+  description:
+    "Live NFL Draft tracker with pick-by-pick updates, prospect rankings, and team needs. Real-time results as they happen.",
+  openGraph: {
+    title: "NFL Draft Tracker | RosterPulse",
+    description:
+      "Live NFL Draft tracker with pick-by-pick updates, prospect rankings, and team needs.",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "NFL Draft Tracker | RosterPulse",
+    description:
+      "Live NFL Draft tracker with pick-by-pick updates, prospect rankings, and team needs.",
+  },
+  alternates: { canonical: "/draft" },
+};
 import { PreDraftHub } from "@/components/draft/PreDraftHub";
 import { LiveDraftTracker } from "@/components/draft/LiveDraftTracker";
 import { DraftResults } from "@/components/draft/DraftResults";

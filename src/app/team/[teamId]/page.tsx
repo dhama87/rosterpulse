@@ -1,9 +1,42 @@
+import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Image from "next/image";
 import { createRosterService } from "@/services/createRosterService";
 import { DepthChartGrid } from "@/components/DepthChartGrid";
 import { NewsFeed } from "@/components/NewsFeed";
 import { MobileNewsToggle } from "@/components/MobileNewsToggle";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ teamId: string }>;
+}): Promise<Metadata> {
+  const { teamId } = await params;
+  const service = createRosterService();
+  const team = service.getTeam(teamId);
+  if (!team) return {};
+
+  const title = `${team.fullName} Roster & Depth Chart`;
+  const description = `${team.fullName} (${team.record}) complete roster, depth chart, injuries, and news. ${team.conference} ${team.division}.`;
+
+  return {
+    title,
+    description,
+    openGraph: {
+      title,
+      description,
+      type: "website",
+    },
+    twitter: {
+      card: "summary",
+      title,
+      description,
+    },
+    alternates: {
+      canonical: `/team/${teamId}`,
+    },
+  };
+}
 
 function formatLastUpdated(iso: string): string {
   return new Date(iso).toLocaleDateString("en-US", {
@@ -59,8 +92,23 @@ export default async function TeamPage({
       return parseWinPct(b.record) - parseWinPct(a.record);
     });
 
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "SportsTeam",
+    name: team.fullName,
+    sport: "American Football",
+    memberOf: {
+      "@type": "SportsOrganization",
+      name: "National Football League",
+    },
+  };
+
   return (
     <div className="flex flex-col lg:flex-row lg:h-[calc(100vh-49px)]">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       {/* Depth Chart — Left */}
       <div className="flex-1 overflow-x-auto overflow-y-auto p-4 sm:p-6">
         {/* Team Header */}

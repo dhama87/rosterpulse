@@ -1,4 +1,22 @@
+import type { Metadata } from "next";
 import { createRosterService } from "@/services/createRosterService";
+
+export const metadata: Metadata = {
+  title: "NFL Schedule & Scores",
+  description:
+    "NFL weekly schedule with scores, injury reports, and playoff picture. Track every game, every week.",
+  openGraph: {
+    title: "NFL Schedule & Scores | RosterPulse",
+    description: "NFL weekly schedule with scores, injury reports, and playoff picture.",
+    type: "website",
+  },
+  twitter: {
+    card: "summary",
+    title: "NFL Schedule & Scores | RosterPulse",
+    description: "NFL weekly schedule with scores, injury reports, and playoff picture.",
+  },
+  alternates: { canonical: "/schedule" },
+};
 import { ScheduleGrid } from "@/components/ScheduleGrid";
 import { PlayoffPicture } from "@/components/PlayoffPicture";
 import { NewsFeed } from "@/components/NewsFeed";

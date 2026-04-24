@@ -1,6 +1,14 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { createRosterService } from "@/services/createRosterService";
 import { StatusBadge } from "@/components/StatusBadge";
+
+export const metadata: Metadata = {
+  title: "Search Players & Teams",
+  description: "Search NFL players and teams. Find roster info, depth charts, injury status, and news.",
+  robots: { index: false, follow: true },
+  alternates: { canonical: "/search" },
+};
 
 export default async function SearchPage({
   searchParams,
