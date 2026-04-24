@@ -13,21 +13,29 @@ const ESPN_ID_TO_ABBREV: Record<string, string> = {
   "10": "TEN", "28": "WAS",
 };
 
-interface EspnDraftPick {
+interface EspnLivePick {
+  status: string;
+  pick: number;
   overall: number;
-  round: { number: number };
-  team: { id: string; abbreviation: string };
+  round: number;
+  traded: boolean;
+  tradeNote?: string;
+  teamId: string;
   athlete?: {
     displayName: string;
-    position: { abbreviation: string };
-    college?: { name: string };
+    position: { id: string };
+    team?: { shortDisplayName: string };
   };
-  tradedFrom?: { id: string; abbreviation: string } | null;
-  tradeNote?: string | null;
 }
 
-interface EspnDraftResponse {
-  rounds: { number: number; picks: EspnDraftPick[] }[];
+interface EspnLivePosition {
+  id: string;
+  abbreviation: string;
+}
+
+interface EspnLiveResponse {
+  positions: EspnLivePosition[];
+  picks: EspnLivePick[];
 }
 
 async function fetchEspnDraftLive(year: number): Promise<DraftPick[]> {
@@ -38,30 +46,35 @@ async function fetchEspnDraftLive(year: number): Promise<DraftPick[]> {
   });
   if (!res.ok) return [];
 
-  const data = (await res.json()) as EspnDraftResponse;
-  if (!data.rounds) return [];
+  const data = (await res.json()) as EspnLiveResponse;
+  if (!data.picks) return [];
+
+  // Build position ID → abbreviation map from the response
+  const posMap: Record<string, string> = {};
+  for (const p of data.positions ?? []) {
+    posMap[p.id] = p.abbreviation;
+  }
 
   const now = new Date().toISOString();
   const picks: DraftPick[] = [];
 
-  for (const round of data.rounds) {
-    for (const pick of round.picks) {
-      if (!pick.athlete) continue;
-      const teamAbbrev = ESPN_ID_TO_ABBREV[pick.team.id] ?? pick.team.abbreviation;
-      picks.push({
-        id: `${year}-R${pick.round.number}-P${pick.overall}`,
-        year,
-        round: pick.round.number,
-        pickNumber: pick.overall,
-        teamId: teamAbbrev,
-        playerName: pick.athlete.displayName,
-        position: pick.athlete.position.abbreviation,
-        college: pick.athlete.college?.name ?? "",
-        isTradeUp: pick.tradedFrom != null,
-        tradeNote: pick.tradeNote ?? null,
-        timestamp: now,
-      });
-    }
+  for (const pick of data.picks) {
+    if (pick.status !== "SELECTION_MADE" || !pick.athlete) continue;
+    const teamAbbrev = ESPN_ID_TO_ABBREV[pick.teamId] ?? pick.teamId;
+    const posAbbrev = posMap[pick.athlete.position.id] ?? "?";
+    picks.push({
+      id: `${year}-R${pick.round}-P${pick.overall}`,
+      year,
+      round: pick.round,
+      pickNumber: pick.overall,
+      teamId: teamAbbrev,
+      playerName: pick.athlete.displayName,
+      position: posAbbrev,
+      college: pick.athlete.team?.shortDisplayName ?? "",
+      isTradeUp: pick.traded,
+      tradeNote: pick.tradeNote || null,
+      timestamp: now,
+    });
   }
 
   return picks;
