@@ -28,11 +28,10 @@ export default async function Home() {
         {/* Hero */}
         <div className="mb-6 rounded-lg border border-border bg-bg-card px-5 py-4">
           <h1 className="text-lg font-bold text-text-primary">
-            NFL Roster Dashboard
+            The cleanest NFL roster dashboard on the internet.
           </h1>
           <p className="mt-1 text-sm text-text-secondary leading-relaxed max-w-xl">
-            Every roster, depth chart, and injury update across all 32 teams
-            — aggregated and refreshed daily. No clutter, no paywalls.
+            Every team. Every starter. Every status change — updated daily, zero clutter.
           </p>
           <div className="mt-3 flex flex-wrap items-center gap-x-5 gap-y-1 text-xs text-text-muted">
             <span><strong className="text-text-secondary">32</strong> teams tracked</span>

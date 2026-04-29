@@ -19,7 +19,7 @@ export const metadata: Metadata = {
     template: "%s | RosterPulse",
   },
   description:
-    "Real-time NFL roster and depth chart dashboard. Every team, every starter, every status change — updated daily.",
+    "The cleanest NFL roster dashboard on the internet. Every team, every starter, every status change — updated daily, zero clutter.",
   keywords: [
     "NFL", "roster", "depth chart", "injuries", "NFL draft", "fantasy football",
     "NFL news", "roster moves", "NFL trades", "NFL schedule",
