@@ -2,6 +2,7 @@ import { createRosterService } from "@/services/createRosterService";
 import { TeamGrid } from "@/components/TeamGrid";
 import { NewsFeed } from "@/components/NewsFeed";
 import { MobileNewsToggle } from "@/components/MobileNewsToggle";
+import type { TeamSummary } from "@/components/TeamGrid";
 
 export const dynamic = "force-dynamic";
 
@@ -19,6 +20,35 @@ export default async function Home() {
       newsCountMap[item.team] = (newsCountMap[item.team] || 0) + 1;
       recentNewsCount++;
     }
+  }
+
+  // Build per-team summaries for favorites dashboard
+  const teamSummaries: Record<string, TeamSummary> = {};
+  for (const team of allTeams) {
+    const roster = await service.getTeamRoster(team.id);
+    if (!roster) continue;
+
+    let injuredStarters = 0;
+    let questionable = 0;
+    let rookies = 0;
+
+    for (const entry of roster.depthChart) {
+      for (const p of entry.players) {
+        if (p.experience === 0) rookies++;
+        if (p.depthOrder !== 1) continue;
+        if (p.injuryStatus === "Out" || p.injuryStatus === "IR" || p.injuryStatus === "Suspended") {
+          injuredStarters++;
+        } else if (p.injuryStatus === "Questionable" || p.injuryStatus === "Doubtful") {
+          questionable++;
+        }
+      }
+    }
+
+    // Latest news headline for this team
+    const teamNews = allNews.filter((n) => n.team === team.id);
+    const latestHeadline = teamNews[0]?.headline ?? null;
+
+    teamSummaries[team.id] = { injuredStarters, questionable, rookies, latestHeadline };
   }
 
   return (
@@ -40,7 +70,7 @@ export default async function Home() {
           </div>
         </div>
 
-        <TeamGrid teams={allTeams} newsCountMap={newsCountMap} />
+        <TeamGrid teams={allTeams} newsCountMap={newsCountMap} teamSummaries={teamSummaries} />
       </div>
 
       {/* News Feed — Right (hidden on mobile, shown on lg+) */}

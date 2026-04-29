@@ -53,12 +53,6 @@ export function TopBar({ lastVerified }: TopBarProps) {
         >
           Draft
         </Link>
-        <Link
-          href="/rookies"
-          className="hidden sm:inline text-sm text-text-muted hover:text-text-secondary transition-colors"
-        >
-          Rookies
-        </Link>
         <div className="flex items-center gap-2 sm:gap-4">
           <span className="hidden sm:block"><SeasonCountdown /></span>
           <span className="hidden sm:inline font-mono text-[11px] text-text-muted">

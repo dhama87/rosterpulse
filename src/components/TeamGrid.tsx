@@ -9,9 +9,17 @@ import { FavStar } from "./FavStar";
 const divisions: Division[] = ["East", "North", "South", "West"];
 const conferences: Conference[] = ["AFC", "NFC"];
 
+export interface TeamSummary {
+  injuredStarters: number;
+  questionable: number;
+  rookies: number;
+  latestHeadline: string | null;
+}
+
 interface TeamGridProps {
   teams: Team[];
   newsCountMap: Record<string, number>;
+  teamSummaries?: Record<string, TeamSummary>;
 }
 
 function TeamCardWithFav({
@@ -66,30 +74,115 @@ function TeamCardWithFav({
   );
 }
 
-export function TeamGrid({ teams, newsCountMap }: TeamGridProps) {
+function FavDashboardCard({
+  team,
+  newsCount,
+  summary,
+  onToggle,
+}: {
+  team: Team;
+  newsCount: number;
+  summary: TeamSummary;
+  onToggle: () => void;
+}) {
+  return (
+    <div className="rounded-lg border border-border bg-bg-card overflow-hidden">
+      {/* Team header */}
+      <div className="flex items-center gap-3 px-4 py-3 border-b border-border">
+        <FavStar active={true} onClick={onToggle} />
+        <Link href={`/team/${team.id}`} className="flex flex-1 items-center gap-3 min-w-0">
+          <Image src={team.logo} alt={team.name} width={28} height={28} className="h-7 w-7 object-contain" />
+          <div className="min-w-0 flex-1">
+            <div className="truncate text-sm font-semibold text-text-primary">{team.fullName}</div>
+            <div className="text-[11px] text-text-muted">{team.conference} {team.division} &middot; {team.record}</div>
+          </div>
+        </Link>
+      </div>
+
+      {/* Stats row */}
+      <div className="flex divide-x divide-border">
+        {summary.injuredStarters > 0 && (
+          <div className="flex-1 px-3 py-2.5 text-center">
+            <div className="text-lg font-bold text-status-red">{summary.injuredStarters}</div>
+            <div className="text-[10px] text-text-muted uppercase tracking-wider">Out</div>
+          </div>
+        )}
+        {summary.questionable > 0 && (
+          <div className="flex-1 px-3 py-2.5 text-center">
+            <div className="text-lg font-bold text-status-amber">{summary.questionable}</div>
+            <div className="text-[10px] text-text-muted uppercase tracking-wider">Questionable</div>
+          </div>
+        )}
+        {newsCount > 0 && (
+          <div className="flex-1 px-3 py-2.5 text-center">
+            <div className="text-lg font-bold text-status-amber">{newsCount}</div>
+            <div className="text-[10px] text-text-muted uppercase tracking-wider">Today</div>
+          </div>
+        )}
+        {summary.rookies > 0 && (
+          <div className="flex-1 px-3 py-2.5 text-center">
+            <div className="text-lg font-bold text-status-blue">{summary.rookies}</div>
+            <div className="text-[10px] text-text-muted uppercase tracking-wider">Rookies</div>
+          </div>
+        )}
+        {summary.injuredStarters === 0 && summary.questionable === 0 && newsCount === 0 && summary.rookies === 0 && (
+          <div className="flex-1 px-3 py-2.5 text-center">
+            <div className="text-sm font-medium text-status-green">All Clear</div>
+            <div className="text-[10px] text-text-muted uppercase tracking-wider">No Issues</div>
+          </div>
+        )}
+      </div>
+
+      {/* Latest headline */}
+      {summary.latestHeadline && (
+        <div className="border-t border-border px-4 py-2">
+          <p className="text-xs text-text-muted truncate">
+            {summary.latestHeadline}
+          </p>
+        </div>
+      )}
+    </div>
+  );
+}
+
+export function TeamGrid({ teams, newsCountMap, teamSummaries }: TeamGridProps) {
   const { favs, toggle } = useFavoriteTeams();
 
   const favTeams = teams.filter((t) => favs.has(t.id));
 
   return (
     <>
-      {/* Pinned favorites */}
+      {/* Favorites dashboard */}
       {favTeams.length > 0 && (
         <div className="mb-6">
           <h2 className="mb-3 text-xs font-semibold uppercase tracking-widest text-amber-400">
-            Favorites
+            Your Teams
           </h2>
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-2">
-            {favTeams.map((team) => (
-              <TeamCardWithFav
-                key={team.id}
-                team={team}
-                newsCount={newsCountMap[team.id] ?? 0}
-                isFav={true}
-                onToggle={() => toggle(team.id)}
-              />
-            ))}
-          </div>
+          {teamSummaries ? (
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+              {favTeams.map((team) => (
+                <FavDashboardCard
+                  key={team.id}
+                  team={team}
+                  newsCount={newsCountMap[team.id] ?? 0}
+                  summary={teamSummaries[team.id] ?? { injuredStarters: 0, questionable: 0, rookies: 0, latestHeadline: null }}
+                  onToggle={() => toggle(team.id)}
+                />
+              ))}
+            </div>
+          ) : (
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-2">
+              {favTeams.map((team) => (
+                <TeamCardWithFav
+                  key={team.id}
+                  team={team}
+                  newsCount={newsCountMap[team.id] ?? 0}
+                  isFav={true}
+                  onToggle={() => toggle(team.id)}
+                />
+              ))}
+            </div>
+          )}
         </div>
       )}
 

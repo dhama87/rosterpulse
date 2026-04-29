@@ -19,6 +19,7 @@ export const metadata: Metadata = {
   },
   alternates: { canonical: "/draft" },
 };
+import Link from "next/link";
 import { PreDraftHub } from "@/components/draft/PreDraftHub";
 import { LiveDraftTracker } from "@/components/draft/LiveDraftTracker";
 import { DraftResults } from "@/components/draft/DraftResults";
@@ -62,6 +63,17 @@ export default async function DraftPage() {
   return (
     <div className="flex flex-col lg:flex-row lg:h-[calc(100vh-49px)]">
       <div className="flex-1 overflow-y-auto p-4 sm:p-6">
+        {mode === "results" && (
+          <div className="mb-4">
+            <Link
+              href="/rookies"
+              className="inline-flex items-center gap-1.5 rounded-full bg-status-blue-bg px-3 py-1.5 text-xs font-semibold text-status-blue hover:brightness-110 transition-all"
+            >
+              View Rookie Tracker →
+            </Link>
+          </div>
+        )}
+
         {mode === "pre" && (
           <PreDraftHub
             draftOrder={picks}
