@@ -30,6 +30,12 @@ export function TopBar({ lastVerified }: TopBarProps) {
           </span>
         </Link>
         <Link
+          href="/injuries"
+          className="hidden sm:inline text-sm text-text-muted hover:text-text-secondary transition-colors"
+        >
+          Injuries
+        </Link>
+        <Link
           href="/schedule"
           className="hidden sm:inline text-sm text-text-muted hover:text-text-secondary transition-colors"
         >
