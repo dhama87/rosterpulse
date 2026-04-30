@@ -6,6 +6,7 @@ import { PlayerHeader } from "@/components/PlayerHeader";
 import { PlayerStatusCard } from "@/components/PlayerStatusCard";
 import { PlayerTimeline } from "@/components/PlayerTimeline";
 import { PlayerSidebar } from "@/components/PlayerSidebar";
+import { ShareButton } from "@/components/ShareButton";
 
 export async function generateMetadata({
   params,
@@ -117,12 +118,15 @@ export default async function PlayerPage({
           <span>/</span>
           <span className="text-text-secondary">{player.name}</span>
         </div>
-        <Link
-          href={`/compare?p1=${player.id}`}
-          className="text-xs text-text-muted hover:text-text-secondary transition-colors"
-        >
-          Compare →
-        </Link>
+        <div className="flex items-center gap-3">
+          <Link
+            href={`/compare?p1=${player.id}`}
+            className="text-xs text-text-muted hover:text-text-secondary transition-colors"
+          >
+            Compare →
+          </Link>
+          <ShareButton title={player.name} text={`${player.name} on RosterPulse`} />
+        </div>
       </nav>
 
       <div className="flex flex-col lg:flex-row gap-8">

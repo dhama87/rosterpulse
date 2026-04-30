@@ -5,6 +5,7 @@ import { createRosterService } from "@/services/createRosterService";
 import { DepthChartGrid } from "@/components/DepthChartGrid";
 import { NewsFeed } from "@/components/NewsFeed";
 import { MobileNewsToggle } from "@/components/MobileNewsToggle";
+import { ShareButton } from "@/components/ShareButton";
 
 export async function generateMetadata({
   params,
@@ -115,10 +116,13 @@ export default async function TeamPage({
         <div className="mb-6">
           <div className="flex items-center gap-4">
             <Image src={team.logo} alt={team.name} width={48} height={48} className="h-12 w-12 object-contain" />
-            <div>
-              <h1 className="text-2xl font-bold text-text-primary">
-                {team.fullName}
-              </h1>
+            <div className="flex-1">
+              <div className="flex items-center justify-between">
+                <h1 className="text-2xl font-bold text-text-primary">
+                  {team.fullName}
+                </h1>
+                <ShareButton title={`${team.fullName} Roster`} text={`${team.fullName} roster and depth chart on RosterPulse`} />
+              </div>
               <div className="flex items-center gap-3 text-sm text-text-secondary">
                 <span>
                   {team.conference} {team.division}
