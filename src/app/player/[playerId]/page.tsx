@@ -102,19 +102,27 @@ export default async function PlayerPage({
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
       {/* Breadcrumb */}
-      <nav className="mb-5 flex items-center gap-1.5 text-xs text-text-muted">
-        <Link href="/" className="hover:text-text-secondary">
-          Home
-        </Link>
-        <span>/</span>
+      <nav className="mb-5 flex items-center justify-between">
+        <div className="flex items-center gap-1.5 text-xs text-text-muted">
+          <Link href="/" className="hover:text-text-secondary">
+            Home
+          </Link>
+          <span>/</span>
+          <Link
+            href={`/team/${team.id}`}
+            className="hover:text-text-secondary"
+          >
+            {team.fullName}
+          </Link>
+          <span>/</span>
+          <span className="text-text-secondary">{player.name}</span>
+        </div>
         <Link
-          href={`/team/${team.id}`}
-          className="hover:text-text-secondary"
+          href={`/compare?p1=${player.id}`}
+          className="text-xs text-text-muted hover:text-text-secondary transition-colors"
         >
-          {team.fullName}
+          Compare →
         </Link>
-        <span>/</span>
-        <span className="text-text-secondary">{player.name}</span>
       </nav>
 
       <div className="flex flex-col lg:flex-row gap-8">
