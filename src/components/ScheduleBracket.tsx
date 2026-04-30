@@ -128,14 +128,20 @@ export function ScheduleBracket({
         </div>
       </div>
 
-      {/* Playoff tag */}
-      {playoffTag && (
-        <div className="mt-0.5 px-1">
+      {/* Matchup link */}
+      <div className="mt-0.5 px-1 flex items-center justify-between">
+        {playoffTag ? (
           <span className={`text-[9px] font-semibold ${playoffTag.color}`}>
             {playoffTag.text}
           </span>
-        </div>
-      )}
+        ) : <span />}
+        <Link
+          href={`/matchup?away=${game.awayTeam.id}&home=${game.homeTeam.id}`}
+          className="text-[9px] text-text-muted hover:text-text-secondary transition-colors"
+        >
+          Matchup →
+        </Link>
+      </div>
     </div>
   );
 }
